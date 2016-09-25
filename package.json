@@ -1,0 +1,35 @@
+{
+  "name": "under-the-100-floors",
+  "version": "1.0.0",
+  "description": "game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JailBreakC/Under-the-100-floors.git"
+  },
+  "keywords": [
+    "game"
+  ],
+  "author": "JailBreak",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/JailBreakC/Under-the-100-floors/issues"
+  },
+  "homepage": "https://github.com/JailBreakC/Under-the-100-floors#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-less": "^3.0.3",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.4.1",
+    "gulp-util": "^3.0.6"
+  }
+}

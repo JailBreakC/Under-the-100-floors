@@ -9,8 +9,8 @@ var gameController = {
     _$canvas: $('.canvas'),
     _$scroller: $('.scroller'),
     _$people: $('.people'),
-    _peopleSpeed: 100, //pixel per second
-    _peopleVerticalSpeed: 100, //pixel per second
+    _peopleSpeed: 180, //pixel per second
+    _peopleVerticalSpeed: 150, //pixel per second
     _peopleHeight: $('.people').height(),
     _peopleWidth: $('.people').width(),
     _scrollerHeight: $('.scroller').height(),
@@ -39,22 +39,39 @@ var gameController = {
         var _deltaPeopleY = this._peopleSpeed / fps;
         //人物横向每帧移动距离
         var _deltaPeopleVertical = this._peopleVerticalSpeed / fps;
-
+        //缓存floor
         var $floor = $('.floor');
-
+        //缓存offset
+        var peopleOffset = this._$people.offset();
+        if(peopleOffset.top > this._canvasHeight) {
+            alert('Game over!');
+            this.stop();
+            window.location.reload();
+            return
+        }
         //碰撞检测
         for(i = 0; i < $floor.length; i++) {
-            if(Math.abs(this._$people.offset().top + this._peopleHeight - $floor.eq(i).offset().top) <= 1) {
-                if(this._$people.offset().left > $floor.eq(i).offset().left - this._peopleWidth && 
-                    this._$people.offset().left < $floor.eq(i).offset().left + this._floorWidth) {
-
-                    this.__onFloor = true;
-                    //卷轴纵向每帧移动距离
-                    _deltaY = this._speed / fps,
-                    //让人物随着楼梯共同向上移动
-                    this.__currentPeopleY -= _deltaY;
-                    break;
-                }
+            //缓存offset
+            var floorOffset = $floor.eq(i).offset();
+            var distanceGap = Math.abs(peopleOffset.top + this._peopleHeight - floorOffset.top);
+            if(peopleOffset.top <= 0) {
+                this.__onFloor = false;
+                break;
+            }
+            if( distanceGap <= 5 && 
+                peopleOffset.left > floorOffset.left - this._peopleWidth && 
+                peopleOffset.left < floorOffset.left + this._floorWidth ) {
+                //人物与楼梯偏差修正，并立即更新视图
+                this.__currentPeopleY = floorOffset.top - this._peopleHeight + 2;
+                this._$people.css({
+                    transform: 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)'
+                });
+                this.__onFloor = true;
+                //卷轴纵向每帧移动距离
+                _deltaY = this._speed / fps,
+                //让人物随着楼梯共同向上移动
+                this.__currentPeopleY -= _deltaY;
+                break;
             }
             this.__onFloor = false;
         }
@@ -63,7 +80,6 @@ var gameController = {
             this.__currentPeopleY += _deltaPeopleY;
         }
         
-
         //处理人物向左运动
         if(this._peopleGoLeft) {
             if (this.__currentPeopleVertical > 0) {
@@ -76,7 +92,6 @@ var gameController = {
             if (this.__currentPeopleVertical < this._canvasWidth - this._peopleWidth) {
                 this.__currentPeopleVertical += _deltaPeopleVertical;
             }
-            
         }
 
         //设定人物位置, translate3d开启GPU加速，消除抖动
@@ -116,10 +131,7 @@ var gameController = {
     core: function(fps) {
         // console.log('i');
         var _this = this,
-            _deltaY = this._speed / fps, //卷轴纵向每帧移动距离
-            framePerFloor = (this._floorDeltaY / _deltaY); //每层台阶移动所需帧数
-        //计算总帧数
-        this.__frameIndex++;
+            _deltaY = this._speed / fps; //卷轴纵向每帧移动距离
 
         //计算卷轴位置
         this.__currentScrollerY -= _deltaY;
@@ -130,13 +142,17 @@ var gameController = {
         });
 
         //每个台阶移出视野则清除台阶，并且在底部增加一个新的台阶
-        if(this.__frameIndex > framePerFloor * 6 && this.__frameIndex % framePerFloor == 0) {
+        if($('.floor').eq(0).offset().top <= -20) {
             this.createFloorSpan();
             this.removeFloorSpan();
         }
 
         //调用人物渲染
         this.people(fps);
+        // 越来越high
+        if(this._speed <= 200) {
+            this._speed += 0.1;
+        }
 
     },
     run: function(fps) {

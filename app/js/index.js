@@ -2,7 +2,6 @@ var gameController = {
     _animation: null,
     _canvasWidth: 0,
     _canvasHeight: 0,
-    _currentFloor: 0,
     _floorWidth: $('.canvas').width() / 6,
     _floorDeltaY: 50,
     _floorScore: 1,
@@ -18,11 +17,11 @@ var gameController = {
     __currentScrollerY: 0,
     __currentPeopleY: 0,
     __currentPeopleVertical: 0,
+    __floorScrollerY: 200,
     __frameIndex: 0,
     createFloorSpan: function() {
-        this._currentFloor++;
         //计算楼梯位置，200px 刚开始从距离顶部200px开始
-        var _top = this._currentFloor * this._floorDeltaY + 200,
+        var _top = this.__floorScrollerY += this._floorDeltaY,
             //楼梯横向位置随机出现
             _left = Math.random() * (this._canvasWidth - this._floorWidth);
 
@@ -153,6 +152,18 @@ var gameController = {
 
         //计算卷轴位置
         this.__currentScrollerY -= _deltaY;
+
+        //位置reset
+        if(this.__currentScrollerY <= -this._canvasHeight * 2) {
+            this.__currentScrollerY += this._canvasHeight;
+            this.__floorScrollerY -= this._canvasHeight;
+            var $floor = $('.floor');
+            for(i = 0; i < $floor.length; i++) {
+                $floor.eq(i).css({
+                    top: parseInt($('.floor').eq(i).css('top')) - this._canvasHeight
+                })
+            }
+        }
 
         //使用3D变换来移动卷轴（启用GPU加速）
         this._$scroller.css({

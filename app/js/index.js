@@ -82,11 +82,9 @@ var gameController = {
         this.addBlood();
         $ele.addClass('over');
         setTimeout(function() {
-            _this._forceCross = true;
+            //标记该元素强行穿过
+            $ele[0].cross = true;
         }, 200);
-        setTimeout(function() {
-            _this._forceCross = false;
-        }, 250);
     },
     floorScroll: function(direction) {
         this.addBlood();
@@ -116,8 +114,8 @@ var gameController = {
                 break;
             }
             // console.log(this._forceCross);
-            if( !this._forceCross &&
-                distanceGap <= 5 && 
+            if( !$floor.eq(i)[0].cross &&
+                distanceGap <= 10 && 
                 peopleOffset.left > floorOffset.left - this._peopleWidth && 
                 peopleOffset.left < floorOffset.left + this._floorWidth ) {
                 //人物与楼梯偏差修正，并立即更新视图

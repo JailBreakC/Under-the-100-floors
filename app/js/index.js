@@ -86,7 +86,7 @@ var gameController = {
         }, 200);
         setTimeout(function() {
             _this._forceCross = false;
-        }, 300);
+        }, 250);
     },
     floorScroll: function(direction) {
         this.addBlood();
@@ -115,7 +115,7 @@ var gameController = {
                 this.__onFloor = false;
                 break;
             }
-            console.log(this._forceCross);
+            // console.log(this._forceCross);
             if( !this._forceCross &&
                 distanceGap <= 5 && 
                 peopleOffset.left > floorOffset.left - this._peopleWidth && 

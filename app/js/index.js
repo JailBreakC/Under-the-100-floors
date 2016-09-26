@@ -3,8 +3,9 @@ var gameController = {
     _canvasWidth: 0,
     _canvasHeight: 0,
     _currentFloor: 0,
-    _floorWidth: 90,
+    _floorWidth: $('.canvas').width() / 6,
     _floorDeltaY: 50,
+    _floorScore: 1,
     _speed: 50, //pixel per second
     _$canvas: $('.canvas'),
     _$scroller: $('.scroller'),
@@ -28,11 +29,14 @@ var gameController = {
         //新建楼梯，并添加到卷轴中去
         $('<i class="floor"></i>').css({
             top: _top,
-            left: _left
+            left: _left,
+            width: this._floorWidth
         }).appendTo(this._$scroller);
     },
     removeFloorSpan: function() {
         $('.floor').eq(0).remove();
+        this._floorScore++;
+        $('.floor-count').text(this._floorScore)
     },
     people: function(fps) {
         //人物纵向每帧移动距离
@@ -44,7 +48,7 @@ var gameController = {
         //缓存offset
         var peopleOffset = this._$people.offset();
         if(peopleOffset.top > this._canvasHeight) {
-            alert('Game over!');
+            // alert('Game over!');
             this.stop();
             window.location.reload();
             return
@@ -103,7 +107,6 @@ var gameController = {
         var _this = this;
         //监听按键按下，改变人物左右运动方向
         $(window).keydown(function(ev) {
-            console.log(ev.key);
             if(ev.key == 'ArrowRight') {
                 _this._peopleGoRight = true;
                 _this._peopleGoLeft = false;//预防按键同时按下的冲突情况 
@@ -114,10 +117,8 @@ var gameController = {
                 _this._peopleGoLeft = true;
                 return;
             }
-        });
-
         //按键弹起，取消该方向人物运动
-        $(window).keyup(function(ev) {
+        }).keyup(function(ev) {
             if(ev.key == 'ArrowRight') {
                 _this._peopleGoRight = false;
                 return;
@@ -126,7 +127,22 @@ var gameController = {
                 _this._peopleGoLeft = false;
                 return;
             }
+        });;
+
+        $('.controller .left-ct').on('touchstart', function(ev) {
+            _this._peopleGoRight = false;//预防按键同时按下的冲突情况 
+            _this._peopleGoLeft = true;
+        }).on('touchend', function(ev) {
+            _this._peopleGoLeft = false;
         });
+
+        $('.controller .right-ct').on('touchstart', function(ev) {
+            _this._peopleGoRight = true;
+            _this._peopleGoLeft = false;//预防按键同时按下的冲突情况
+        }).on('touchend', function(ev) {
+            _this._peopleGoRight = false;
+        });
+
     },
     core: function(fps) {
         // console.log('i');
@@ -193,7 +209,12 @@ var gameController = {
 
         //初始化任务控制
         this.peopleUserController();
-
+        //人物位置预设
+        this.__currentPeopleVertical = this._canvasWidth/2 + this._peopleWidth/2;
+        this._$people.show();
+        this._$people.css({
+            transform: 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)'
+        });
         //以每秒60帧执行游戏动画
         this.run(60);
     }

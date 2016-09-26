@@ -1,38 +1,74 @@
 html, body {
-	position: relative;
-	height: 100%;	
+    position: relative;
+    height: 100%;   
 }
 body {
-	max-width: 500px;
-	margin: auto;
+    max-width: 500px;
+    margin: auto;
 }
 .container {
-	height: 100%;
-	overflow: hidden;
+    height: 100%;
+    overflow: hidden;
+    .controller {
+        .ctrl-ct {
+            width: 50%;
+            float: left;
+            overflow: auto;
+            -webkit-user-select: none;
+        }
+        .item {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            background-color: rebeccapurple;
+            color: white;
+            text-align: center;
+            font-size: 31px;
+            margin: 20px;
+            &.left {
+                float: left;
+            }
+            &.right {
+                float: right;
+            }
+        }
+        .score {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            color: #2d2d2d;
+            text-align: center;
+            .floor-count {
+                color: red;
+                font-weight: bolder;
+            }
+        }
+    }
 }
 .canvas {
-	background: #eeeeee;
-	height: 550px;
-	position: relative;
-	overflow: hidden;
-	.people {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 15px;
-		height: 15px;
-		border-radius: 50%;
-		background-color: red;
-	}
-	.scroller {
-		height: 1000px;
-		position: relative;
-		transform: translate3d(0, 0, 0);
-		.floor {
-			position: absolute;
-			width: 90px;
-			height: 10px;
-			background: gray;
-		}
-	}
+    background: #eeeeee;
+    height: 550px;
+    position: relative;
+    overflow: hidden;
+    .people {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: red;
+    }
+    .scroller {
+        height: 1000px;
+        position: relative;
+        transform: translate3d(0, 0, 0);
+        .floor {
+            position: absolute;
+            width: 90px;
+            height: 10px;
+            background: gray;
+        }
+    }
 }

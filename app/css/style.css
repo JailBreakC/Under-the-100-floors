@@ -11,6 +11,40 @@ body {
   height: 100%;
   overflow: hidden;
 }
+.container .controller .ctrl-ct {
+  width: 50%;
+  float: left;
+  overflow: auto;
+  -webkit-user-select: none;
+}
+.container .controller .item {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  background-color: rebeccapurple;
+  color: white;
+  text-align: center;
+  font-size: 31px;
+  margin: 20px;
+}
+.container .controller .item.left {
+  float: left;
+}
+.container .controller .item.right {
+  float: right;
+}
+.container .controller .score {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  color: #2d2d2d;
+  text-align: center;
+}
+.container .controller .score .floor-count {
+  color: red;
+  font-weight: bolder;
+}
 .canvas {
   background: #eeeeee;
   height: 550px;

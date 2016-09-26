@@ -132,6 +132,7 @@ var gameController = {
         $('.controller .left-ct').on('touchstart', function(ev) {
             _this._peopleGoRight = false;//预防按键同时按下的冲突情况 
             _this._peopleGoLeft = true;
+            return false
         }).on('touchend', function(ev) {
             _this._peopleGoLeft = false;
         });
@@ -139,6 +140,7 @@ var gameController = {
         $('.controller .right-ct').on('touchstart', function(ev) {
             _this._peopleGoRight = true;
             _this._peopleGoLeft = false;//预防按键同时按下的冲突情况
+            return false
         }).on('touchend', function(ev) {
             _this._peopleGoRight = false;
         });

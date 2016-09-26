@@ -10,12 +10,12 @@ body {
 .container {
   height: 100%;
   overflow: hidden;
+  -webkit-user-select: none;
 }
 .container .controller .ctrl-ct {
   width: 50%;
   float: left;
   overflow: auto;
-  -webkit-user-select: none;
 }
 .container .controller .item {
   width: 50px;
@@ -45,6 +45,10 @@ body {
   color: red;
   font-weight: bolder;
 }
+.container .controller .score .blood {
+  color: red;
+  font-weight: bolder;
+}
 .canvas {
   background: #eeeeee;
   height: 550px;
@@ -69,5 +73,22 @@ body {
   position: absolute;
   width: 90px;
   height: 10px;
-  background: gray;
+  background-color: gray;
+}
+.canvas .scroller .floor.weak {
+  background-color: #b1b1b1;
+  transition: transform .3s ease;
+  transform: rotateX(0deg);
+}
+.canvas .scroller .floor.weak.over {
+  transform: rotateX(360deg);
+}
+.canvas .scroller .floor.nail {
+  background-color: red;
+}
+.canvas .scroller .floor.scroll-left {
+  background-color: cadetblue;
+}
+.canvas .scroller .floor.scroll-right {
+  background-color: cadetblue;
 }

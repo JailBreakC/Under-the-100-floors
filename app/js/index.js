@@ -6,6 +6,7 @@ var gameController = {
     _floorDeltaY: 50,
     _floorScore: 1,
     _speed: 50, //pixel per second
+    _blood: 12,
     _$canvas: $('.canvas'),
     _$scroller: $('.scroller'),
     _$people: $('.people'),
@@ -15,18 +16,30 @@ var gameController = {
     _peopleWidth: $('.people').width(),
     _scrollerHeight: $('.scroller').height(),
     __currentScrollerY: 0,
-    __currentPeopleY: 0,
+    __currentPeopleY: 1,
     __currentPeopleVertical: 0,
     __floorScrollerY: 200,
     __frameIndex: 0,
+    //游戏结束
+    gameover: function() {
+        this.stop();
+        // alert('Game Over');
+        // window.location.reload();
+    },
     createFloorSpan: function() {
         //计算楼梯位置，200px 刚开始从距离顶部200px开始
         var _top = this.__floorScrollerY += this._floorDeltaY,
             //楼梯横向位置随机出现
             _left = Math.random() * (this._canvasWidth - this._floorWidth);
-
+        var floors = [
+            '<i class="floor normal"></i>',
+            '<i class="floor weak"></i>',
+            '<i class="floor scroll-left"></i>',
+            '<i class="floor scroll-right"></i>',
+            '<i class="floor nail"></i>'
+        ]
         //新建楼梯，并添加到卷轴中去
-        $('<i class="floor"></i>').css({
+        $(floors[Math.floor(Math.random() * 5)]).css({
             top: _top,
             left: _left,
             width: this._floorWidth
@@ -36,6 +49,47 @@ var gameController = {
         $('.floor').eq(0).remove();
         this._floorScore++;
         $('.floor-count').text(this._floorScore)
+    },
+    loseBlood: function() {
+        //当人物在平台上时，不重复扣血
+        if(this.__onFloor) {
+            return;
+        }
+        this._blood -= 4;
+        if(this._blood <= 0) {
+            $('.blood').text(0);
+            this.gameover();
+            return;
+        }
+        $('.blood').text(this._blood);
+    },
+    addBlood: function() {
+        //当人物在平台上时，或者血量大于12，不重复加血
+        if(this.__onFloor || this._blood >= 12) {
+            return;
+        }
+        this._blood += 1;
+        $('.blood').text(this._blood);
+    },
+    floorNormal: function() {
+        this.addBlood();
+    },
+    floorNail: function() {
+        this.loseBlood();
+    },
+    floorWeak: function($ele) {
+        var _this = this;
+        this.addBlood();
+        $ele.addClass('over');
+        setTimeout(function() {
+            _this._forceCross = true;
+        }, 200);
+        setTimeout(function() {
+            _this._forceCross = false;
+        }, 300);
+    },
+    floorScroll: function(direction) {
+        this.addBlood();
     },
     people: function(fps) {
         //人物纵向每帧移动距离
@@ -48,8 +102,7 @@ var gameController = {
         var peopleOffset = this._$people.offset();
         if(peopleOffset.top > this._canvasHeight) {
             // alert('Game over!');
-            this.stop();
-            window.location.reload();
+            this.gameover();
             return
         }
         //碰撞检测
@@ -58,10 +111,13 @@ var gameController = {
             var floorOffset = $floor.eq(i).offset();
             var distanceGap = Math.abs(peopleOffset.top + this._peopleHeight - floorOffset.top);
             if(peopleOffset.top <= 0) {
+                this.loseBlood();
                 this.__onFloor = false;
                 break;
             }
-            if( distanceGap <= 5 && 
+            console.log(this._forceCross);
+            if( !this._forceCross &&
+                distanceGap <= 5 && 
                 peopleOffset.left > floorOffset.left - this._peopleWidth && 
                 peopleOffset.left < floorOffset.left + this._floorWidth ) {
                 //人物与楼梯偏差修正，并立即更新视图
@@ -69,14 +125,32 @@ var gameController = {
                 this._$people.css({
                     transform: 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)'
                 });
-                this.__onFloor = true;
                 //卷轴纵向每帧移动距离
                 _deltaY = this._speed / fps,
                 //让人物随着楼梯共同向上移动
                 this.__currentPeopleY -= _deltaY;
+                if($floor.eq(i).hasClass('normal')) {
+                    this.floorNormal();
+                }
+                if($floor.eq(i).hasClass('nail')) {
+                    this.floorNail();
+                }
+                if($floor.eq(i).hasClass('weak')) {
+                    this.floorWeak($floor.eq(i));
+                }
+                if($floor.eq(i).hasClass('scroll-left')) {
+                    this.floorScroll('left');
+                }
+                if($floor.eq(i).hasClass('scroll-right')) {
+                    this.floorScroll('right');
+                }
+                this.__onFloor = true;
                 break;
             }
-            this.__onFloor = false;
+            //当循环执行完毕，仍然没有发现碰撞，则表明人物不在平台上
+            if(i == $floor.length - 1) {
+                this.__onFloor = false;
+            }
         }
         if(!this.__onFloor) {
             //移动当前人物纵向位置
@@ -180,7 +254,7 @@ var gameController = {
         this.people(fps);
         // 越来越high
         if(this._speed <= 200) {
-            this._speed += 0.1;
+            this._speed += 0.05;
         }
 
     },

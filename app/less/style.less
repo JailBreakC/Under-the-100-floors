@@ -9,12 +9,12 @@ body {
 .container {
     height: 100%;
     overflow: hidden;
+    -webkit-user-select: none;
     .controller {
         .ctrl-ct {
             width: 50%;
             float: left;
             overflow: auto;
-            -webkit-user-select: none;
         }
         .item {
             width: 50px;
@@ -43,6 +43,10 @@ body {
                 color: red;
                 font-weight: bolder;
             }
+            .blood {
+                color: red;
+                font-weight: bolder;
+            }
         }
     }
 }
@@ -68,7 +72,24 @@ body {
             position: absolute;
             width: 90px;
             height: 10px;
-            background: gray;
+            background-color: gray;
+            &.weak {
+                background-color: #b1b1b1;
+                transition: transform .3s ease;
+                transform: rotateX(0deg);
+                &.over {
+                    transform: rotateX(360deg);
+                }
+            }
+            &.nail {
+                background-color: red;
+            }
+            &.scroll-left {
+                background-color: cadetblue;
+            }
+            &.scroll-right {
+                background-color: cadetblue;
+            }
         }
     }
 }

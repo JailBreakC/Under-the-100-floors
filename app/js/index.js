@@ -23,8 +23,8 @@ var gameController = {
     //游戏结束
     gameover: function() {
         this.stop();
-        // alert('Game Over');
-        // window.location.reload();
+        alert('Game Over');
+        window.location.reload();
     },
     createFloorSpan: function() {
         //计算楼梯位置，200px 刚开始从距离顶部200px开始

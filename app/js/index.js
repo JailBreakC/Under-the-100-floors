@@ -44,7 +44,7 @@ var gameController = {
 
         //碰撞检测
         for(i = 0; i < $floor.length; i++) {
-            if(Math.abs(this._$people.offset().top + this._peopleHeight - $floor.eq(i).offset().top) <= 2) {
+            if(Math.abs(this._$people.offset().top + this._peopleHeight - $floor.eq(i).offset().top) <= 1) {
                 if(this._$people.offset().left > $floor.eq(i).offset().left - this._peopleWidth && 
                     this._$people.offset().left < $floor.eq(i).offset().left + this._floorWidth) {
 
@@ -62,32 +62,27 @@ var gameController = {
             //移动当前人物纵向位置
             this.__currentPeopleY += _deltaPeopleY;
         }
-        //设定纵向位置
-        this._$people.css({
-            top: this.__currentPeopleY
-        });
+        
 
         //处理人物向左运动
         if(this._peopleGoLeft) {
-            if (this.__currentPeopleVertical <= 0) {
-                return;
+            if (this.__currentPeopleVertical > 0) {
+                this.__currentPeopleVertical -= _deltaPeopleVertical;
             }
-            this.__currentPeopleVertical -= _deltaPeopleVertical;
-            this._$people.css({
-                left: this.__currentPeopleVertical
-            });
         }
 
         //处理人物向右运动
         if(this._peopleGoRight) {
-            if (this.__currentPeopleVertical >= this._canvasWidth - this._peopleWidth) {
-                return;
+            if (this.__currentPeopleVertical < this._canvasWidth - this._peopleWidth) {
+                this.__currentPeopleVertical += _deltaPeopleVertical;
             }
-            this.__currentPeopleVertical += _deltaPeopleVertical;
-            this._$people.css({
-                left: this.__currentPeopleVertical
-            });
+            
         }
+
+        //设定人物位置, translate3d开启GPU加速，消除抖动
+        this._$people.css({
+            transform: 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)'
+        });
     },
     peopleUserController: function() {
         var _this = this;

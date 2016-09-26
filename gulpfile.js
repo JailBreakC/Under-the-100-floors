@@ -7,7 +7,7 @@ var gulp  = require('gulp'),         //基础库
     concat = require('gulp-concat'),     //合并文件
     clean = require('gulp-clean'),       //清空文件夹
     connect = require('gulp-connect'),     //webserver
-    port = 8080,
+    port = 8888,
     rootpath = 'app';
 
 gulp.task('webserver', function() {

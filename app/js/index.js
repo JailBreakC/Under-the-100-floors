@@ -20,12 +20,14 @@ var gameController = {
     __currentPeopleY: 20,
     __currentPeopleVertical: 0,
     __floorScrollerY: 200,
+    __maxJumpDistance: 20,
+    __currentJumpDistance: 0,
     __frameIndex: 0,
     //游戏结束
     gameover: function() {
         this.stop();
-        alert('Game Over');
-        window.location.reload();
+        // alert('Game Over');
+        // window.location.reload();
     },
     createFloorSpan: function() {
         //计算楼梯位置，200px 刚开始从距离顶部200px开始
@@ -64,8 +66,13 @@ var gameController = {
             return;
         }
         this._blood -= 4;
+        this._$people.addClass('danger');
+        setTimeout(function() {
+            this._$people.removeClass('danger');
+        }.bind(this), 300);
         if(this._blood <= 0) {
-            $('.blood').text(0);
+            this._blood = 0;
+            this.updateBlood();
             this.gameover();
             return;
         }
@@ -96,8 +103,31 @@ var gameController = {
     floorScroll: function(direction) {
         this.addBlood();
     },
-    floorSpring: function() {
+    floorSpring: function($floorEle) {
+        this.__$currentJumpFloor = $floorEle;
+        this.jumpStart();
         this.addBlood();
+    },
+    jumpStart: function() {
+        this.__jumpMode = true;
+        //暂存人物速度
+        this.__tempPeopleSpeed = this._peopleSpeed;
+        //跳跃模式，人物速度降低
+        this._peopleSpeed = this._peopleSpeed / 2;
+    },
+    jumpEnd: function(hitTop) {
+        if(!this.__jumpMode) {
+            return;
+        }
+        if(hitTop) {
+            this.__$currentJumpFloor[0].cross = true;
+        }
+        //重置跳跃高度
+        this.__currentJumpDistance = 0;
+        //解除跳跃
+        this.__jumpMode = false;
+        //恢复人物速度
+        this._peopleSpeed = this.__tempPeopleSpeed;
     },
     people: function(fps) {
         //人物纵向每帧移动距离
@@ -110,6 +140,7 @@ var gameController = {
         var $floor = $('.floor');
         //缓存offset
         var peopleOffset = this._$people.offset();
+        
         //人物掉落屏幕下方，游戏结束
         if(peopleOffset.top > this._canvasHeight) {
             this.gameover();
@@ -121,15 +152,17 @@ var gameController = {
             var floorOffset = $floor.eq(i).offset();
             //人物与楼梯纵向距离
             var distanceGap = Math.abs(peopleOffset.top + this._peopleHeight - floorOffset.top);
-            //当人物撞到顶部，掉血+掉落
+            //当人物撞到顶部，掉血+掉落+打断跳跃
             if(peopleOffset.top <= _deltaPeopleY + _deltaY) {
                 this.__onFloor = false;
+                this.jumpEnd(true);
                 this.loseBlood();
                 break;
             }
-
+                //跳跃模式不进入检测
+            if( !this.__jumpMode &&
                 //元素不可直接穿过
-            if( !$floor.eq(i)[0].cross &&
+                !$floor.eq(i)[0].cross &&
                 //人物与楼梯纵向距离在一帧移动距离之内
                 distanceGap <= _deltaPeopleY + _deltaY && 
                 //人物横向距离不超过楼梯最左
@@ -137,11 +170,11 @@ var gameController = {
                 //人物横向距离不超过楼梯最右
                 peopleOffset.left < floorOffset.left + this._floorWidth ) {
                 //人物与楼梯偏差修正
-                this.__currentPeopleY = floorOffset.top - this._peopleHeight + 2;
+                this.__currentPeopleY = floorOffset.top - this._peopleHeight;
                 //立即更新视图
-                this.peopleUpdateView();
+                // this.peopleUpdateView();
                 //让人物随着楼梯共同向上移动（站在楼梯上效果）
-                this.__currentPeopleY -= _deltaY;
+                // this.__currentPeopleY -= _deltaY;
                 //施加各类楼梯特殊属性
                 if($floor.eq(i).hasClass('normal')) {
                     this.floorNormal();
@@ -150,7 +183,7 @@ var gameController = {
                     this.floorNail();
                 }
                 if($floor.eq(i).hasClass('spring')) {
-                    this.floorSpring();
+                    this.floorSpring($floor.eq(i));
                 }
                 if($floor.eq(i).hasClass('weak')) {
                     this.floorWeak($floor.eq(i));
@@ -169,8 +202,21 @@ var gameController = {
                 this.__onFloor = false;
             }
         }
-        if(!this.__onFloor) {
-            //移动当前人物纵向位置
+
+        //人物向上跳起
+        if(this.__jumpMode) {
+
+            if(this.__currentJumpDistance >= this.__maxJumpDistance) {
+                this.jumpEnd();
+            } else {
+                this.__currentJumpDistance += _deltaPeopleY;
+                //向上跳起效果要额外加上_deltaY，以匹配卷轴运动状态
+                this.__currentPeopleY -= _deltaPeopleY + _deltaY;
+            }
+        }
+
+        //人物向下坠落
+        if(!this.__onFloor && !this.__jumpMode) {
             this.__currentPeopleY += _deltaPeopleY;
         }
         
@@ -290,7 +336,7 @@ var gameController = {
             return ;
         }
 
-        fps = fps || 60;
+        this._fps = fps = fps || 60;
         var looptime = 1000 / fps, //每帧间隔时间
             _this = this;
 

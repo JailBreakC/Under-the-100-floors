@@ -54,6 +54,7 @@ body {
   height: 550px;
   position: relative;
   overflow: hidden;
+  pointer-events: none;
 }
 .canvas .people {
   position: absolute;
@@ -62,7 +63,10 @@ body {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: red;
+  background-color: #00acff;
+}
+.canvas .people.danger {
+  animation: bgShake 0.3s step-end;
 }
 .canvas .scroller {
   height: 1000px;
@@ -94,4 +98,21 @@ body {
 }
 .canvas .scroller .floor.spring {
   background-color: #ffd200;
+}
+@keyframes bgShake {
+  0% {
+    background-color: #00acff;
+  }
+  25% {
+    background-color: red;
+  }
+  50% {
+    background-color: #00acff;
+  }
+  75% {
+    background-color: red;
+  }
+  100% {
+    background-color: #00acff;
+  }
 }

@@ -1,3 +1,4 @@
+@peopleColor: #00acff;
 html, body {
     position: relative;
     height: 100%;   
@@ -55,6 +56,7 @@ body {
     height: 550px;
     position: relative;
     overflow: hidden;
+    pointer-events: none;
     .people {
         position: absolute;
         top: 0;
@@ -62,7 +64,10 @@ body {
         width: 15px;
         height: 15px;
         border-radius: 50%;
-        background-color: red;
+        background-color: @peopleColor;
+        &.danger {
+            animation: bgShake .3s step-end;
+        }
     }
     .scroller {
         height: 1000px;
@@ -94,5 +99,23 @@ body {
                 background-color: #ffd200;
             }
         }
+    }
+}
+@keyframes bgShake
+{
+    0% {
+        background-color: @peopleColor;
+    }
+    25% {
+        background-color: red;
+    }
+    50% {
+        background-color: @peopleColor;
+    }
+    75% {
+        background-color: red;
+    }
+    100% {
+        background-color: @peopleColor;
     }
 }

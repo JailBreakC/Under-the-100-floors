@@ -415,6 +415,7 @@ var gameController = {
         });
         _this._canvasWidth = $('.canvas').width();
         _this._canvasHeight = _this._$canvas.height();
+        _this._floorDeltaY = _this._canvasHeight / 11;
 
         //初始化台阶
         while(floorLoop++ < 13) {

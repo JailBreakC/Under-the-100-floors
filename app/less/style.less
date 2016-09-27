@@ -35,9 +35,8 @@ body {
             }
         }
         .score {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
+            display: block;
+            margin-top: 10px;
             color: #2d2d2d;
             text-align: center;
             .floor-count {
@@ -91,9 +90,27 @@ body {
             }
             &.scroll-left {
                 background-color: cadetblue;
+                &:after {
+                    content: '<<<<<';
+                    display: block;
+                    font-size: 10px;
+                    line-height: 10px;
+                    text-align: center;
+                    color: white;
+                    font-style: initial;
+                }
             }
             &.scroll-right {
                 background-color: cadetblue;
+                &:after {
+                    content: '>>>>>';
+                    display: block;
+                    font-size: 10px;
+                    line-height: 10px;
+                    text-align: center;
+                    color: white;
+                    font-style: initial;
+                }
             }
             &.spring {
                 background-color: #ffd200;

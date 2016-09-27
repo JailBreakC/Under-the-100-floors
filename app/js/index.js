@@ -4,6 +4,7 @@ var gameController = {
     _canvasHeight: 0,
     _floorWidth: $('.canvas').width() / 5,
     _floorDeltaY: 50,
+    _floorAppearRate: [1, 1, 1, 1, 1, 1], //normal | spring | weak | scroll-left | scroll-right | nail
     _floorScore: 1,
     _speed: 50, //pixel per second
     _maxSpeed: 200,
@@ -26,15 +27,28 @@ var gameController = {
     //游戏结束
     gameover: function() {
         this.stop();
-        // alert('Game Over');
-        // window.location.reload();
+        
+        setTimeout(function() {
+            alert('Game Over');
+            window.location.reload();
+        });
     },
     createFloorSpan: function() {
         //计算楼梯位置，200px 刚开始从距离顶部200px开始
         var _top = this.__floorScrollerY += this._floorDeltaY,
             //楼梯横向位置随机出现
             _left = Math.random() * (this._canvasWidth - this._floorWidth);
-
+        //数组中【按比例】随机抽取一个index
+        //参数是一个概率比例值数组，数字越大比例越高
+        var randomRate = function(arr) {
+            var randomArr = [];
+            for(var i = 0; i < arr.length; i++) {
+                randomArr[i] = arr[i] * Math.random();
+            }
+            // console.log(randomArr);
+            var biggestNumber = Math.max.apply(Math, randomArr);
+            return randomArr.indexOf(biggestNumber);
+        };
         var floors = [
             '<i class="floor normal"></i>',
             '<i class="floor spring"></i>',
@@ -42,9 +56,9 @@ var gameController = {
             '<i class="floor scroll-left"></i>',
             '<i class="floor scroll-right"></i>',
             '<i class="floor nail"></i>'
-        ]
+        ];
         //随机新建楼梯，并添加到卷轴中去
-        $(floors[Math.floor(Math.random() * floors.length)]).css({
+        $(floors[randomRate(this._floorAppearRate)]).css({
             top: _top,
             left: _left,
             width: this._floorWidth
@@ -102,6 +116,10 @@ var gameController = {
     },
     floorScroll: function(direction) {
         this.addBlood();
+        this.__floorScrollDirection = direction;
+    },
+    floorScrollEnd: function() {
+        this.__floorScrollDirection = null;
     },
     floorSpring: function($floorEle) {
         this.__$currentJumpFloor = $floorEle;
@@ -215,22 +233,38 @@ var gameController = {
             }
         }
 
-        //人物向下坠落
+        //人物向下坠落 + 取消楼梯左右加速状态
         if(!this.__onFloor && !this.__jumpMode) {
+            this.floorScrollEnd();
             this.__currentPeopleY += _deltaPeopleY;
         }
-        
+
+        //横向运动预处理
+        var __temp_deltaPeopleVertical = _deltaPeopleVertical;
         //处理人物向左运动
         if(this._peopleGoLeft) {
+            if(this.__floorScrollDirection == 'left') {
+                __temp_deltaPeopleVertical *= 1.5;
+            }
+            if(this.__floorScrollDirection == 'right') {
+                __temp_deltaPeopleVertical *= 0.5;
+            }
+            console.log(this.__floorScrollDirection);
             if (this.__currentPeopleVertical > 0) {
-                this.__currentPeopleVertical -= _deltaPeopleVertical;
+                this.__currentPeopleVertical -= __temp_deltaPeopleVertical;
             }
         }
-
         //处理人物向右运动
         if(this._peopleGoRight) {
+            if(this.__floorScrollDirection == 'left') {
+                __temp_deltaPeopleVertical *= 0.5;
+            }
+            if(this.__floorScrollDirection == 'right') {
+                __temp_deltaPeopleVertical *= 1.5;
+            }
+            console.log(this.__floorScrollDirection);
             if (this.__currentPeopleVertical < this._canvasWidth - this._peopleWidth) {
-                this.__currentPeopleVertical += _deltaPeopleVertical;
+                this.__currentPeopleVertical += __temp_deltaPeopleVertical;
             }
         }
 

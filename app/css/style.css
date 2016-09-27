@@ -35,9 +35,8 @@ body {
   float: right;
 }
 .container .controller .score {
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
+  display: block;
+  margin-top: 10px;
   color: #2d2d2d;
   text-align: center;
 }
@@ -93,8 +92,26 @@ body {
 .canvas .scroller .floor.scroll-left {
   background-color: cadetblue;
 }
+.canvas .scroller .floor.scroll-left:after {
+  content: '<<<<<';
+  display: block;
+  font-size: 10px;
+  line-height: 10px;
+  text-align: center;
+  color: white;
+  font-style: initial;
+}
 .canvas .scroller .floor.scroll-right {
   background-color: cadetblue;
+}
+.canvas .scroller .floor.scroll-right:after {
+  content: '>>>>>';
+  display: block;
+  font-size: 10px;
+  line-height: 10px;
+  text-align: center;
+  color: white;
+  font-style: initial;
 }
 .canvas .scroller .floor.spring {
   background-color: #ffd200;

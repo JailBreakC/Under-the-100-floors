@@ -411,6 +411,7 @@ var gameController = {
         $(window).resize(function() {
             _this._canvasWidth = _this._$canvas.width();
             _this._canvasHeight = _this._$canvas.height();
+            _this._floorDeltaY = _this._canvasHeight / 11;
         });
         _this._canvasWidth = $('.canvas').width();
         _this._canvasHeight = _this._$canvas.height();

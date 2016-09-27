@@ -4,10 +4,10 @@ var gameController = {
     _canvasHeight: 0,
     _floorWidth: $('.canvas').width() / 5,
     _floorDeltaY: 50,
-    _floorAppearRate: [1, 1, 1, 1, 1, 1], //normal | spring | weak | scroll-left | scroll-right | nail
+    // _floorAppearRate: [1, 1, 1, 1, 1, 1], //normal | spring | weak | scroll-left | scroll-right | nail
     _floorScore: 1,
     _speed: 50, //pixel per second
-    _maxSpeed: 200,
+    _maxSpeed: 250,
     _blood: 12,
     _$canvas: $('.canvas'),
     _$scroller: $('.scroller'),
@@ -40,25 +40,31 @@ var gameController = {
             _left = Math.random() * (this._canvasWidth - this._floorWidth);
         //数组中【按比例】随机抽取一个index
         //参数是一个概率比例值数组，数字越大比例越高
-        var randomRate = function(arr) {
-            var randomArr = [];
-            for(var i = 0; i < arr.length; i++) {
-                randomArr[i] = arr[i] * Math.random();
-            }
-            // console.log(randomArr);
-            var biggestNumber = Math.max.apply(Math, randomArr);
-            return randomArr.indexOf(biggestNumber);
-        };
+        // var randomRate = function(arr) {
+        //     var randomArr = [];
+        //     for(var i = 0; i < arr.length; i++) {
+        //         randomArr[i] = arr[i] * Math.random();
+        //     }
+        //     // console.log(randomArr);
+        //     var biggestNumber = Math.max.apply(Math, randomArr);
+        //     return randomArr.indexOf(biggestNumber);
+        // };
         var floors = [
             '<i class="floor normal"></i>',
+            '<i class="floor normal"></i>',
             '<i class="floor spring"></i>',
+            '<i class="floor spring"></i>',
+            '<i class="floor weak"></i>',
             '<i class="floor weak"></i>',
             '<i class="floor scroll-left"></i>',
             '<i class="floor scroll-right"></i>',
-            '<i class="floor nail"></i>'
+            '<i class="floor nail"></i>',
+            '<i class="floor nail"></i>',
+            '<i class="floor nail"></i>',
+            '<i class="floor nail"></i>',
         ];
         //随机新建楼梯，并添加到卷轴中去
-        $(floors[randomRate(this._floorAppearRate)]).css({
+        $(floors[Math.floor(Math.random() * floors.length)]).css({
             top: _top,
             left: _left,
             width: this._floorWidth
@@ -249,7 +255,7 @@ var gameController = {
             if(this.__floorScrollDirection == 'right') {
                 __temp_deltaPeopleVertical *= 0.5;
             }
-            console.log(this.__floorScrollDirection);
+
             if (this.__currentPeopleVertical > 0) {
                 this.__currentPeopleVertical -= __temp_deltaPeopleVertical;
             }
@@ -262,9 +268,24 @@ var gameController = {
             if(this.__floorScrollDirection == 'right') {
                 __temp_deltaPeopleVertical *= 1.5;
             }
-            console.log(this.__floorScrollDirection);
+
             if (this.__currentPeopleVertical < this._canvasWidth - this._peopleWidth) {
                 this.__currentPeopleVertical += __temp_deltaPeopleVertical;
+            }
+        }
+        //处理人物在滚动楼梯上的自动运动
+        if(!this._peopleGoRight && !this._peopleGoLeft) {
+            __temp_deltaPeopleVertical *= 0.5;
+            if(this.__floorScrollDirection == 'left') {
+                if (this.__currentPeopleVertical > 0) {
+                    this.__currentPeopleVertical -= __temp_deltaPeopleVertical;
+                }
+                
+            }
+            if(this.__floorScrollDirection == 'right') {
+                if (this.__currentPeopleVertical < this._canvasWidth - this._peopleWidth) {
+                    this.__currentPeopleVertical += __temp_deltaPeopleVertical;
+                }
             }
         }
 

@@ -4,7 +4,7 @@ body {
   height: 100%;
 }
 body {
-  max-width: 500px;
+  max-width: 400px;
   margin: auto;
 }
 .container {
@@ -91,4 +91,7 @@ body {
 }
 .canvas .scroller .floor.scroll-right {
   background-color: cadetblue;
+}
+.canvas .scroller .floor.spring {
+  background-color: #ffd200;
 }

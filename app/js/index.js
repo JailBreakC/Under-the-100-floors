@@ -73,12 +73,15 @@ var gameController = {
     removeFloorSpan: function() {
         $('.floor').eq(0).remove();
         this._floorScore++;
-        $('.floor-count').text(this._floorScore)
+        this.updateScore();
     },
     updateBlood: function() {
         var __blood = '★★★★★★★★★★★★☆☆☆☆☆☆☆☆☆☆☆☆';
         __blood = __blood.slice(12 - this._blood, 12*2 - this._blood);
         $('.blood').text(__blood);
+    },
+    updateScore: function() {
+        $('.floor-count').text(this._floorScore);
     },
     loseBlood: function() {
         //当人物在平台上时，不重复扣血
@@ -406,12 +409,9 @@ var gameController = {
         this._animation = undefined;
     },
     reRun: function() {
+        console.log(this.__paramBackup._floorScore);
         //重置参数
         $.extend(this, this.__paramBackup);
-        //重置循环引用
-        this._animation = undefined;
-        //重置楼梯位置
-        this.__floorScrollerY = 200;
         //删掉现有楼梯
         $('.floor').remove();
         //重新初始化
@@ -435,23 +435,25 @@ var gameController = {
         _this._canvasHeight = _this._$canvas.height();
         _this._floorDeltaY = _this._canvasHeight / 11;
 
-        //初始化台阶
-        while(floorLoop++ < 13) {
-            console.log('i');
-            this.createFloorSpan();
-        }
 
-        //初始化任务控制
-        this.peopleUserController();
         //人物位置预设
         this.__currentPeopleVertical = this._canvasWidth/2 + this._peopleWidth/2;
+        //备份初始参数
+        this.backup();
+        //初始化台阶
+        while(floorLoop++ < 13) {
+            this.createFloorSpan();
+        }
+        //初始化任务控制
+        this.peopleUserController();
         //首次更新人物视图
         this.peopleUpdateView();
         //首次更新人物血量
         this.updateBlood();
+        //首次更新楼层数
+        this.updateScore();
         //以每秒60帧执行游戏动画
         this.run(60);
-        this.backup();
     }
 };
 

@@ -19,6 +19,17 @@ body {
   background-size: cover;
   padding-bottom: 170px;
   box-sizing: border-box;
+  position: relative;
+}
+#game-ct:after {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 14px;
+  width: 100%;
+  background: url('../../public/images/top-nail.png') repeat-x left top;
+  background-size: auto 100%;
 }
 .game-intro .index-text-img {
   display: block;

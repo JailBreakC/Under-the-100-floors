@@ -18,7 +18,19 @@ body {
     background: url('../../public/images/bg-cover.png') no-repeat center center;
     background-size: cover;
     padding-bottom: 170px;
+    // padding-top: 6px;
     box-sizing: border-box;
+    position: relative;
+    &:after {
+        content: ' ';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 14px;
+        width: 100%;
+        background: url('../../public/images/top-nail.png') repeat-x left top;
+        background-size: auto 100%;
+    }
 }
 .game-intro {
     .index-text-img {

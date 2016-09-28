@@ -57,6 +57,7 @@ body {
         color: #3945E6;
     }
     .text-score-title {
+        font-family: 'Roboto Condensed';
         margin-top: 30px;
         font-size: 12px;
         color: #4F5BFF;
@@ -81,7 +82,7 @@ body {
     position: relative;
     .controller {
         .blood-ct {
-            margin: 0 17px;
+            margin: 10px 17px;
             .blood {
                 border: 1px solid #4955FF;
                 border-radius: 5px;
@@ -108,34 +109,38 @@ body {
             width: 50%;
             float: left;
             overflow: auto;
+            position: relative;
+            z-index: 100;
+            .item {
+                width: 64px;
+                height: 64px;
+                margin: 20px;
+                img {
+                    width: 100%;
+                    display: block;
+                }
+                &.left {
+                    float: left;
+                }
+                &.right {
+                    float: right;
+                }
+            }
         }
-        .item {
-            width: 64px;
-            height: 64px;
-            margin: 20px;
-            img {
-                width: 100%;
-                display: block;
-            }
-            &.left {
-                float: left;
-            }
-            &.right {
-                float: right;
-            }
-        }
-        .score {
-            display: block;
-            margin-top: 10px;
-            color: white;
+        .score-ct {
+            position: absolute;
+            bottom: 58px;
+            width: 100%;
             text-align: center;
-            .floor-count {
-                color: red;
-                font-weight: bolder;
+            .text-score {
+                font-family: 'Roboto Condensed';
+                font-size: 48px;
+                color: #FFFFFF;
             }
-            .blood {
-                color: red;
-                font-weight: bolder;
+            .text-score-title {
+                font-family: 'Roboto Condensed';
+                font-size: 12px;
+                color: #4F5BFF;
             }
         }
     }
@@ -165,9 +170,9 @@ body {
             position: absolute;
             width: 90px;
             height: 10px;
-            background-color: gray;
+            background-color: white;
             &.weak {
-                background-color: white;
+                background-color: gray;
                 transition: transform .3s ease;
                 transform: rotateX(0deg);
                 &.over {

@@ -1,3 +1,6 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 html,
 body {
   position: relative;
@@ -17,20 +20,17 @@ body {
   padding-bottom: 170px;
   box-sizing: border-box;
 }
-.game-intro {
-  display: none;
-}
 .game-intro .index-text-img {
   display: block;
   width: 45%;
   margin: 139px auto 0;
 }
-.game-intro .bottom-btn-ct {
+.bottom-btn-ct {
   position: absolute;
   width: 100%;
   bottom: 67px;
 }
-.game-intro .bottom-btn-ct .start-btn {
+.bottom-btn-ct .start-btn {
   background: #ECFF00;
   border-radius: 100px;
   margin: 0 25px;
@@ -40,22 +40,67 @@ body {
   line-height: 48px;
   text-align: center;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
 }
-.game-intro .bottom-btn-ct .start-btn:active {
+.bottom-btn-ct .start-btn:active {
   background: #bdcc00;
   transform: translateY(3px);
 }
+.game-over {
+  text-align: center;
+  display: none;
+}
 .game-over .text-gameover {
-  font-family: Roboto;
+  margin-top: 103px;
+  font-family: 'Roboto Condensed';
   font-size: 48px;
   color: #3945E6;
+}
+.game-over .text-score-title {
+  margin-top: 30px;
+  font-size: 12px;
+  color: #4F5BFF;
+}
+.game-over .text-score {
+  font-family: 'Roboto Condensed';
+  font-size: 100px;
+  color: #FFFFFF;
+}
+.game-over .share-btn {
+  height: 64px;
+  width: 64px;
+  display: block;
+  cursor: pointer;
+  margin: auto;
 }
 .container {
   height: 100%;
   overflow: hidden;
   -webkit-user-select: none;
   position: relative;
+}
+.container .controller .blood-ct {
+  margin: 0 17px;
+}
+.container .controller .blood-ct .blood {
+  border: 1px solid #4955FF;
+  border-radius: 5px;
+  height: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.container .controller .blood-ct .blood i {
+  float: left;
+  box-sizing: border-box;
+  width: 8.333333333%;
+  height: 100%;
+  border-right: 1px solid #4955FF;
+  background-color: #ECFD36;
+}
+.container .controller .blood-ct .blood i:last-child {
+  border-right: none;
+}
+.container .controller .blood-ct .blood i.lose {
+  background-color: transparent;
 }
 .container .controller .ctrl-ct {
   width: 50%;

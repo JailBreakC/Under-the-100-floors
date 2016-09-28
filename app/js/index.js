@@ -30,8 +30,9 @@ var gameController = {
         setTimeout(function() {
             // alert('Game Over');
             // window.location.reload();
-            this.reRun();
-        }.bind(this));
+            $('#game-ct').hide();
+            $('.game-over').show();
+        }.bind(this), 200);
     },
     createFloorSpan: function() {
         //计算楼梯位置，200px 刚开始从距离顶部200px开始
@@ -77,11 +78,18 @@ var gameController = {
         this.updateScore();
     },
     updateBlood: function() {
-        var __blood = '★★★★★★★★★★★★☆☆☆☆☆☆☆☆☆☆☆☆'.slice(12 - this._blood, 12*2 - this._blood);
-        $('.blood').text(__blood);
+        var $bloodEle = $('.blood i');
+        for(var i = 0; i < $bloodEle.length; i++) {
+            if(i < this._blood) {
+                $bloodEle.eq(i).removeClass('lose');
+            } else {
+                $bloodEle.eq(i).addClass('lose');
+            }
+        }
     },
     updateScore: function() {
         $('.floor-count').text(this._floorScore);
+        $('.text-score').text(this._floorScore);
     },
     loseBlood: function() {
         //当人物在平台上时，不重复扣血
@@ -467,5 +475,11 @@ $(function() {
         $('#game-ct').show();
         gameController.init();
         gameController.run(60);
+    });
+
+    $('#restart-game').click(function() {
+        $('#game-ct').show();
+        $('.game-over').hide();
+        gameController.reRun();
     })
 });

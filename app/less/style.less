@@ -1,4 +1,7 @@
 @peopleColor: #00acff;
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 html, body {
     position: relative;
     height: 100%;   
@@ -18,39 +21,57 @@ body {
     box-sizing: border-box;
 }
 .game-intro {
-    display: none;
     .index-text-img {
         display: block;
         width: 45%;
         margin: 139px auto 0;
     }
-    .bottom-btn-ct {
-        position: absolute;
-        width: 100%;
-        bottom: 67px;
-        .start-btn {
-            background: #ECFF00;
-            border-radius: 100px;
-            margin: 0 25px;
-            font-size: 18px;
-            color: #16142E;
-            height: 48px;
-            line-height: 48px;
-            text-align: center;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-            &:active {
-                background: darken(#ECFF00, 10%);
-                transform: translateY(3px);
-            }
+}
+.bottom-btn-ct {
+    position: absolute;
+    width: 100%;
+    bottom: 67px;
+    .start-btn {
+        background: #ECFF00;
+        border-radius: 100px;
+        margin: 0 25px;
+        font-size: 18px;
+        color: #16142E;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        cursor: pointer;
+        &:active {
+            background: darken(#ECFF00, 10%);
+            transform: translateY(3px);
         }
     }
 }
 .game-over {
+    text-align: center;
+    display: none;
     .text-gameover {
-        font-family: Roboto;
+        margin-top: 103px;
+        font-family: 'Roboto Condensed';
         font-size: 48px;
         color: #3945E6;
+    }
+    .text-score-title {
+        margin-top: 30px;
+        font-size: 12px;
+        color: #4F5BFF;
+    }
+    .text-score {
+        font-family: 'Roboto Condensed';
+        font-size: 100px;
+        color: #FFFFFF;
+    }
+    .share-btn {
+        height: 64px;
+        width: 64px;
+        display: block;
+        cursor: pointer;
+        margin: auto;
     }
 }
 .container {
@@ -59,6 +80,30 @@ body {
     -webkit-user-select: none;
     position: relative;
     .controller {
+        .blood-ct {
+            margin: 0 17px;
+            .blood {
+                border: 1px solid #4955FF;
+                border-radius: 5px;
+                height: 6px;
+                position: relative;
+                overflow: hidden;
+                i {
+                    float: left;
+                    box-sizing: border-box;
+                    width: 8.333333333%;
+                    height: 100%;
+                    border-right: 1px solid #4955FF;
+                    background-color: #ECFD36;
+                    &:last-child {
+                        border-right: none;
+                    }
+                    &.lose {
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
         .ctrl-ct {
             width: 50%;
             float: left;

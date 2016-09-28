@@ -101,7 +101,7 @@ body {
   border-right: none;
 }
 .container .controller .blood-ct .blood i.lose {
-  background-color: transparent;
+  animation: bloodLose 0.5s ease-out both;
 }
 .container .controller .ctrl-ct {
   width: 50%;
@@ -114,6 +114,9 @@ body {
   width: 64px;
   height: 64px;
   margin: 20px;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  pointer-events: none;
 }
 .container .controller .ctrl-ct .item img {
   width: 100%;
@@ -223,5 +226,13 @@ body {
   }
   100% {
     background-color: #00acff;
+  }
+}
+@keyframes bloodLose {
+  0% {
+    background-color: red;
+  }
+  100% {
+    background-color: transparent;
   }
 }

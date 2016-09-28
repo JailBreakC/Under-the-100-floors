@@ -27,11 +27,11 @@ var gameController = {
     //游戏结束
     gameover: function() {
         this.stop();
-        
         setTimeout(function() {
-            alert('Game Over');
-            window.location.reload();
-        });
+            // alert('Game Over');
+            // window.location.reload();
+            this.reRun();
+        }.bind(this));
     },
     createFloorSpan: function() {
         //计算楼梯位置，200px 刚开始从距离顶部200px开始
@@ -387,6 +387,7 @@ var gameController = {
     run: function(fps) {
         //不允许执行多个动画渲染函数（你想卡死么...
         if(this._animation) {
+            console.log(this._animation);
             console.error('Animation has aready in process, please do not run again!');
             return ;
         }
@@ -402,23 +403,41 @@ var gameController = {
     },
     stop: function() {
         clearInterval(this._animation);//暂停动画
+        this._animation = undefined;
+    },
+    reRun: function() {
+        //重置参数
+        $.extend(this, this.__paramBackup);
+        //重置循环引用
+        this._animation = undefined;
+        //重置楼梯位置
+        this.__floorScrollerY = 200;
+        //删掉现有楼梯
+        $('.floor').remove();
+        //重新初始化
+        this.init();
+    },
+    backup: function() {
+        //备份初始设置参数，用于游戏reset
+        this.__paramBackup = {};
+        for(i in this) {
+            if(typeof this[i] === 'number' || typeof this[i] === 'string') {
+                this.__paramBackup[i] = this[i];
+            }
+        }
     },
     init: function() {
         var _this = this,
             floorLoop = 0;
 
         //当视窗大小变动时，重新计算画布宽高
-        $(window).resize(function() {
-            _this._canvasWidth = _this._$canvas.width();
-            _this._canvasHeight = _this._$canvas.height();
-            _this._floorDeltaY = _this._canvasHeight / 11;
-        });
         _this._canvasWidth = $('.canvas').width();
         _this._canvasHeight = _this._$canvas.height();
         _this._floorDeltaY = _this._canvasHeight / 11;
 
         //初始化台阶
         while(floorLoop++ < 13) {
+            console.log('i');
             this.createFloorSpan();
         }
 
@@ -432,6 +451,7 @@ var gameController = {
         this.updateBlood();
         //以每秒60帧执行游戏动画
         this.run(60);
+        this.backup();
     }
 };
 

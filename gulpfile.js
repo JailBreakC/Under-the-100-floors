@@ -6,6 +6,8 @@ var gulp  = require('gulp'),         //基础库
     rename = require('gulp-rename'),      //重命名
     concat = require('gulp-concat'),     //合并文件
     clean = require('gulp-clean'),       //清空文件夹
+    notify = require('gulp-notify'),
+    plumber = require('gulp-plumber'),
     connect = require('gulp-connect'),     //webserver
     port = 8888,
     rootpath = '';
@@ -35,28 +37,37 @@ gulp.task('html', function() {
     .pipe(gulp.dest(htmlDst))
 });
 
+var onError = function(err) {
+    console.log(err);
+    notify.onError({
+        title:    "Gulp",
+        subtitle: "Failure!",
+        message:  "Error: <%= error.message %>",
+        sound:    "Beep"
+    })(err);
+    this.emit('end');
+};
+
 // 样式处理
 gulp.task('css', function () {
 
   gulp.src(cssSrc)
+    .pipe(plumber({errorHandler: onError}))
     .pipe(less({ style: 'expanded'}))
-    .on( 'error', function(e){console.log(e)} )
     .pipe(gulp.dest(cssDst))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
     .pipe(connect.reload())
-    .pipe(gulp.dest(cssMinDst));
+    .pipe(gulp.dest(cssMinDst))
 });
 
 // js处理
 gulp.task('js', function () {
 
-
   gulp.src(jsSrc)
-    //.pipe(concat('main.js'))
     .pipe(rename({ suffix: '.min' }))
+    .pipe(plumber({errorHandler: onError}))
     .pipe(uglify())
-    .on( 'error', function(e){console.log(e)} )
     .pipe(connect.reload())
     .pipe(gulp.dest(jsDst));
 });
@@ -75,17 +86,14 @@ gulp.task('rebuild', ['clean'], function(){
 // 监听任务 运行语句 gulp watch
 gulp.task('default',['webserver'], function(){
   // 监听html
-  gulp.watch(htmlSrc, function(event){
-    gulp.run('html');
+  gulp.watch(htmlSrc, ['html'], function(event){
   })
 
   // 监听css
-  gulp.watch(cssSrc, function(){
-    gulp.run('css');
+  gulp.watch(cssSrc, ['css'], function(){
   });
 
   // 监听js
-  gulp.watch(jsSrc, function(){
-    gulp.run('js');
+  gulp.watch(jsSrc, ['js'], function(){
   });
 });

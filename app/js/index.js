@@ -28,8 +28,6 @@ var gameController = {
     gameover: function() {
         this.stop();
         setTimeout(function() {
-            // alert('Game Over');
-            // window.location.reload();
             $('#game-ct').hide();
             $('.game-over').show();
         }.bind(this), 200);
@@ -182,7 +180,7 @@ var gameController = {
             return
         }
         //碰撞检测
-        for(i = 0; i < $floor.length; i++) {
+        for(i = 0; i < $floor.length; i++) 
             //缓存offset
             var floorOffset = $floor.eq(i).offset();
             //人物与楼梯纵向距离
@@ -206,10 +204,6 @@ var gameController = {
                 peopleOffset.left < floorOffset.left + this._floorWidth ) {
                 //人物与楼梯偏差修正
                 this.__currentPeopleY = floorOffset.top - this._peopleHeight;
-                //立即更新视图
-                // this.peopleUpdateView();
-                //让人物随着楼梯共同向上移动（站在楼梯上效果）
-                // this.__currentPeopleY -= _deltaY;
                 //施加各类楼梯特殊属性
                 if($floor.eq(i).hasClass('normal')) {
                     this.floorNormal();
@@ -398,7 +392,6 @@ var gameController = {
     run: function(fps) {
         //不允许执行多个动画渲染函数（你想卡死么...
         if(this._animation) {
-            console.log(this._animation);
             console.error('Animation has aready in process, please do not run again!');
             return ;
         }
@@ -424,8 +417,6 @@ var gameController = {
         $('.floor').remove();
         //重新初始化
         this.init();
-        //以每秒60帧执行游戏动画
-        this.run(60);
     },
     backup: function() {
         //备份初始设置参数，用于游戏reset
@@ -465,6 +456,8 @@ var gameController = {
         this.updateBlood();
         //首次更新楼层数
         this.updateScore();
+        //以每秒60帧执行游戏动画
+        this.run(60);
     }
 };
 
@@ -474,7 +467,6 @@ $(function() {
         $('.game-intro').hide();
         $('#game-ct').show();
         gameController.init();
-        gameController.run(60);
     });
 
     $('#restart-game').click(function() {

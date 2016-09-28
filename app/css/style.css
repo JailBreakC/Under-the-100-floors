@@ -171,45 +171,86 @@ body {
   position: absolute;
   width: 90px;
   height: 10px;
-  background-color: white;
+}
+.canvas .scroller .floor.normal {
+  background: url('../../public/images/normal.png') no-repeat center center;
+  background-size: 100% 100%;
 }
 .canvas .scroller .floor.weak {
-  background-color: gray;
+  transition: opacity .3s ease .3s, transform .3s ease;
+}
+.canvas .scroller .floor.weak:before {
+  content: ' ';
   transition: transform .3s ease;
-  transform: rotateX(0deg);
+  transform-origin: 0 0;
+  width: 52%;
+  height: 100%;
+  background: url('../../public/images/weak-left.png') no-repeat center center;
+  background-size: 100% 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+.canvas .scroller .floor.weak:after {
+  content: ' ';
+  transition: transform .3s ease;
+  transform-origin: 100% 0;
+  width: 52%;
+  height: 100%;
+  background: url('../../public/images/weak-right.png') no-repeat center center;
+  background-size: 100% 100%;
+  right: 0;
+  top: 0;
+  position: absolute;
 }
 .canvas .scroller .floor.weak.over {
-  transform: rotateX(360deg);
+  opacity: 0;
 }
-.canvas .scroller .floor.nail {
-  background-color: red;
+.canvas .scroller .floor.weak.over:before {
+  transform: rotateZ(35deg) translateX(5px);
+}
+.canvas .scroller .floor.weak.over:after {
+  transform: rotateZ(-20deg) translateX(-5px);
+}
+.canvas .scroller .floor.nail:after {
+  content: ' ';
+  background: url('../../public/images/nail.png') no-repeat center center;
+  background-size: 100% 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 200%;
 }
 .canvas .scroller .floor.scroll-left {
-  background-color: cadetblue;
-}
-.canvas .scroller .floor.scroll-left:after {
-  content: '<<<<<';
-  display: block;
-  font-size: 10px;
-  line-height: 10px;
-  text-align: center;
-  color: white;
-  font-style: initial;
+  background-image: url('../../public/images/scroll-left.png');
+  background-size: 400% 100%;
+  background-position: 100% top;
+  animation: bgScroolToLeft 0.5s step-end infinite;
 }
 .canvas .scroller .floor.scroll-right {
-  background-color: cadetblue;
-}
-.canvas .scroller .floor.scroll-right:after {
-  content: '>>>>>';
-  display: block;
-  font-size: 10px;
-  line-height: 10px;
-  text-align: center;
-  color: white;
-  font-style: initial;
+  background-image: url('../../public/images/scroll-right.png');
+  background-size: 400% 100%;
+  background-position: 0 top;
+  animation: bgScroolToRight 0.5s step-end infinite;
 }
 .canvas .scroller .floor.spring {
-  background-color: #ffd200;
+  background-color: transparent;
+}
+.canvas .scroller .floor.spring:after {
+  content: ' ';
+  background: url('../../public/images/spring-normal.png') no-repeat center center;
+  background-size: 100% 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.canvas .scroller .floor.spring.up:after {
+  background: url('../../public/images/spring-up.png') no-repeat center center;
+  background-size: 100% 100%;
+  height: 150%;
 }
 @keyframes bgShake {
   0% {
@@ -234,5 +275,33 @@ body {
   }
   100% {
     background-color: transparent;
+  }
+}
+@keyframes bgScroolToRight {
+  0% {
+    background-position: 0 top;
+  }
+  33% {
+    background-position: 33% top;
+  }
+  66.5% {
+    background-position: 66.5% top;
+  }
+  100% {
+    background-position: 100% top;
+  }
+}
+@keyframes bgScroolToLeft {
+  0% {
+    background-position: 100% top;
+  }
+  33% {
+    background-position: 66.5% top;
+  }
+  66.5% {
+    background-position: 33.5% top;
+  }
+  100% {
+    background-position: 0 top;
   }
 }

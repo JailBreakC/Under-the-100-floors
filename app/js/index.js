@@ -123,9 +123,9 @@ var gameController = {
     },
     floorWeak: function($floorEle) {
         this.addBlood();
-        $floorEle.addClass('over');
         //短暂停留后，标记该元素可强行穿过
         setTimeout(function() {
+            $floorEle.addClass('over');
             $floorEle[0].cross = true;
         }, 200);
     },
@@ -143,6 +143,10 @@ var gameController = {
     },
     jumpStart: function() {
         this.__jumpMode = true;
+        this.__$currentJumpFloor.addClass('up');
+        setTimeout(function() {
+            this.__$currentJumpFloor.removeClass('up');
+        }.bind(this), 200);
         //暂存人物速度
         this.__tempPeopleSpeed = this._peopleSpeed;
         //跳跃模式，人物速度降低
@@ -180,7 +184,7 @@ var gameController = {
             return
         }
         //碰撞检测
-        for(i = 0; i < $floor.length; i++) 
+        for(i = 0; i < $floor.length; i++) {
             //缓存offset
             var floorOffset = $floor.eq(i).offset();
             //人物与楼梯纵向距离

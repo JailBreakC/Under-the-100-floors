@@ -2,7 +2,8 @@ var gameController = {
     _animation: null,
     _canvasWidth: 0,
     _canvasHeight: 0,
-    _floorWidth: $('.canvas').width() / 5,
+    _floorWidth: 0,
+    _floorHeight: 0,
     _floorDeltaY: 50,
     // _floorAppearRate: [1, 1, 1, 1, 1, 1], //normal | spring | weak | scroll-left | scroll-right | nail
     _floorScore: 1,
@@ -14,9 +15,8 @@ var gameController = {
     _$people: $('.people'),
     _peopleSpeed: 180, //pixel per second
     _peopleVerticalSpeed: 150, //pixel per second
-    _peopleHeight: $('.people').height(),
-    _peopleWidth: $('.people').width(),
-    _scrollerHeight: $('.scroller').height(),
+    _peopleHeight: 0,
+    _peopleWidth: 0,
     __currentScrollerY: 0,
     __currentPeopleY: 20,
     __currentPeopleVertical: 0,
@@ -67,7 +67,8 @@ var gameController = {
         $(floors[Math.floor(Math.random() * floors.length)]).css({
             top: _top,
             left: _left,
-            width: this._floorWidth
+            width: this._floorWidth,
+            height: this._floorHeight
         }).appendTo(this._$scroller);
     },
     removeFloorSpan: function() {
@@ -415,6 +416,8 @@ var gameController = {
         $('.floor').remove();
         //重新初始化
         this.init();
+        //以每秒60帧执行游戏动画
+        this.run(60);
     },
     backup: function() {
         //备份初始设置参数，用于游戏reset
@@ -430,10 +433,13 @@ var gameController = {
             floorLoop = 0;
 
         //当视窗大小变动时，重新计算画布宽高
-        _this._canvasWidth = _this._$canvas.width();
-        _this._canvasHeight = _this._$canvas.height();
-        _this._floorDeltaY = _this._canvasHeight / 11;
-
+        this._canvasWidth = this._$canvas.width();
+        this._canvasHeight = this._$canvas.height();
+        this._floorDeltaY = this._canvasHeight / 11;
+        this._floorWidth = this._canvasWidth / 5;
+        this._floorHeight = this._floorWidth / 9;
+        this._peopleHeight = this._$people.height();
+        this._peopleWidth = this._$people.width();
 
         //人物位置预设
         this.__currentPeopleVertical = this._canvasWidth/2 + this._peopleWidth/2;
@@ -451,11 +457,15 @@ var gameController = {
         this.updateBlood();
         //首次更新楼层数
         this.updateScore();
-        //以每秒60帧执行游戏动画
-        this.run(60);
     }
 };
 
 $(function() {
-    gameController.init();
+
+    $('#start-game').click(function() {
+        $('.game-intro').hide();
+        $('#game-ct').show();
+        gameController.init();
+        gameController.run(60);
+    })
 });

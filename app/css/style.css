@@ -4,13 +4,58 @@ body {
   height: 100%;
 }
 body {
-  max-width: 400px;
+  max-width: 500px;
   margin: auto;
+  background: url('/public/images/bg.jpg') no-repeat center center;
+  background-size: cover;
+}
+#game-ct {
+  display: none;
+  height: 100%;
+  background: url('/public/images/bg-cover.png') no-repeat center center;
+  background-size: cover;
+  padding-bottom: 170px;
+  box-sizing: border-box;
+}
+.game-intro {
+  display: none;
+}
+.game-intro .index-text-img {
+  display: block;
+  width: 45%;
+  margin: 139px auto 0;
+}
+.game-intro .bottom-btn-ct {
+  position: absolute;
+  width: 100%;
+  bottom: 67px;
+}
+.game-intro .bottom-btn-ct .start-btn {
+  background: #ECFF00;
+  border-radius: 100px;
+  margin: 0 25px;
+  font-size: 18px;
+  color: #16142E;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.game-intro .bottom-btn-ct .start-btn:active {
+  background: #bdcc00;
+  transform: translateY(3px);
+}
+.game-over .text-gameover {
+  font-family: Roboto;
+  font-size: 48px;
+  color: #3945E6;
 }
 .container {
   height: 100%;
   overflow: hidden;
   -webkit-user-select: none;
+  position: relative;
 }
 .container .controller .ctrl-ct {
   width: 50%;
@@ -18,15 +63,13 @@ body {
   overflow: auto;
 }
 .container .controller .item {
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  border-radius: 50%;
-  background-color: rebeccapurple;
-  color: white;
-  text-align: center;
-  font-size: 31px;
+  width: 64px;
+  height: 64px;
   margin: 20px;
+}
+.container .controller .item img {
+  width: 100%;
+  display: block;
 }
 .container .controller .item.left {
   float: left;
@@ -37,7 +80,7 @@ body {
 .container .controller .score {
   display: block;
   margin-top: 10px;
-  color: #2d2d2d;
+  color: white;
   text-align: center;
 }
 .container .controller .score .floor-count {
@@ -49,8 +92,7 @@ body {
   font-weight: bolder;
 }
 .canvas {
-  background: #eeeeee;
-  height: 400px;
+  height: 100%;
   position: relative;
   overflow: hidden;
   pointer-events: none;
@@ -79,7 +121,7 @@ body {
   background-color: gray;
 }
 .canvas .scroller .floor.weak {
-  background-color: #b1b1b1;
+  background-color: white;
   transition: transform .3s ease;
   transform: rotateX(0deg);
 }

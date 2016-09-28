@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "Roboto Light";
+    src: url("Roboto-LightItalic.eot"); /* IE9 */
+    src: url("Roboto-LightItalic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("Roboto-LightItalic.woff") format("woff"), /* chrome, firefox */
+    url("Roboto-LightItalic.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("Roboto-LightItalic.svg#Roboto Light") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
+}
+
+

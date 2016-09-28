@@ -8,7 +8,7 @@ var gulp  = require('gulp'),         //基础库
     clean = require('gulp-clean'),       //清空文件夹
     connect = require('gulp-connect'),     //webserver
     port = 8888,
-    rootpath = 'app';
+    rootpath = '';
 
 gulp.task('webserver', function() {
   connect.server({

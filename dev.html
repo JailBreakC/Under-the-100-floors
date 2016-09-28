@@ -5,10 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<title>是男人就下100层</title>
 	<link href="http://cdn.bootcss.com/normalize/4.2.0/normalize.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="app/css/style.css">
 </head>
 <body>
 	<div class="container">
+		<div class="game-intro">
+			<img class="index-text-img" src="/public/images/index-text.png" alt="是男人就下100层">
+			<div class="bottom-btn-ct">
+				<div id="start-game" class="start-btn">
+					开始游戏
+				</div>
+			</div>
+		</div>
+		<div class="game-over">
+			<div class="text-gameover">
+				Game Over
+			</div>
+		</div>
 		<div id="game-ct">
 			<div class="canvas">
 				<div class="scroller">
@@ -20,16 +33,15 @@
 					血量 <span class="blood"></span> | 第 <span class="floor-count">1</span> 层
 				</div>
 				<div class="ctrl-ct left-ct">
-					<div class="item left">&lt;</div>
-					
+					<div class="item left"><img src="/public/images/left-button.png" alt="left"></div>
 				</div>
 				<div class="ctrl-ct right-ct">
-					<div class="item right">&gt;</div>
+					<div class="item right"><img src="/public/images/right-button.png" alt="left"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
-	<script src="js/index.js"></script>
+	<script src="app/js/index.js"></script>
 </body>
 </html>

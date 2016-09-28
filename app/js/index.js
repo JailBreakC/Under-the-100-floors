@@ -76,8 +76,7 @@ var gameController = {
         this.updateScore();
     },
     updateBlood: function() {
-        var __blood = '★★★★★★★★★★★★☆☆☆☆☆☆☆☆☆☆☆☆';
-        __blood = __blood.slice(12 - this._blood, 12*2 - this._blood);
+        var __blood = '★★★★★★★★★★★★☆☆☆☆☆☆☆☆☆☆☆☆'.slice(12 - this._blood, 12*2 - this._blood);
         $('.blood').text(__blood);
     },
     updateScore: function() {
@@ -431,7 +430,7 @@ var gameController = {
             floorLoop = 0;
 
         //当视窗大小变动时，重新计算画布宽高
-        _this._canvasWidth = $('.canvas').width();
+        _this._canvasWidth = _this._$canvas.width();
         _this._canvasHeight = _this._$canvas.height();
         _this._floorDeltaY = _this._canvasHeight / 11;
 

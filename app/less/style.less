@@ -18,7 +18,6 @@ body {
     background: url('../../public/images/bg-cover.png') no-repeat center center;
     background-size: cover;
     padding-bottom: 170px;
-    // padding-top: 6px;
     box-sizing: border-box;
     position: relative;
     &:after {
@@ -30,6 +29,23 @@ body {
         width: 100%;
         background: url('../../public/images/top-nail.png') repeat-x left top;
         background-size: auto 100%;
+    }
+    &:before {
+        content: ' ';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        pointer-events: none;
+        transition: background-color .1s ease;
+        
+    }
+    &.danger {
+        &:before {
+            background-color: rgba(255, 0, 0, 0.3);
+        }
     }
 }
 .game-intro {
@@ -112,7 +128,9 @@ body {
                         border-right: none;
                     }
                     &.lose {
-                        animation: bloodLose .5s ease-out both;
+                        background-color: red;
+                        transition: opacity .3s ease .5s;
+                        opacity: 0;
                     }
                 }
             }
@@ -174,8 +192,19 @@ body {
         border-radius: 50%;
         transform: translate3d(0, 0, 0);
         background-color: @peopleColor;
+        overflow: hidden;
         &.danger {
-            animation: bgShake .3s step-end;
+            background-color: red;
+        }
+        &:after {
+            content: ' ';
+            position: absolute;
+            left: 0px;
+            top: 7px;
+            width: 100%;
+            height: 1px;
+            border-radius: 1px;
+            background-color: #00527a;
         }
     }
     .scroller {
@@ -295,10 +324,10 @@ body {
 @keyframes bloodLose
 {
     0% {
-        background-color: red;
+        opacity: 1;
     }
     100% {
-        background-color: transparent;
+        opacity: 0
     }
 }
 

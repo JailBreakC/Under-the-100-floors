@@ -14,6 +14,8 @@ var gameController = {
     _$scroller: $('.scroller'),
     _$people: $('.people'),
     _peopleSpeed: 180, //pixel per second
+    _peopleRotateZ: 0,
+    _peopleRotateDelta: 25, //deg
     _peopleVerticalSpeed: 150, //pixel per second
     _peopleHeight: 0,
     _peopleWidth: 0,
@@ -95,10 +97,18 @@ var gameController = {
             return;
         }
         this._blood -= 4;
+        //人变红
         this._$people.addClass('danger');
         setTimeout(function() {
             this._$people.removeClass('danger');
-        }.bind(this), 300);
+        }.bind(this), 1000);
+
+        //背景闪烁
+        $('#game-ct').addClass('danger')
+        setTimeout(function() {
+            $('#game-ct').removeClass('danger')
+        }, 100);
+
         if(this._blood <= 0) {
             this._blood = 0;
             this.updateBlood();
@@ -326,22 +336,29 @@ var gameController = {
     },
     //更新人物视图
     peopleUpdateView: function() {
+        if(this.__onFloor) {
+            if(this._peopleGoLeft) {
+                this._peopleRotateZ -= this._peopleRotateDelta; 
+            } 
+            if(this._peopleGoRight) {
+                this._peopleRotateZ += this._peopleRotateDelta; 
+            }
+        }
         if(Modernizr.csstransforms3d) {
             //设定人物位置, translate3d开启GPU加速
             this._$people.css({
-                '-webkit-transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)',
-                    '-ms-transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)',
-                        'transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)',
+                '-webkit-transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0) rotateZ(' + this._peopleRotateZ + 'deg)',
+                    '-ms-transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0) rotateZ(' + this._peopleRotateZ + 'deg)',
+                        'transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0) rotateZ(' + this._peopleRotateZ + 'deg)',
             });
         } else if(Modernizr.csstransforms) {
             //不支持translate3d 使用translate
             this._$people.css({
-                '-webkit-transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px)',
-                    '-ms-transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px)',
-                        'transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px)',
+                '-webkit-transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px) rotateZ(' + this._peopleRotateZ + 'deg)',
+                    '-ms-transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px) rotateZ(' + this._peopleRotateZ + 'deg)',
+                        'transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px) rotateZ(' + this._peopleRotateZ + 'deg)',
             });
         } else {
-            console.log(this.__currentPeopleVertical);
             //还不支持，那就GG
             this._$people.css({
                 'left':  this.__currentPeopleVertical + 'px',

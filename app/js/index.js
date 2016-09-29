@@ -8,7 +8,7 @@ var gameController = {
     // _floorAppearRate: [1, 1, 1, 1, 1, 1], //normal | spring | weak | scroll-left | scroll-right | nail
     _floorScore: 1,
     _speed: 50, //pixel per second
-    _maxSpeed: 250,
+    _maxSpeed: 350,
     _blood: 12,
     _$canvas: $('.game-canvas'),
     _$scroller: $('.scroller'),
@@ -16,7 +16,7 @@ var gameController = {
     _peopleSpeed: 180, //pixel per second
     _peopleRotateZ: 0,
     _peopleRotateDelta: 25, //deg
-    _peopleVerticalSpeed: 150, //pixel per second
+    _peopleVerticalSpeed: 200, //pixel per second
     _peopleHeight: 0,
     _peopleWidth: 0,
     __currentScrollerY: 0,
@@ -33,6 +33,7 @@ var gameController = {
             $('#game-ct').hide();
             $('.game-over').show();
         }.bind(this), 200);
+        _czc.push(﻿['_trackEvent','score','game','gameover', this._floorScore]);
     },
     createFloorSpan: function() {
         //计算楼梯位置，200px 刚开始从距离顶部200px开始
@@ -88,7 +89,6 @@ var gameController = {
         }
     },
     updateScore: function() {
-        $('.floor-count').text(this._floorScore);
         $('.text-score').text(this._floorScore);
     },
     loseBlood: function() {
@@ -412,7 +412,8 @@ var gameController = {
     core: function(fps) {
         // console.log('i');
         var _this = this,
-            _deltaY = this._speed / fps; //卷轴纵向每帧移动距离
+            _deltaY = this._speed / fps, //卷轴纵向每帧移动距离
+            $floor = $('.floor');
 
         //计算卷轴位置
         this.__currentScrollerY -= _deltaY;
@@ -424,7 +425,6 @@ var gameController = {
             //将楼梯偏移高度减小一屏
             this.__floorScrollerY -= this._canvasHeight;
             //重置现有楼梯位置
-            var $floor = $('.floor');
             for(i = 0; i < $floor.length; i++) {
                 $floor.eq(i).css({
                     top: parseInt($('.floor').eq(i).css('top')) - this._canvasHeight
@@ -436,7 +436,7 @@ var gameController = {
         this.floorUpdateView();
 
         //每个台阶移出视野则清除台阶，并且在底部增加一个新的台阶
-        if($('.floor').eq(0).offset().top <= -20) {
+        if($floor.eq(0).offset().top <= -20) {
             this.createFloorSpan();
             this.removeFloorSpan();
         }
@@ -535,4 +535,15 @@ $(function() {
         $('.game-over').hide();
         gameController.reRun();
     })
+
+    var preloadImg = function() {
+        var imgList = [
+            '../../public/images/spring-up.png'
+        ]
+        for(var i = 0; i < imgList.length; i++) {
+            var _img = new Image();
+            _img.src = imgList[i];
+        }
+    }
+    preloadImg();
 });

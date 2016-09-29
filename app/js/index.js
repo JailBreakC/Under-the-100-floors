@@ -33,6 +33,7 @@ var gameController = {
             $('#game-ct').hide();
             $('.game-over').show();
         }.bind(this), 200);
+        $('title').text('老子'+ this._floorScore +'层!-是男人就下100层');
         _czc.push(﻿['_trackEvent','score','game','gameover', this._floorScore]);
     },
     createFloorSpan: function() {
@@ -445,7 +446,7 @@ var gameController = {
         this.people(fps);
         // 越来越high
         if(this._speed <= this._maxSpeed) {
-            this._speed += 0.05;
+            this._speed += 0.1;
         }
 
     },
@@ -536,6 +537,10 @@ $(function() {
         $('#game-ct').show();
         $('.game-over').hide();
         gameController.reRun();
+    })
+
+    $('.share-btn').on('touchstart', function() {
+        alert('点击右上角分享给好友吧~');
     })
 
     var preloadImg = function() {

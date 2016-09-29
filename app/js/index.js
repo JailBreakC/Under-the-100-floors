@@ -498,8 +498,8 @@ var gameController = {
         this._floorDeltaY = this._canvasHeight / 11;
         this._floorWidth = this._canvasWidth / 5;
         this._floorHeight = this._floorWidth / 9;
-        this._peopleHeight = this._$people.height();
-        this._peopleWidth = this._$people.width();
+        this._peopleHeight = parseInt(this._$people.css('height'));
+        this._peopleWidth = parseInt(this._$people.css('width'));
 
         //人物位置预设
         this.__currentPeopleVertical = this._canvasWidth/2 + this._peopleWidth/2;

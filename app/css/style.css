@@ -197,16 +197,6 @@ body {
 .game-canvas .people.danger {
   background-color: red;
 }
-.game-canvas .people:after {
-  content: ' ';
-  position: absolute;
-  left: 0px;
-  top: 7px;
-  width: 100%;
-  height: 1px;
-  border-radius: 1px;
-  background-color: #00527a;
-}
 .game-canvas .scroller {
   height: 1000px;
   position: relative;

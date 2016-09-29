@@ -347,16 +347,16 @@ var gameController = {
         if(Modernizr.csstransforms3d) {
             //设定人物位置, translate3d开启GPU加速
             this._$people.css({
-                '-webkit-transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0) rotateZ(' + this._peopleRotateZ + 'deg)',
-                    '-ms-transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0) rotateZ(' + this._peopleRotateZ + 'deg)',
-                        'transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0) rotateZ(' + this._peopleRotateZ + 'deg)',
+                '-webkit-transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)',
+                    '-ms-transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)',
+                        'transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)',
             });
         } else if(Modernizr.csstransforms) {
             //不支持translate3d 使用translate
             this._$people.css({
-                '-webkit-transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px) rotateZ(' + this._peopleRotateZ + 'deg)',
-                    '-ms-transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px) rotateZ(' + this._peopleRotateZ + 'deg)',
-                        'transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px) rotateZ(' + this._peopleRotateZ + 'deg)',
+                '-webkit-transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px)',
+                    '-ms-transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px)',
+                        'transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px)',
             });
         } else {
             //还不支持，那就GG
@@ -523,14 +523,16 @@ var gameController = {
 };
 
 $(function() {
-
-    $('#start-game').click(function() {
+    $('body').on('touchstart', function(ev) {
+        return false;
+    })
+    $('#start-game').on('touchstart', function() {
         $('.game-intro').hide();
         $('#game-ct').show();
         gameController.init();
     });
 
-    $('#restart-game').click(function() {
+    $('#restart-game').on('touchstart', function() {
         $('#game-ct').show();
         $('.game-over').hide();
         gameController.reRun();

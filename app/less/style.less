@@ -160,7 +160,7 @@ body {
         }
     }
 }
-.canvas {
+.game-canvas {
     height: 100%;
     position: relative;
     overflow: hidden;
@@ -172,6 +172,7 @@ body {
         width: 15px;
         height: 15px;
         border-radius: 50%;
+        transform: translate3d(0, 0, 0);
         background-color: @peopleColor;
         &.danger {
             animation: bgShake .3s step-end;
@@ -180,7 +181,6 @@ body {
     .scroller {
         height: 1000px;
         position: relative;
-        transform: translate3d(0, 0, 0);
         .floor {
             position: absolute;
             width: 90px;

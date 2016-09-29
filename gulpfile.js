@@ -9,6 +9,8 @@ var gulp  = require('gulp'),         //基础库
     notify = require('gulp-notify'),
     plumber = require('gulp-plumber'),
     connect = require('gulp-connect'),     //webserver
+    LessAutoprefix = require('less-plugin-autoprefix'),
+    autoprefix = new LessAutoprefix({ browsers: ['last 4 versions'] }),
     port = 8888,
     rootpath = '';
 
@@ -53,7 +55,7 @@ gulp.task('css', function () {
 
   gulp.src(cssSrc)
     .pipe(plumber({errorHandler: onError}))
-    .pipe(less({ style: 'expanded'}))
+    .pipe(less({ style: 'expanded', plugins: [autoprefix]}))
     .pipe(gulp.dest(cssDst))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())

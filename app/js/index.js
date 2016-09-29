@@ -10,7 +10,7 @@ var gameController = {
     _speed: 50, //pixel per second
     _maxSpeed: 250,
     _blood: 12,
-    _$canvas: $('.canvas'),
+    _$canvas: $('.game-canvas'),
     _$scroller: $('.scroller'),
     _$people: $('.people'),
     _peopleSpeed: 180, //pixel per second
@@ -301,12 +301,53 @@ var gameController = {
         //更新人物视图
         this.peopleUpdateView();
     },
+    //更新卷轴位置
+    floorUpdateView: function() {
+        if(Modernizr.csstransforms3d) {
+            //设定卷轴位置, translate3d开启GPU加速
+            this._$scroller.css({
+                '-webkit-transform': 'translate3d(0, '+ this.__currentScrollerY + 'px, 0)',
+                    '-ms-transform': 'translate3d(0, '+ this.__currentScrollerY + 'px, 0)',
+                        'transform': 'translate3d(0, '+ this.__currentScrollerY + 'px, 0)',
+            });
+        } else if(Modernizr.csstransforms) {
+            //不支持translate3d 使用translateY
+            this._$scroller.css({
+                '-webkit-transform': 'translateY('+ this.__currentScrollerY + 'px)',
+                    '-ms-transform': 'translateY('+ this.__currentScrollerY + 'px)',
+                        'transform': 'translateY('+ this.__currentScrollerY + 'px)',
+            });
+        } else {
+            //还不支持，那就GG
+            this._$scroller.css({
+                'top': this.__currentScrollerY + 'px',
+            });
+        }
+    },
     //更新人物视图
     peopleUpdateView: function() {
-        //设定人物位置, translate3d开启GPU加速，消除抖动
-        this._$people.css({
-            transform: 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)'
-        });
+        if(Modernizr.csstransforms3d) {
+            //设定人物位置, translate3d开启GPU加速
+            this._$people.css({
+                '-webkit-transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)',
+                    '-ms-transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)',
+                        'transform': 'translate3d(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px ,0)',
+            });
+        } else if(Modernizr.csstransforms) {
+            //不支持translate3d 使用translate
+            this._$people.css({
+                '-webkit-transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px)',
+                    '-ms-transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px)',
+                        'transform': 'translate(' + this.__currentPeopleVertical + 'px , ' + this.__currentPeopleY + 'px)',
+            });
+        } else {
+            console.log(this.__currentPeopleVertical);
+            //还不支持，那就GG
+            this._$people.css({
+                'left':  this.__currentPeopleVertical + 'px',
+                'top': this.__currentPeopleY + 'px',
+            });
+        }
     },
     peopleUserController: function() {
         var _this = this;
@@ -374,10 +415,8 @@ var gameController = {
             }
         }
 
-        //使用3D变换来移动卷轴（启用GPU加速）
-        this._$scroller.css({
-            'transform': 'translate3d(0, '+ _this.__currentScrollerY + 'px, 0)',
-        });
+        //更新卷轴位置
+        this.floorUpdateView();
 
         //每个台阶移出视野则清除台阶，并且在底部增加一个新的台阶
         if($('.floor').eq(0).offset().top <= -20) {
@@ -434,7 +473,8 @@ var gameController = {
     init: function() {
         var _this = this,
             floorLoop = 0;
-
+        // Modernizr.csstransforms3d = false;
+        // Modernizr.csstransforms = false;
         //当视窗大小变动时，重新计算画布宽高
         this._canvasWidth = this._$canvas.width();
         this._canvasHeight = this._$canvas.height();

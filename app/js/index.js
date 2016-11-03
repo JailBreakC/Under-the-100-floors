@@ -524,22 +524,20 @@ var gameController = {
 };
 
 $(function() {
-    $('body').on('touchstart', function(ev) {
-        return false;
-    })
-    $('#start-game').on('touchstart', function() {
+
+    $('#start-game').on('click', function() {
         $('.game-intro').hide();
         $('#game-ct').show();
         gameController.init();
     });
 
-    $('#restart-game').on('touchstart', function() {
+    $('#restart-game').on('click', function() {
         $('#game-ct').show();
         $('.game-over').hide();
         gameController.reRun();
     })
 
-    $('.share-btn').on('touchstart', function() {
+    $('.share-btn').on('click', function() {
         alert('点击右上角分享给好友吧~');
     })
 

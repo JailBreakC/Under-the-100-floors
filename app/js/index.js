@@ -1,3 +1,5 @@
+window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame  || window.mozRequestAnimationFrame
+
 var gameController = {
     _animation: null,
     _canvasWidth: 0,
@@ -463,7 +465,7 @@ var gameController = {
 
         //循环调用渲染函数，并把循环handle暴露出去，方便外部暂停动画
         return this._animation = setInterval(function() {
-            _this.core(fps);
+            window.requestAnimationFrame(_this.core(fps));
         }, looptime);
     },
     stop: function() {

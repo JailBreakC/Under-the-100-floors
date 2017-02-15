@@ -1,4 +1,4 @@
-window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame  || window.mozRequestAnimationFrame
+window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame  || window.mozRequestAnimationFrame || function(cb) {cb();};
 
 var gameController = {
     _animation: null,

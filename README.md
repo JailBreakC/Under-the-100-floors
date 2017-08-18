@@ -6,6 +6,13 @@
 
 涂鸦跳跃上楼太辛苦，试试轻松的下楼吧！
 
+![http://static.vgee.cn/WechatIMG28.jpeg](http://static.vgee.cn/WechatIMG28.jpeg)
+
+![http://static.vgee.cn/WechatIMG29.jpeg](http://static.vgee.cn/WechatIMG29.jpeg)
+
+![http://static.vgee.cn/WechatIMG30.jpeg](http://static.vgee.cn/WechatIMG30.jpeg)
+
+![http://static.vgee.cn/WechatIMG31.jpeg](http://static.vgee.cn/WechatIMG31.jpeg)
 
 使用技术：`Zepto`, `CSS3`
 

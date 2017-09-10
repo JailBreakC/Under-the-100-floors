@@ -1,3 +1,6 @@
+import './zepto-touch'
+import '../less/style.less'
+
 window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame  || window.mozRequestAnimationFrame || function(cb) {cb();};
 
 var gameController = {
@@ -197,7 +200,7 @@ var gameController = {
             return
         }
         //碰撞检测
-        for(i = 0; i < $floor.length; i++) {
+        for(var i = 0; i < $floor.length; i++) {
             //缓存offset
             var floorOffset = $floor.eq(i).offset();
             //人物与楼梯纵向距离
@@ -428,7 +431,7 @@ var gameController = {
             //将楼梯偏移高度减小一屏
             this.__floorScrollerY -= this._canvasHeight;
             //重置现有楼梯位置
-            for(i = 0; i < $floor.length; i++) {
+            for(var i = 0; i < $floor.length; i++) {
                 $floor.eq(i).css({
                     top: parseInt($('.floor').eq(i).css('top')) - this._canvasHeight
                 })
@@ -465,7 +468,7 @@ var gameController = {
 
         //循环调用渲染函数，并把循环handle暴露出去，方便外部暂停动画
         return this._animation = setInterval(function() {
-            window.requestAnimationFrame(_this.core(fps));
+            window.requestAnimationFrame(_this.core.bind(_this, fps));
         }, looptime);
     },
     stop: function() {
@@ -484,7 +487,7 @@ var gameController = {
     backup: function() {
         //备份初始设置参数，用于游戏reset
         this.__paramBackup = {};
-        for(i in this) {
+        for(var i in this) {
             if(typeof this[i] === 'number' || typeof this[i] === 'string') {
                 this.__paramBackup[i] = this[i];
             }

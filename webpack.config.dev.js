@@ -1,12 +1,16 @@
-'use strict';
 const webpack = require("webpack");
-module.exports = {
+
+var webpackBase = {
   context: __dirname,
   entry: {
-    app: "./app/js/index.js",
+    app: [
+      'webpack-dev-server/client?http://localhost:8081',
+      './app/js/index.js'
+    ]
   }, output: {
     path: __dirname + "/dist",
-    filename: "[name].bundle.js",
+    filename: "[name].js",
+    publicPath: "/dist/"
   },
   module: {
     rules: [
@@ -31,4 +35,7 @@ module.exports = {
       // Loaders for other file types can go here
     ],
   },
+  devtool: "cheap-module-eval-source-map"
 };
+
+module.exports = webpackBase

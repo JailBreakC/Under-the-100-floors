@@ -3,6 +3,8 @@ import '../less/style.less'
 
 window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame  || window.mozRequestAnimationFrame || function(cb) {cb();};
 
+console.log('xxx');
+
 var gameController = {
     _animation: null,
     _canvasWidth: 0,

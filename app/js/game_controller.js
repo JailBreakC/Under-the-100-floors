@@ -72,7 +72,8 @@ GameController.prototype = {
     'gameover',
     'start',
     'rerun',
-    'stop'
+    'stop',
+    'scoreupdate'
   ],
   // 事件机制，利用 Dom Event 来封装游戏状态事件
   on: function(event, fn) {
@@ -90,8 +91,6 @@ GameController.prototype = {
       $('#game-ct').hide();
       $('.game-over').show();
     }.bind(this), 200);
-    $('title').text('老子' + this.floorScore + '层!-是男人就下100层');
-    _czc.push(['_trackEvent', 'score', 'game', 'gameover', this.floorScore]);
   },
   checkFloorConfig: function() {
     var rangeArray = [0];
@@ -100,7 +99,6 @@ GameController.prototype = {
 
     for(var i = 0; i < config.length; i++ ) {
       var _rate = config[i].rate;
-      console.log(_rate);
       if(typeof _rate !== 'number') {
         throw new TypeError('rate type error');
       }
@@ -154,7 +152,7 @@ GameController.prototype = {
     }
   },
   updateScore: function() {
-    $('.text-score').text(this.floorScore);
+    this.$container.trigger('scoreupdate');
   },
   loseBlood: function() {
     //当人物在平台上时，不重复扣血
@@ -543,7 +541,6 @@ GameController.prototype = {
     this.$container.trigger('stop');
   },
   reRun: function() {
-    console.log(this.__paramBackup.floorScore);
     this.$container.trigger('rerun');
     //重置参数
     $.extend(this, this.__paramBackup);

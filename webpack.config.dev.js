@@ -33,8 +33,7 @@ var webpackBase = {
       }
       // Loaders for other file types can go here
     ],
-  },
-  devtool: "cheap-module-eval-source-map"
+  }
 };
 
 module.exports = webpackBase

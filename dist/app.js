@@ -75,51 +75,1412 @@ module.exports = __webpack_require__(1);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _game_controller = __webpack_require__(2);\n\nvar _game_controller2 = _interopRequireDefault(_game_controller);\n\n__webpack_require__(4);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n$(function () {\n\n  var gc = new _game_controller2.default();\n\n  $('body').show();\n\n  gc.on('gameover', function (e) {\n    $('#github-fork').show();\n  });\n\n  gc.on('start', function () {\n    $('#github-fork').hide();\n  });\n\n  $('#start-game').on('click', function () {\n    $('.game-intro').hide();\n    $('#game-ct').show();\n    gc.start();\n  });\n\n  $('#restart-game').on('click', function () {\n    $('#game-ct').show();\n    $('.game-over').hide();\n    gc.reRun();\n  });\n\n  $('.share-btn').on('click', function () {\n    alert('点击右上角分享给好友吧~');\n  });\n\n  var preloadImg = function preloadImg() {\n    var imgList = ['/public/images/spring-up.png'];\n    for (var i = 0; i < imgList.length; i++) {\n      var _img = new Image();\n      _img.src = imgList[i];\n    }\n  };\n  preloadImg();\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMS5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9hcHAvanMvaW5kZXguanM/ZTZhOSJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgR2FtZUNvbnRyb2xsZXIgZnJvbSAnLi9nYW1lX2NvbnRyb2xsZXInO1xuaW1wb3J0ICcuLi9sZXNzL3N0eWxlLmxlc3MnO1xuXG4kKGZ1bmN0aW9uKCkge1xuXG4gIHZhciBnYyA9IG5ldyBHYW1lQ29udHJvbGxlcigpO1xuXG4gICQoJ2JvZHknKS5zaG93KCk7XG5cbiAgZ2Mub24oJ2dhbWVvdmVyJywgZnVuY3Rpb24oZSkge1xuICAgICQoJyNnaXRodWItZm9yaycpLnNob3coKTtcbiAgfSk7XG5cbiAgZ2Mub24oJ3N0YXJ0JywgZnVuY3Rpb24oKSB7XG4gICAgJCgnI2dpdGh1Yi1mb3JrJykuaGlkZSgpOyAgICBcbiAgfSlcblxuICAkKCcjc3RhcnQtZ2FtZScpLm9uKCdjbGljaycsIGZ1bmN0aW9uKCkge1xuICAgICQoJy5nYW1lLWludHJvJykuaGlkZSgpO1xuICAgICQoJyNnYW1lLWN0Jykuc2hvdygpO1xuICAgIGdjLnN0YXJ0KCk7XG4gIH0pO1xuXG4gICQoJyNyZXN0YXJ0LWdhbWUnKS5vbignY2xpY2snLCBmdW5jdGlvbigpIHtcbiAgICAkKCcjZ2FtZS1jdCcpLnNob3coKTtcbiAgICAkKCcuZ2FtZS1vdmVyJykuaGlkZSgpO1xuICAgIGdjLnJlUnVuKCk7XG4gIH0pXG5cbiAgJCgnLnNoYXJlLWJ0bicpLm9uKCdjbGljaycsIGZ1bmN0aW9uKCkge1xuICAgIGFsZXJ0KCfngrnlh7vlj7PkuIrop5LliIbkuqvnu5nlpb3lj4vlkKd+Jyk7XG4gIH0pXG5cbiAgdmFyIHByZWxvYWRJbWcgPSBmdW5jdGlvbigpIHtcbiAgICB2YXIgaW1nTGlzdCA9IFtcbiAgICAgICcvcHVibGljL2ltYWdlcy9zcHJpbmctdXAucG5nJ1xuICAgIF1cbiAgICBmb3IgKHZhciBpID0gMDsgaSA8IGltZ0xpc3QubGVuZ3RoOyBpKyspIHtcbiAgICAgIHZhciBfaW1nID0gbmV3IEltYWdlKCk7XG4gICAgICBfaW1nLnNyYyA9IGltZ0xpc3RbaV07XG4gICAgfVxuICB9XG4gIHByZWxvYWRJbWcoKTtcbn0pO1xuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvanMvaW5kZXguanMiXSwibWFwcGluZ3MiOiI7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUdBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///1\n");
+
+
+var _game_controller = __webpack_require__(2);
+
+var _game_controller2 = _interopRequireDefault(_game_controller);
+
+__webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var tips = {
+  fail: '弹簧梯子每次弹跳都会回血哦~',
+  success: '恭喜你成为真男人！赶紧分享给小伙伴吧~'
+};
+
+var preloadImg = function preloadImg() {
+  var imgList = ['/public/images/spring-up.png'];
+  for (var i = 0; i < imgList.length; i++) {
+    var _img = new Image();
+    _img.src = imgList[i];
+  }
+};
+
+$(function () {
+
+  var gc = new _game_controller2.default();
+
+  $('body').show();
+
+  gc.on('gameover', function (e) {
+    $('#github-fork').show();
+    $('title').text('老子' + gc.floorScore + '层! - 是男人就下100层');
+    $('.text-score').text(gc.floorScore);
+
+    if (gc.floorScore < 100) {
+      $('.game-over .text-desc').text(tips.fail);
+    } else {
+      $('.game-over .text-desc').text(tips.success);
+    }
+    _czc.push(['_trackEvent', 'score', 'game', 'gameover', gc.floorScore]);
+  });
+
+  gc.on('start', function () {
+    $('#github-fork').hide();
+  });
+
+  $('#start-game').on('click', function () {
+    $('.game-intro').hide();
+    $('#game-ct').show();
+    gc.start();
+  });
+
+  $('#restart-game').on('click', function () {
+    $('#game-ct').show();
+    $('.game-over').hide();
+    gc.reRun();
+  });
+
+  $('.share-btn').on('click', function () {
+    alert('点击右上角分享给好友吧~');
+  });
+
+  preloadImg();
+});
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\n__webpack_require__(3);\n\nwindow.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (cb) {\n  cb();\n};\n\nvar GameController = function GameController() {\n  this.floorRate = [{\n    name: 'normal',\n    rate: 15\n  }, {\n    name: 'spring',\n    rate: 15\n  }, {\n    name: 'weak',\n    rate: 15\n  }, {\n    name: 'scroll-left',\n    rate: 10\n  }, {\n    name: 'scroll-right',\n    rate: 10\n  }, {\n    name: 'nail',\n    rate: 35\n  }];\n\n  this.fps = 60; //刷新频率\n  this.speed = 50; // 卷轴初始速度\n  this.maxSpeed = 350; // 卷轴最大速度\n  this.gravity = 1000; // 重力加速度 px 每秒平方\n  this.peopleVerticalSpeed = 200; // 人物横向移动速度\n  this.animation = null;\n  this.canvasWidth = 0;\n  this.canvasHeight = 0;\n  this.floorWidth = 0;\n  this.floorHeight = 0;\n  this.floorDeltaY = 50;\n  this.floorScore = 1;\n  this.blood = 12; // 人物血量\n  this.$container = $('.container');\n  this.$canvas = $('.game-canvas');\n  this.$scroller = $('.scroller');\n  this.$people = $('.people');\n  this.peopleRotateZ = 0;\n  this.peopleRotateDelta = 25; // 小球滚动角度\n  this.peopleHeight = 0;\n  this.peopleWidth = 0;\n  this._t = 0; // 人物开始下落时间\n  this._currentScrollerY = 0;\n  this._currentPeopleY = 20;\n  this._currentPeopleVertical = 0;\n  this._floorScrollerY = 200;\n  this._maxJumpDistance = 20;\n  this._currentJumpDistance = 0;\n  this._frameIndex = 0;\n  this._v0 = 0; // 初始速度 px每秒\n\n  this.checkFloorConfig();\n};\n\nGameController.prototype = {\n  constructor: GameController,\n  Events: ['gameover', 'start', 'rerun', 'stop'],\n  // 事件机制，利用 Dom Event 来封装游戏状态事件\n  on: function on(event, fn) {\n    if (this.Events.indexOf(event) === -1) {\n      return;\n    }\n    this.$container.on(event, fn);\n  },\n  //游戏结束\n  gameover: function gameover() {\n    this.stop();\n    setTimeout(function () {\n      // 派发事件，以供外部调用\n      this.$container.trigger('gameover');\n      $('#game-ct').hide();\n      $('.game-over').show();\n    }.bind(this), 200);\n    $('title').text('老子' + this.floorScore + '层!-是男人就下100层');\n    _czc.push(['_trackEvent', 'score', 'game', 'gameover', this.floorScore]);\n  },\n  checkFloorConfig: function checkFloorConfig() {\n    var rangeArray = [0];\n    var totalRate = 0;\n    var config = this.floorRate;\n\n    for (var i = 0; i < config.length; i++) {\n      var _rate = config[i].rate;\n      console.log(_rate);\n      if (typeof _rate !== 'number') {\n        throw new TypeError('rate type error');\n      }\n      totalRate += _rate;\n      rangeArray.push(totalRate);\n    }\n    if (totalRate !== 100) {\n      throw new RangeError('rate 加起来务必等于 100！');\n    }\n\n    this._floorRateArray = rangeArray;\n  },\n  getRandomFloor: function getRandomFloor(rangeArray) {\n    var dice = Math.random() * 100;\n    for (var i = 0; i < rangeArray.length - 1; i++) {\n      if (dice >= rangeArray[i] && dice < rangeArray[i + 1]) {\n        return this.floorRate[i];\n      }\n    }\n  },\n  createFloorSpan: function createFloorSpan() {\n    //计算楼梯位置，200px 刚开始从距离顶部200px开始\n    var _top = this._floorScrollerY += this.floorDeltaY,\n\n    //楼梯横向位置随机出现\n    _left = Math.random() * (this.canvasWidth - this.floorWidth);\n\n    var floorConfig = this.getRandomFloor(this._floorRateArray);\n    var floorElement = '<i class=\"floor ' + floorConfig.name + '\"></i>';\n\n    //随机新建楼梯，并添加到卷轴中去\n    $(floorElement).css({\n      top: _top,\n      left: _left,\n      width: this.floorWidth,\n      height: this.floorHeight\n    }).appendTo(this.$scroller);\n  },\n  removeFloorSpan: function removeFloorSpan() {\n    $('.floor').eq(0).remove();\n    this.floorScore++;\n    this.updateScore();\n  },\n  updateBlood: function updateBlood() {\n    var $bloodEle = $('.blood i');\n    for (var i = 0; i < $bloodEle.length; i++) {\n      if (i < this.blood) {\n        $bloodEle.eq(i).removeClass('lose');\n      } else {\n        $bloodEle.eq(i).addClass('lose');\n      }\n    }\n  },\n  updateScore: function updateScore() {\n    $('.text-score').text(this.floorScore);\n  },\n  loseBlood: function loseBlood() {\n    //当人物在平台上时，不重复扣血\n    if (this.__onFloor) {\n      return;\n    }\n    this.blood -= 4;\n    //人变红\n    this.$people.addClass('danger');\n    setTimeout(function () {\n      this.$people.removeClass('danger');\n    }.bind(this), 1000);\n\n    //背景闪烁\n    $('#game-ct').addClass('danger');\n    setTimeout(function () {\n      $('#game-ct').removeClass('danger');\n    }, 100);\n\n    if (this.blood <= 0) {\n      this.blood = 0;\n      this.updateBlood();\n      this.gameover();\n      return;\n    }\n    this.updateBlood();\n  },\n  addBlood: function addBlood() {\n    //当人物在平台上时，或者血量大于12，不重复加血\n    if (this.__onFloor || this.blood >= 12) {\n      return;\n    }\n    this.blood += 1;\n    this.updateBlood();\n  },\n  floorNormal: function floorNormal() {\n    this.addBlood();\n  },\n  floorNail: function floorNail() {\n    this.loseBlood();\n  },\n  floorWeak: function floorWeak($floorEle) {\n    this.addBlood();\n    //短暂停留后，标记该元素可强行穿过\n    setTimeout(function () {\n      $floorEle.addClass('over');\n      $floorEle[0].cross = true;\n    }, 200);\n  },\n  floorScroll: function floorScroll(direction) {\n    this.addBlood();\n    this.__floorScrollDirection = direction;\n  },\n  floorScrollEnd: function floorScrollEnd() {\n    this.__floorScrollDirection = null;\n  },\n  floorSpring: function floorSpring($floorEle) {\n    this.__$currentJumpFloor = $floorEle;\n    this.jumpStart();\n    this.addBlood();\n  },\n  jumpStart: function jumpStart() {\n    this.__jumpMode = true;\n    this.__$currentJumpFloor.addClass('up');\n    setTimeout(function () {\n      this.__$currentJumpFloor.removeClass('up');\n    }.bind(this), 200);\n  },\n  jumpEnd: function jumpEnd(hitTop) {\n    if (!this.__jumpMode) {\n      return;\n    }\n    if (hitTop) {\n      this.__$currentJumpFloor[0].cross = true;\n    }\n    //重置跳跃高度\n    this._currentJumpDistance = 0;\n    //解除跳跃\n    this.__jumpMode = false;\n  },\n  people: function people(fps) {\n    // 每帧消耗时间 ms\n    var dt = 1 / fps;\n    // 人物纵向每帧移动距离 △x = v0 * dt + (a * dt^2) / 2\n    var _deltaPeopleY = this._v0 * dt + this.gravity * dt * dt / 2;\n    // 更新时间 t = t + dt;\n    this._t += dt;\n    // 更新速度 v = at;\n    this._v0 = this.gravity * this._t;\n    //卷轴纵向每帧移动距离\n    var _deltaY = this.speed / fps;\n    //人物横向每帧移动距离\n    var _deltaPeopleVertical = this.peopleVerticalSpeed / fps;\n    //缓存floor\n    var $floor = $('.floor');\n    //缓存offset\n    var peopleOffset = this.$people.offset();\n\n    //人物掉落屏幕下方，游戏结束\n    if (peopleOffset.top > this.canvasHeight) {\n      this.gameover();\n      return;\n    }\n    //碰撞检测\n    for (var i = 0; i < $floor.length; i++) {\n      //缓存offset\n      var floorOffset = $floor.eq(i).offset();\n      //人物与楼梯纵向距离\n      var distanceGap = Math.abs(peopleOffset.top + this.peopleHeight - floorOffset.top);\n      //当人物撞到顶部，掉血+掉落+打断跳跃\n      if (peopleOffset.top <= _deltaPeopleY + _deltaY) {\n        this._t = 0;\n        this.__onFloor = false;\n        this.jumpEnd(true);\n        this.loseBlood();\n        break;\n      }\n      //跳跃模式不进入检测\n      if (!this.__jumpMode &&\n      //元素不可直接穿过\n      !$floor.eq(i)[0].cross &&\n      //人物与楼梯纵向距离在一帧移动距离之内\n      distanceGap <= _deltaPeopleY + _deltaY &&\n      //人物横向距离不超过楼梯最左\n      peopleOffset.left > floorOffset.left - this.peopleWidth &&\n      //人物横向距离不超过楼梯最右\n      peopleOffset.left < floorOffset.left + this.floorWidth) {\n        //人物与楼梯偏差修正\n        this._currentPeopleY = floorOffset.top - this.peopleHeight;\n        //施加各类楼梯特殊属性\n        if ($floor.eq(i).hasClass('normal')) {\n          this.floorNormal();\n        }\n        if ($floor.eq(i).hasClass('nail')) {\n          this.floorNail();\n        }\n        if ($floor.eq(i).hasClass('spring')) {\n          this.floorSpring($floor.eq(i));\n        }\n        if ($floor.eq(i).hasClass('weak')) {\n          this.floorWeak($floor.eq(i));\n        }\n        if ($floor.eq(i).hasClass('scroll-left')) {\n          this.floorScroll('left');\n        }\n        if ($floor.eq(i).hasClass('scroll-right')) {\n          this.floorScroll('right');\n        }\n        this._t = 0;\n        this.__onFloor = true;\n        break;\n      }\n      //当循环执行完毕，仍然没有发现碰撞，则表明人物不在平台上\n      if (i === $floor.length - 1) {\n        this.__onFloor = false;\n      }\n    }\n\n    //人物向上跳起\n    if (this.__jumpMode) {\n\n      if (this._currentJumpDistance >= this._maxJumpDistance) {\n        this.jumpEnd();\n      } else {\n        this._currentJumpDistance += _deltaPeopleY;\n        //向上跳起效果要额外加上_deltaY，以匹配卷轴运动状态\n        this._currentPeopleY -= _deltaPeopleY + _deltaY;\n      }\n    }\n\n    //人物向下坠落 + 取消楼梯左右加速状态\n    if (!this.__onFloor && !this.__jumpMode) {\n      this.floorScrollEnd();\n      this._currentPeopleY += _deltaPeopleY;\n    }\n\n    //横向运动预处理\n    var __temp_deltaPeopleVertical = _deltaPeopleVertical;\n    //处理人物向左运动\n    if (this._peopleGoLeft) {\n      if (this.__floorScrollDirection === 'left') {\n        __temp_deltaPeopleVertical *= 1.5;\n      }\n      if (this.__floorScrollDirection === 'right') {\n        __temp_deltaPeopleVertical *= 0.5;\n      }\n\n      if (this._currentPeopleVertical > 0) {\n        this._currentPeopleVertical -= __temp_deltaPeopleVertical;\n      }\n    }\n    //处理人物向右运动\n    if (this._peopleGoRight) {\n      if (this.__floorScrollDirection === 'left') {\n        __temp_deltaPeopleVertical *= 0.5;\n      }\n      if (this.__floorScrollDirection === 'right') {\n        __temp_deltaPeopleVertical *= 1.5;\n      }\n\n      if (this._currentPeopleVertical < this.canvasWidth - this.peopleWidth) {\n        this._currentPeopleVertical += __temp_deltaPeopleVertical;\n      }\n    }\n    //处理人物在滚动楼梯上的自动运动\n    if (!this._peopleGoRight && !this._peopleGoLeft) {\n      __temp_deltaPeopleVertical *= 0.5;\n      if (this.__floorScrollDirection === 'left') {\n        if (this._currentPeopleVertical > 0) {\n          this._currentPeopleVertical -= __temp_deltaPeopleVertical;\n        }\n      }\n      if (this.__floorScrollDirection === 'right') {\n        if (this._currentPeopleVertical < this.canvasWidth - this.peopleWidth) {\n          this._currentPeopleVertical += __temp_deltaPeopleVertical;\n        }\n      }\n    }\n\n    //更新人物视图\n    this.peopleUpdateView();\n  },\n  //更新卷轴位置\n  floorUpdateView: function floorUpdateView() {\n    if (Modernizr.csstransforms3d) {\n      //设定卷轴位置, translate3d开启GPU加速\n      this.$scroller.css({\n        '-webkit-transform': 'translate3d(0, ' + this._currentScrollerY + 'px, 0)',\n        '-ms-transform': 'translate3d(0, ' + this._currentScrollerY + 'px, 0)',\n        'transform': 'translate3d(0, ' + this._currentScrollerY + 'px, 0)'\n      });\n    } else if (Modernizr.csstransforms) {\n      //不支持translate3d 使用translateY\n      this.$scroller.css({\n        '-webkit-transform': 'translateY(' + this._currentScrollerY + 'px)',\n        '-ms-transform': 'translateY(' + this._currentScrollerY + 'px)',\n        'transform': 'translateY(' + this._currentScrollerY + 'px)'\n      });\n    } else {\n      //还不支持，那就GG\n      this.$scroller.css({\n        'top': this._currentScrollerY + 'px'\n      });\n    }\n  },\n  //更新人物视图\n  peopleUpdateView: function peopleUpdateView() {\n    if (this.__onFloor) {\n      if (this._peopleGoLeft) {\n        this.peopleRotateZ -= this.peopleRotateDelta;\n      }\n      if (this._peopleGoRight) {\n        this.peopleRotateZ += this.peopleRotateDelta;\n      }\n    }\n    if (Modernizr.csstransforms3d) {\n      //设定人物位置, translate3d开启GPU加速\n      this.$people.css({\n        '-webkit-transform': 'translate3d(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px ,0)',\n        '-ms-transform': 'translate3d(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px ,0)',\n        'transform': 'translate3d(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px ,0)'\n      });\n    } else if (Modernizr.csstransforms) {\n      //不支持translate3d 使用translate\n      this.$people.css({\n        '-webkit-transform': 'translate(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px)',\n        '-ms-transform': 'translate(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px)',\n        'transform': 'translate(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px)'\n      });\n    } else {\n      //还不支持，那就GG\n      this.$people.css({\n        'left': this._currentPeopleVertical + 'px',\n        'top': this._currentPeopleY + 'px'\n      });\n    }\n  },\n  peopleUserController: function peopleUserController() {\n    var _this = this;\n    //监听按键按下，改变人物左右运动方向\n    $(window).keydown(function (ev) {\n      if (ev.key === 'ArrowRight') {\n        _this._peopleGoRight = true;\n        _this._peopleGoLeft = false; //预防按键同时按下的冲突情况 \n        return;\n      }\n      if (ev.key === 'ArrowLeft') {\n        _this._peopleGoRight = false; //预防按键同时按下的冲突情况\n        _this._peopleGoLeft = true;\n        return;\n      }\n      //按键弹起，取消该方向人物运动\n    }).keyup(function (ev) {\n      if (ev.key === 'ArrowRight') {\n        _this._peopleGoRight = false;\n        return;\n      }\n      if (ev.key === 'ArrowLeft') {\n        _this._peopleGoLeft = false;\n        return;\n      }\n    });\n\n    $('.controller .left-ct').on('touchstart', function (ev) {\n      _this._peopleGoRight = false; //预防按键同时按下的冲突情况 \n      _this._peopleGoLeft = true;\n      return false;\n    }).on('touchend', function (ev) {\n      _this._peopleGoLeft = false;\n    });\n\n    $('.controller .right-ct').on('touchstart', function (ev) {\n      _this._peopleGoRight = true;\n      _this._peopleGoLeft = false; //预防按键同时按下的冲突情况\n      return false;\n    }).on('touchend', function (ev) {\n      _this._peopleGoRight = false;\n    });\n  },\n  core: function core(fps) {\n    var _this = this,\n        _deltaY = this.speed / fps,\n        //卷轴纵向每帧移动距离\n    $floor = $('.floor');\n\n    //计算卷轴位置\n    this._currentScrollerY -= _deltaY;\n\n    //当卷轴超出一定长度之后，进行位置reset、缩减长度，防止Crash现象\n    if (this._currentScrollerY <= -this.canvasHeight * 2) {\n      //将卷轴滚动高度减小一屏\n      this._currentScrollerY += this.canvasHeight;\n      //将楼梯偏移高度减小一屏\n      this._floorScrollerY -= this.canvasHeight;\n      //重置现有楼梯位置\n      for (var i = 0; i < $floor.length; i++) {\n        $floor.eq(i).css({\n          top: parseInt($('.floor').eq(i).css('top')) - this.canvasHeight\n        });\n      }\n    }\n\n    //更新卷轴位置\n    this.floorUpdateView();\n\n    //每个台阶移出视野则清除台阶，并且在底部增加一个新的台阶\n    if ($floor.eq(0).offset().top <= -20) {\n      this.createFloorSpan();\n      this.removeFloorSpan();\n    }\n\n    //调用人物渲染\n    this.people(fps);\n    // 越来越high\n    if (this.speed <= this.maxSpeed) {\n      this.speed += 0.1;\n    }\n  },\n  run: function run(fps) {\n    //不允许执行多个动画渲染函数（你想卡死么...\n    if (this.animation) {\n      console.error('Animation has aready in process, please do not run again!');\n      return;\n    }\n\n    this._fps = fps = fps || 60;\n    var looptime = 1000 / fps; //每帧间隔时间\n    var _this = this;\n\n    var runAnimation = function runAnimation() {\n      return setTimeout(function () {\n        window.requestAnimationFrame(function () {\n          _this.core(fps);\n        });\n        _this.animation = runAnimation();\n      }, looptime);\n    };\n    //循环调用渲染函数，并把循环handle暴露出去，方便外部暂停动画\n    return this.animation = runAnimation();\n  },\n  stop: function stop() {\n    clearTimeout(this.animation); //暂停动画\n    this.animation = undefined;\n    this.$container.trigger('stop');\n  },\n  reRun: function reRun() {\n    console.log(this.__paramBackup.floorScore);\n    this.$container.trigger('rerun');\n    //重置参数\n    $.extend(this, this.__paramBackup);\n    //删掉现有楼梯\n    $('.floor').remove();\n    //重新初始化\n    this.start();\n  },\n  backup: function backup() {\n    //备份初始设置参数，用于游戏reset\n    this.__paramBackup = {};\n    for (var i in this) {\n      if (typeof this[i] === 'number' || typeof this[i] === 'string') {\n        this.__paramBackup[i] = this[i];\n      }\n    }\n  },\n  start: function start() {\n    var _this = this,\n        floorLoop = 0;\n    this.$container.trigger('start');\n    // Modernizr.csstransforms3d = false;\n    // Modernizr.csstransforms = false;\n    //当视窗大小变动时，重新计算画布宽高\n    this.canvasWidth = this.$canvas.width();\n    this.canvasHeight = this.$canvas.height();\n    this.floorDeltaY = this.canvasHeight / 11;\n    this.floorWidth = this.canvasWidth / 5;\n    this.floorHeight = this.floorWidth / 9;\n    this.peopleHeight = parseInt(this.$people.css('height'));\n    this.peopleWidth = parseInt(this.$people.css('width'));\n\n    //人物位置预设\n    this._currentPeopleVertical = this.canvasWidth / 2 + this.peopleWidth / 2;\n    //备份初始参数\n    this.backup();\n    //初始化台阶\n    while (floorLoop++ < 13) {\n      this.createFloorSpan();\n    }\n    //初始化任务控制\n    this.peopleUserController();\n    //首次更新人物视图\n    this.peopleUpdateView();\n    //首次更新人物血量\n    this.updateBlood();\n    //首次更新楼层数\n    this.updateScore();\n    //以每秒60帧执行游戏动画\n    this.run(this.fps);\n  }\n};\n\nexports.default = GameController;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMi5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9hcHAvanMvZ2FtZV9jb250cm9sbGVyLmpzPzg0NmQiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICcuL3plcHRvLXRvdWNoJ1xuXG53aW5kb3cucmVxdWVzdEFuaW1hdGlvbkZyYW1lID0gd2luZG93LnJlcXVlc3RBbmltYXRpb25GcmFtZSB8fCB3aW5kb3cud2Via2l0UmVxdWVzdEFuaW1hdGlvbkZyYW1lIHx8IHdpbmRvdy5tb3pSZXF1ZXN0QW5pbWF0aW9uRnJhbWUgfHwgZnVuY3Rpb24oY2IpIHtcbiAgY2IoKTtcbn07XG5cbnZhciBHYW1lQ29udHJvbGxlciA9IGZ1bmN0aW9uKCkge1xuICB0aGlzLmZsb29yUmF0ZSA9IFtcbiAgICB7XG4gICAgICBuYW1lOiAnbm9ybWFsJyxcbiAgICAgIHJhdGU6IDE1LFxuICAgIH0sXG4gICAge1xuICAgICAgbmFtZTogJ3NwcmluZycsXG4gICAgICByYXRlOiAxNSxcbiAgICB9LFxuICAgIHtcbiAgICAgIG5hbWU6ICd3ZWFrJyxcbiAgICAgIHJhdGU6IDE1LFxuICAgIH0sXG4gICAge1xuICAgICAgbmFtZTogJ3Njcm9sbC1sZWZ0JyxcbiAgICAgIHJhdGU6IDEwLFxuICAgIH0sXG4gICAge1xuICAgICAgbmFtZTogJ3Njcm9sbC1yaWdodCcsXG4gICAgICByYXRlOiAxMCxcbiAgICB9LFxuICAgIHtcbiAgICAgIG5hbWU6ICduYWlsJyxcbiAgICAgIHJhdGU6IDM1XG4gICAgfVxuICBdXG5cbiAgdGhpcy5mcHMgPSA2MDsgLy/liLfmlrDpopHnjodcbiAgdGhpcy5zcGVlZCA9IDUwOyAvLyDljbfovbTliJ3lp4vpgJ/luqZcbiAgdGhpcy5tYXhTcGVlZCA9IDM1MDsgLy8g5Y236L205pyA5aSn6YCf5bqmXG4gIHRoaXMuZ3Jhdml0eSA9IDEwMDA7IC8vIOmHjeWKm+WKoOmAn+W6piBweCDmr4/np5LlubPmlrlcbiAgdGhpcy5wZW9wbGVWZXJ0aWNhbFNwZWVkID0gMjAwOyAvLyDkurrnianmqKrlkJHnp7vliqjpgJ/luqZcbiAgdGhpcy5hbmltYXRpb24gPSBudWxsO1xuICB0aGlzLmNhbnZhc1dpZHRoID0gMDtcbiAgdGhpcy5jYW52YXNIZWlnaHQgPSAwO1xuICB0aGlzLmZsb29yV2lkdGggPSAwO1xuICB0aGlzLmZsb29ySGVpZ2h0ID0gMDtcbiAgdGhpcy5mbG9vckRlbHRhWSA9IDUwO1xuICB0aGlzLmZsb29yU2NvcmUgPSAxO1xuICB0aGlzLmJsb29kID0gMTI7IC8vIOS6uueJqeihgOmHj1xuICB0aGlzLiRjb250YWluZXIgPSAkKCcuY29udGFpbmVyJyk7XG4gIHRoaXMuJGNhbnZhcyA9ICQoJy5nYW1lLWNhbnZhcycpO1xuICB0aGlzLiRzY3JvbGxlciA9ICQoJy5zY3JvbGxlcicpO1xuICB0aGlzLiRwZW9wbGUgPSAkKCcucGVvcGxlJyk7XG4gIHRoaXMucGVvcGxlUm90YXRlWiA9IDA7XG4gIHRoaXMucGVvcGxlUm90YXRlRGVsdGEgPSAyNTsgLy8g5bCP55CD5rua5Yqo6KeS5bqmXG4gIHRoaXMucGVvcGxlSGVpZ2h0ID0gMDtcbiAgdGhpcy5wZW9wbGVXaWR0aCA9IDA7XG4gIHRoaXMuX3QgPSAwOyAvLyDkurrnianlvIDlp4vkuIvokL3ml7bpl7RcbiAgdGhpcy5fY3VycmVudFNjcm9sbGVyWSA9IDA7XG4gIHRoaXMuX2N1cnJlbnRQZW9wbGVZID0gMjA7XG4gIHRoaXMuX2N1cnJlbnRQZW9wbGVWZXJ0aWNhbCA9IDA7XG4gIHRoaXMuX2Zsb29yU2Nyb2xsZXJZID0gMjAwO1xuICB0aGlzLl9tYXhKdW1wRGlzdGFuY2UgPSAyMDtcbiAgdGhpcy5fY3VycmVudEp1bXBEaXN0YW5jZSA9IDA7XG4gIHRoaXMuX2ZyYW1lSW5kZXggPSAwO1xuICB0aGlzLl92MCA9IDA7IC8vIOWIneWni+mAn+W6piBweOavj+enklxuXG4gIHRoaXMuY2hlY2tGbG9vckNvbmZpZygpO1xufVxuICBcbkdhbWVDb250cm9sbGVyLnByb3RvdHlwZSA9IHtcbiAgY29uc3RydWN0b3I6IEdhbWVDb250cm9sbGVyLFxuICBFdmVudHM6IFtcbiAgICAnZ2FtZW92ZXInLFxuICAgICdzdGFydCcsXG4gICAgJ3JlcnVuJyxcbiAgICAnc3RvcCdcbiAgXSxcbiAgLy8g5LqL5Lu25py65Yi277yM5Yip55SoIERvbSBFdmVudCDmnaXlsIHoo4XmuLjmiI/nirbmgIHkuovku7ZcbiAgb246IGZ1bmN0aW9uKGV2ZW50LCBmbikge1xuICAgIGlmKHRoaXMuRXZlbnRzLmluZGV4T2YoZXZlbnQpID09PSAtMSkge1xuICAgICAgcmV0dXJuXG4gICAgfVxuICAgIHRoaXMuJGNvbnRhaW5lci5vbihldmVudCwgZm4pO1xuICB9LFxuICAvL+a4uOaIj+e7k+adn1xuICBnYW1lb3ZlcjogZnVuY3Rpb24oKSB7XG4gICAgdGhpcy5zdG9wKCk7XG4gICAgc2V0VGltZW91dChmdW5jdGlvbigpIHtcbiAgICAgIC8vIOa0vuWPkeS6i+S7tu+8jOS7peS+m+WklumDqOiwg+eUqFxuICAgICAgdGhpcy4kY29udGFpbmVyLnRyaWdnZXIoJ2dhbWVvdmVyJyk7XG4gICAgICAkKCcjZ2FtZS1jdCcpLmhpZGUoKTtcbiAgICAgICQoJy5nYW1lLW92ZXInKS5zaG93KCk7XG4gICAgfS5iaW5kKHRoaXMpLCAyMDApO1xuICAgICQoJ3RpdGxlJykudGV4dCgn6ICB5a2QJyArIHRoaXMuZmxvb3JTY29yZSArICflsYIhLeaYr+eUt+S6uuWwseS4izEwMOWxgicpO1xuICAgIF9jemMucHVzaChbJ190cmFja0V2ZW50JywgJ3Njb3JlJywgJ2dhbWUnLCAnZ2FtZW92ZXInLCB0aGlzLmZsb29yU2NvcmVdKTtcbiAgfSxcbiAgY2hlY2tGbG9vckNvbmZpZzogZnVuY3Rpb24oKSB7XG4gICAgdmFyIHJhbmdlQXJyYXkgPSBbMF07XG4gICAgdmFyIHRvdGFsUmF0ZSA9IDA7XG4gICAgdmFyIGNvbmZpZyA9IHRoaXMuZmxvb3JSYXRlO1xuXG4gICAgZm9yKHZhciBpID0gMDsgaSA8IGNvbmZpZy5sZW5ndGg7IGkrKyApIHtcbiAgICAgIHZhciBfcmF0ZSA9IGNvbmZpZ1tpXS5yYXRlO1xuICAgICAgY29uc29sZS5sb2coX3JhdGUpO1xuICAgICAgaWYodHlwZW9mIF9yYXRlICE9PSAnbnVtYmVyJykge1xuICAgICAgICB0aHJvdyBuZXcgVHlwZUVycm9yKCdyYXRlIHR5cGUgZXJyb3InKTtcbiAgICAgIH1cbiAgICAgIHRvdGFsUmF0ZSArPSBfcmF0ZTtcbiAgICAgIHJhbmdlQXJyYXkucHVzaCh0b3RhbFJhdGUpO1xuICAgIH1cbiAgICBpZih0b3RhbFJhdGUgIT09IDEwMCkge1xuICAgICAgdGhyb3cgbmV3IFJhbmdlRXJyb3IoJ3JhdGUg5Yqg6LW35p2l5Yqh5b+F562J5LqOIDEwMO+8gScpO1xuICAgIH1cblxuICAgIHRoaXMuX2Zsb29yUmF0ZUFycmF5ID0gcmFuZ2VBcnJheTtcbiAgfSxcbiAgZ2V0UmFuZG9tRmxvb3I6IGZ1bmN0aW9uKHJhbmdlQXJyYXkpIHtcbiAgICB2YXIgZGljZSA9IE1hdGgucmFuZG9tKCkgKiAxMDA7XG4gICAgZm9yICh2YXIgaSA9IDA7IGkgPCByYW5nZUFycmF5Lmxlbmd0aCAtIDE7IGkrKykge1xuICAgICAgaWYgKGRpY2UgPj0gcmFuZ2VBcnJheVtpXSAmJiBkaWNlIDwgcmFuZ2VBcnJheVtpICsgMV0pIHtcbiAgICAgICAgcmV0dXJuIHRoaXMuZmxvb3JSYXRlW2ldO1xuICAgICAgfVxuICAgIH1cbiAgfSxcbiAgY3JlYXRlRmxvb3JTcGFuOiBmdW5jdGlvbigpIHtcbiAgICAvL+iuoeeul+alvOair+S9jee9ru+8jDIwMHB4IOWImuW8gOWni+S7jui3neemu+mhtumDqDIwMHB45byA5aeLXG4gICAgdmFyIF90b3AgPSB0aGlzLl9mbG9vclNjcm9sbGVyWSArPSB0aGlzLmZsb29yRGVsdGFZLFxuICAgICAgLy/mpbzmoq/mqKrlkJHkvY3nva7pmo/mnLrlh7rnjrBcbiAgICAgIF9sZWZ0ID0gTWF0aC5yYW5kb20oKSAqICh0aGlzLmNhbnZhc1dpZHRoIC0gdGhpcy5mbG9vcldpZHRoKTtcblxuICAgIHZhciBmbG9vckNvbmZpZyA9IHRoaXMuZ2V0UmFuZG9tRmxvb3IodGhpcy5fZmxvb3JSYXRlQXJyYXkpO1xuICAgIHZhciBmbG9vckVsZW1lbnQgPSAnPGkgY2xhc3M9XCJmbG9vciAnKyBmbG9vckNvbmZpZy5uYW1lICsgJ1wiPjwvaT4nO1xuXG4gICAgLy/pmo/mnLrmlrDlu7rmpbzmoq/vvIzlubbmt7vliqDliLDljbfovbTkuK3ljrtcbiAgICAkKGZsb29yRWxlbWVudCkuY3NzKHtcbiAgICAgIHRvcDogX3RvcCxcbiAgICAgIGxlZnQ6IF9sZWZ0LFxuICAgICAgd2lkdGg6IHRoaXMuZmxvb3JXaWR0aCxcbiAgICAgIGhlaWdodDogdGhpcy5mbG9vckhlaWdodFxuICAgIH0pLmFwcGVuZFRvKHRoaXMuJHNjcm9sbGVyKTtcbiAgfSxcbiAgcmVtb3ZlRmxvb3JTcGFuOiBmdW5jdGlvbigpIHtcbiAgICAkKCcuZmxvb3InKS5lcSgwKS5yZW1vdmUoKTtcbiAgICB0aGlzLmZsb29yU2NvcmUrKztcbiAgICB0aGlzLnVwZGF0ZVNjb3JlKCk7XG4gIH0sXG4gIHVwZGF0ZUJsb29kOiBmdW5jdGlvbigpIHtcbiAgICB2YXIgJGJsb29kRWxlID0gJCgnLmJsb29kIGknKTtcbiAgICBmb3IgKHZhciBpID0gMDsgaSA8ICRibG9vZEVsZS5sZW5ndGg7IGkrKykge1xuICAgICAgaWYgKGkgPCB0aGlzLmJsb29kKSB7XG4gICAgICAgICRibG9vZEVsZS5lcShpKS5yZW1vdmVDbGFzcygnbG9zZScpO1xuICAgICAgfSBlbHNlIHtcbiAgICAgICAgJGJsb29kRWxlLmVxKGkpLmFkZENsYXNzKCdsb3NlJyk7XG4gICAgICB9XG4gICAgfVxuICB9LFxuICB1cGRhdGVTY29yZTogZnVuY3Rpb24oKSB7XG4gICAgJCgnLnRleHQtc2NvcmUnKS50ZXh0KHRoaXMuZmxvb3JTY29yZSk7XG4gIH0sXG4gIGxvc2VCbG9vZDogZnVuY3Rpb24oKSB7XG4gICAgLy/lvZPkurrnianlnKjlubPlj7DkuIrml7bvvIzkuI3ph43lpI3miaPooYBcbiAgICBpZiAodGhpcy5fX29uRmxvb3IpIHtcbiAgICAgIHJldHVybjtcbiAgICB9XG4gICAgdGhpcy5ibG9vZCAtPSA0O1xuICAgIC8v5Lq65Y+Y57qiXG4gICAgdGhpcy4kcGVvcGxlLmFkZENsYXNzKCdkYW5nZXInKTtcbiAgICBzZXRUaW1lb3V0KGZ1bmN0aW9uKCkge1xuICAgICAgdGhpcy4kcGVvcGxlLnJlbW92ZUNsYXNzKCdkYW5nZXInKTtcbiAgICB9LmJpbmQodGhpcyksIDEwMDApO1xuXG4gICAgLy/og4zmma/pl6rng4FcbiAgICAkKCcjZ2FtZS1jdCcpLmFkZENsYXNzKCdkYW5nZXInKVxuICAgIHNldFRpbWVvdXQoZnVuY3Rpb24oKSB7XG4gICAgICAkKCcjZ2FtZS1jdCcpLnJlbW92ZUNsYXNzKCdkYW5nZXInKVxuICAgIH0sIDEwMCk7XG5cbiAgICBpZiAodGhpcy5ibG9vZCA8PSAwKSB7XG4gICAgICB0aGlzLmJsb29kID0gMDtcbiAgICAgIHRoaXMudXBkYXRlQmxvb2QoKTtcbiAgICAgIHRoaXMuZ2FtZW92ZXIoKTtcbiAgICAgIHJldHVybjtcbiAgICB9XG4gICAgdGhpcy51cGRhdGVCbG9vZCgpXG4gIH0sXG4gIGFkZEJsb29kOiBmdW5jdGlvbigpIHtcbiAgICAvL+W9k+S6uueJqeWcqOW5s+WPsOS4iuaXtu+8jOaIluiAheihgOmHj+Wkp+S6jjEy77yM5LiN6YeN5aSN5Yqg6KGAXG4gICAgaWYgKHRoaXMuX19vbkZsb29yIHx8IHRoaXMuYmxvb2QgPj0gMTIpIHtcbiAgICAgIHJldHVybjtcbiAgICB9XG4gICAgdGhpcy5ibG9vZCArPSAxO1xuICAgIHRoaXMudXBkYXRlQmxvb2QoKVxuICB9LFxuICBmbG9vck5vcm1hbDogZnVuY3Rpb24oKSB7XG4gICAgdGhpcy5hZGRCbG9vZCgpO1xuICB9LFxuICBmbG9vck5haWw6IGZ1bmN0aW9uKCkge1xuICAgIHRoaXMubG9zZUJsb29kKCk7XG4gIH0sXG4gIGZsb29yV2VhazogZnVuY3Rpb24oJGZsb29yRWxlKSB7XG4gICAgdGhpcy5hZGRCbG9vZCgpO1xuICAgIC8v55+t5pqC5YGc55WZ5ZCO77yM5qCH6K6w6K+l5YWD57Sg5Y+v5by66KGM56m/6L+HXG4gICAgc2V0VGltZW91dChmdW5jdGlvbigpIHtcbiAgICAgICRmbG9vckVsZS5hZGRDbGFzcygnb3ZlcicpO1xuICAgICAgJGZsb29yRWxlWzBdLmNyb3NzID0gdHJ1ZTtcbiAgICB9LCAyMDApO1xuICB9LFxuICBmbG9vclNjcm9sbDogZnVuY3Rpb24oZGlyZWN0aW9uKSB7XG4gICAgdGhpcy5hZGRCbG9vZCgpO1xuICAgIHRoaXMuX19mbG9vclNjcm9sbERpcmVjdGlvbiA9IGRpcmVjdGlvbjtcbiAgfSxcbiAgZmxvb3JTY3JvbGxFbmQ6IGZ1bmN0aW9uKCkge1xuICAgIHRoaXMuX19mbG9vclNjcm9sbERpcmVjdGlvbiA9IG51bGw7XG4gIH0sXG4gIGZsb29yU3ByaW5nOiBmdW5jdGlvbigkZmxvb3JFbGUpIHtcbiAgICB0aGlzLl9fJGN1cnJlbnRKdW1wRmxvb3IgPSAkZmxvb3JFbGU7XG4gICAgdGhpcy5qdW1wU3RhcnQoKTtcbiAgICB0aGlzLmFkZEJsb29kKCk7XG4gIH0sXG4gIGp1bXBTdGFydDogZnVuY3Rpb24oKSB7XG4gICAgdGhpcy5fX2p1bXBNb2RlID0gdHJ1ZTtcbiAgICB0aGlzLl9fJGN1cnJlbnRKdW1wRmxvb3IuYWRkQ2xhc3MoJ3VwJyk7XG4gICAgc2V0VGltZW91dChmdW5jdGlvbigpIHtcbiAgICAgIHRoaXMuX18kY3VycmVudEp1bXBGbG9vci5yZW1vdmVDbGFzcygndXAnKTtcbiAgICB9LmJpbmQodGhpcyksIDIwMCk7XG4gIH0sXG4gIGp1bXBFbmQ6IGZ1bmN0aW9uKGhpdFRvcCkge1xuICAgIGlmICghdGhpcy5fX2p1bXBNb2RlKSB7XG4gICAgICByZXR1cm47XG4gICAgfVxuICAgIGlmIChoaXRUb3ApIHtcbiAgICAgIHRoaXMuX18kY3VycmVudEp1bXBGbG9vclswXS5jcm9zcyA9IHRydWU7XG4gICAgfVxuICAgIC8v6YeN572u6Lez6LeD6auY5bqmXG4gICAgdGhpcy5fY3VycmVudEp1bXBEaXN0YW5jZSA9IDA7XG4gICAgLy/op6PpmaTot7Pot4NcbiAgICB0aGlzLl9fanVtcE1vZGUgPSBmYWxzZTtcbiAgfSxcbiAgcGVvcGxlOiBmdW5jdGlvbihmcHMpIHtcbiAgICAvLyDmr4/luKfmtojogJfml7bpl7QgbXNcbiAgICB2YXIgZHQgPSAxL2ZwcztcbiAgICAvLyDkurrniannurXlkJHmr4/luKfnp7vliqjot53nprsg4pazeCA9IHYwICogZHQgKyAoYSAqIGR0XjIpIC8gMlxuICAgIHZhciBfZGVsdGFQZW9wbGVZID0gdGhpcy5fdjAgKiBkdCArIHRoaXMuZ3Jhdml0eSAqIChkdCkgKiAoZHQpIC8gMlxuICAgIC8vIOabtOaWsOaXtumXtCB0ID0gdCArIGR0O1xuICAgIHRoaXMuX3QgKz0gZHQ7XG4gICAgLy8g5pu05paw6YCf5bqmIHYgPSBhdDtcbiAgICB0aGlzLl92MCA9IHRoaXMuZ3Jhdml0eSAqIHRoaXMuX3Q7XG4gICAgLy/ljbfovbTnurXlkJHmr4/luKfnp7vliqjot53nprtcbiAgICB2YXIgX2RlbHRhWSA9IHRoaXMuc3BlZWQgLyBmcHM7XG4gICAgLy/kurrnianmqKrlkJHmr4/luKfnp7vliqjot53nprtcbiAgICB2YXIgX2RlbHRhUGVvcGxlVmVydGljYWwgPSB0aGlzLnBlb3BsZVZlcnRpY2FsU3BlZWQgLyBmcHM7XG4gICAgLy/nvJPlrZhmbG9vclxuICAgIHZhciAkZmxvb3IgPSAkKCcuZmxvb3InKTtcbiAgICAvL+e8k+WtmG9mZnNldFxuICAgIHZhciBwZW9wbGVPZmZzZXQgPSB0aGlzLiRwZW9wbGUub2Zmc2V0KCk7XG5cbiAgICAvL+S6uueJqeaOieiQveWxj+W5leS4i+aWue+8jOa4uOaIj+e7k+adn1xuICAgIGlmIChwZW9wbGVPZmZzZXQudG9wID4gdGhpcy5jYW52YXNIZWlnaHQpIHtcbiAgICAgIHRoaXMuZ2FtZW92ZXIoKTtcbiAgICAgIHJldHVyblxuICAgIH1cbiAgICAvL+eisOaSnuajgOa1i1xuICAgIGZvciAodmFyIGkgPSAwOyBpIDwgJGZsb29yLmxlbmd0aDsgaSsrKSB7XG4gICAgICAvL+e8k+WtmG9mZnNldFxuICAgICAgdmFyIGZsb29yT2Zmc2V0ID0gJGZsb29yLmVxKGkpLm9mZnNldCgpO1xuICAgICAgLy/kurrniankuI7mpbzmoq/nurXlkJHot53nprtcbiAgICAgIHZhciBkaXN0YW5jZUdhcCA9IE1hdGguYWJzKHBlb3BsZU9mZnNldC50b3AgKyB0aGlzLnBlb3BsZUhlaWdodCAtIGZsb29yT2Zmc2V0LnRvcCk7XG4gICAgICAvL+W9k+S6uueJqeaSnuWIsOmhtumDqO+8jOaOieihgCvmjonokL0r5omT5pat6Lez6LeDXG4gICAgICBpZiAocGVvcGxlT2Zmc2V0LnRvcCA8PSBfZGVsdGFQZW9wbGVZICsgX2RlbHRhWSkge1xuICAgICAgICB0aGlzLl90ID0gMDtcbiAgICAgICAgdGhpcy5fX29uRmxvb3IgPSBmYWxzZTtcbiAgICAgICAgdGhpcy5qdW1wRW5kKHRydWUpO1xuICAgICAgICB0aGlzLmxvc2VCbG9vZCgpO1xuICAgICAgICBicmVhaztcbiAgICAgIH1cbiAgICAgIC8v6Lez6LeD5qih5byP5LiN6L+b5YWl5qOA5rWLXG4gICAgICBpZiAoIXRoaXMuX19qdW1wTW9kZSAmJlxuICAgICAgICAvL+WFg+e0oOS4jeWPr+ebtOaOpeepv+i/h1xuICAgICAgICAhJGZsb29yLmVxKGkpWzBdLmNyb3NzICYmXG4gICAgICAgIC8v5Lq654mp5LiO5qW85qKv57q15ZCR6Led56a75Zyo5LiA5bin56e75Yqo6Led56a75LmL5YaFXG4gICAgICAgIGRpc3RhbmNlR2FwIDw9IF9kZWx0YVBlb3BsZVkgKyBfZGVsdGFZICYmXG4gICAgICAgIC8v5Lq654mp5qiq5ZCR6Led56a75LiN6LaF6L+H5qW85qKv5pyA5bemXG4gICAgICAgIHBlb3BsZU9mZnNldC5sZWZ0ID4gZmxvb3JPZmZzZXQubGVmdCAtIHRoaXMucGVvcGxlV2lkdGggJiZcbiAgICAgICAgLy/kurrnianmqKrlkJHot53nprvkuI3otoXov4fmpbzmoq/mnIDlj7NcbiAgICAgICAgcGVvcGxlT2Zmc2V0LmxlZnQgPCBmbG9vck9mZnNldC5sZWZ0ICsgdGhpcy5mbG9vcldpZHRoKSB7XG4gICAgICAgIC8v5Lq654mp5LiO5qW85qKv5YGP5beu5L+u5q2jXG4gICAgICAgIHRoaXMuX2N1cnJlbnRQZW9wbGVZID0gZmxvb3JPZmZzZXQudG9wIC0gdGhpcy5wZW9wbGVIZWlnaHQ7XG4gICAgICAgIC8v5pa95Yqg5ZCE57G75qW85qKv54m55q6K5bGe5oCnXG4gICAgICAgIGlmICgkZmxvb3IuZXEoaSkuaGFzQ2xhc3MoJ25vcm1hbCcpKSB7XG4gICAgICAgICAgdGhpcy5mbG9vck5vcm1hbCgpO1xuICAgICAgICB9XG4gICAgICAgIGlmICgkZmxvb3IuZXEoaSkuaGFzQ2xhc3MoJ25haWwnKSkge1xuICAgICAgICAgIHRoaXMuZmxvb3JOYWlsKCk7XG4gICAgICAgIH1cbiAgICAgICAgaWYgKCRmbG9vci5lcShpKS5oYXNDbGFzcygnc3ByaW5nJykpIHtcbiAgICAgICAgICB0aGlzLmZsb29yU3ByaW5nKCRmbG9vci5lcShpKSk7XG4gICAgICAgIH1cbiAgICAgICAgaWYgKCRmbG9vci5lcShpKS5oYXNDbGFzcygnd2VhaycpKSB7XG4gICAgICAgICAgdGhpcy5mbG9vcldlYWsoJGZsb29yLmVxKGkpKTtcbiAgICAgICAgfVxuICAgICAgICBpZiAoJGZsb29yLmVxKGkpLmhhc0NsYXNzKCdzY3JvbGwtbGVmdCcpKSB7XG4gICAgICAgICAgdGhpcy5mbG9vclNjcm9sbCgnbGVmdCcpO1xuICAgICAgICB9XG4gICAgICAgIGlmICgkZmxvb3IuZXEoaSkuaGFzQ2xhc3MoJ3Njcm9sbC1yaWdodCcpKSB7XG4gICAgICAgICAgdGhpcy5mbG9vclNjcm9sbCgncmlnaHQnKTtcbiAgICAgICAgfVxuICAgICAgICB0aGlzLl90ID0gMDtcbiAgICAgICAgdGhpcy5fX29uRmxvb3IgPSB0cnVlO1xuICAgICAgICBicmVhaztcbiAgICAgIH1cbiAgICAgIC8v5b2T5b6q546v5omn6KGM5a6M5q+V77yM5LuN54S25rKh5pyJ5Y+R546w56Kw5pKe77yM5YiZ6KGo5piO5Lq654mp5LiN5Zyo5bmz5Y+w5LiKXG4gICAgICBpZiAoaSA9PT0gJGZsb29yLmxlbmd0aCAtIDEpIHtcbiAgICAgICAgdGhpcy5fX29uRmxvb3IgPSBmYWxzZTtcbiAgICAgIH1cbiAgICB9XG5cbiAgICAvL+S6uueJqeWQkeS4iui3s+i1t1xuICAgIGlmICh0aGlzLl9fanVtcE1vZGUpIHtcblxuICAgICAgaWYgKHRoaXMuX2N1cnJlbnRKdW1wRGlzdGFuY2UgPj0gdGhpcy5fbWF4SnVtcERpc3RhbmNlKSB7XG4gICAgICAgIHRoaXMuanVtcEVuZCgpO1xuICAgICAgfSBlbHNlIHtcbiAgICAgICAgdGhpcy5fY3VycmVudEp1bXBEaXN0YW5jZSArPSBfZGVsdGFQZW9wbGVZO1xuICAgICAgICAvL+WQkeS4iui3s+i1t+aViOaenOimgemineWkluWKoOS4il9kZWx0YVnvvIzku6XljLnphY3ljbfovbTov5DliqjnirbmgIFcbiAgICAgICAgdGhpcy5fY3VycmVudFBlb3BsZVkgLT0gX2RlbHRhUGVvcGxlWSArIF9kZWx0YVk7XG4gICAgICB9XG4gICAgfVxuXG4gICAgLy/kurrnianlkJHkuIvlnaDokL0gKyDlj5bmtojmpbzmoq/lt6blj7PliqDpgJ/nirbmgIFcbiAgICBpZiAoIXRoaXMuX19vbkZsb29yICYmICF0aGlzLl9fanVtcE1vZGUpIHtcbiAgICAgIHRoaXMuZmxvb3JTY3JvbGxFbmQoKTtcbiAgICAgIHRoaXMuX2N1cnJlbnRQZW9wbGVZICs9IF9kZWx0YVBlb3BsZVk7XG4gICAgfVxuXG4gICAgLy/mqKrlkJHov5DliqjpooTlpITnkIZcbiAgICB2YXIgX190ZW1wX2RlbHRhUGVvcGxlVmVydGljYWwgPSBfZGVsdGFQZW9wbGVWZXJ0aWNhbDtcbiAgICAvL+WkhOeQhuS6uueJqeWQkeW3pui/kOWKqFxuICAgIGlmICh0aGlzLl9wZW9wbGVHb0xlZnQpIHtcbiAgICAgIGlmICh0aGlzLl9fZmxvb3JTY3JvbGxEaXJlY3Rpb24gPT09ICdsZWZ0Jykge1xuICAgICAgICBfX3RlbXBfZGVsdGFQZW9wbGVWZXJ0aWNhbCAqPSAxLjU7XG4gICAgICB9XG4gICAgICBpZiAodGhpcy5fX2Zsb29yU2Nyb2xsRGlyZWN0aW9uID09PSAncmlnaHQnKSB7XG4gICAgICAgIF9fdGVtcF9kZWx0YVBlb3BsZVZlcnRpY2FsICo9IDAuNTtcbiAgICAgIH1cblxuICAgICAgaWYgKHRoaXMuX2N1cnJlbnRQZW9wbGVWZXJ0aWNhbCA+IDApIHtcbiAgICAgICAgdGhpcy5fY3VycmVudFBlb3BsZVZlcnRpY2FsIC09IF9fdGVtcF9kZWx0YVBlb3BsZVZlcnRpY2FsO1xuICAgICAgfVxuICAgIH1cbiAgICAvL+WkhOeQhuS6uueJqeWQkeWPs+i/kOWKqFxuICAgIGlmICh0aGlzLl9wZW9wbGVHb1JpZ2h0KSB7XG4gICAgICBpZiAodGhpcy5fX2Zsb29yU2Nyb2xsRGlyZWN0aW9uID09PSAnbGVmdCcpIHtcbiAgICAgICAgX190ZW1wX2RlbHRhUGVvcGxlVmVydGljYWwgKj0gMC41O1xuICAgICAgfVxuICAgICAgaWYgKHRoaXMuX19mbG9vclNjcm9sbERpcmVjdGlvbiA9PT0gJ3JpZ2h0Jykge1xuICAgICAgICBfX3RlbXBfZGVsdGFQZW9wbGVWZXJ0aWNhbCAqPSAxLjU7XG4gICAgICB9XG5cbiAgICAgIGlmICh0aGlzLl9jdXJyZW50UGVvcGxlVmVydGljYWwgPCB0aGlzLmNhbnZhc1dpZHRoIC0gdGhpcy5wZW9wbGVXaWR0aCkge1xuICAgICAgICB0aGlzLl9jdXJyZW50UGVvcGxlVmVydGljYWwgKz0gX190ZW1wX2RlbHRhUGVvcGxlVmVydGljYWw7XG4gICAgICB9XG4gICAgfVxuICAgIC8v5aSE55CG5Lq654mp5Zyo5rua5Yqo5qW85qKv5LiK55qE6Ieq5Yqo6L+Q5YqoXG4gICAgaWYgKCF0aGlzLl9wZW9wbGVHb1JpZ2h0ICYmICF0aGlzLl9wZW9wbGVHb0xlZnQpIHtcbiAgICAgIF9fdGVtcF9kZWx0YVBlb3BsZVZlcnRpY2FsICo9IDAuNTtcbiAgICAgIGlmICh0aGlzLl9fZmxvb3JTY3JvbGxEaXJlY3Rpb24gPT09ICdsZWZ0Jykge1xuICAgICAgICBpZiAodGhpcy5fY3VycmVudFBlb3BsZVZlcnRpY2FsID4gMCkge1xuICAgICAgICAgIHRoaXMuX2N1cnJlbnRQZW9wbGVWZXJ0aWNhbCAtPSBfX3RlbXBfZGVsdGFQZW9wbGVWZXJ0aWNhbDtcbiAgICAgICAgfVxuXG4gICAgICB9XG4gICAgICBpZiAodGhpcy5fX2Zsb29yU2Nyb2xsRGlyZWN0aW9uID09PSAncmlnaHQnKSB7XG4gICAgICAgIGlmICh0aGlzLl9jdXJyZW50UGVvcGxlVmVydGljYWwgPCB0aGlzLmNhbnZhc1dpZHRoIC0gdGhpcy5wZW9wbGVXaWR0aCkge1xuICAgICAgICAgIHRoaXMuX2N1cnJlbnRQZW9wbGVWZXJ0aWNhbCArPSBfX3RlbXBfZGVsdGFQZW9wbGVWZXJ0aWNhbDtcbiAgICAgICAgfVxuICAgICAgfVxuICAgIH1cblxuICAgIC8v5pu05paw5Lq654mp6KeG5Zu+XG4gICAgdGhpcy5wZW9wbGVVcGRhdGVWaWV3KCk7XG4gIH0sXG4gIC8v5pu05paw5Y236L205L2N572uXG4gIGZsb29yVXBkYXRlVmlldzogZnVuY3Rpb24oKSB7XG4gICAgaWYgKE1vZGVybml6ci5jc3N0cmFuc2Zvcm1zM2QpIHtcbiAgICAgIC8v6K6+5a6a5Y236L205L2N572uLCB0cmFuc2xhdGUzZOW8gOWQr0dQVeWKoOmAn1xuICAgICAgdGhpcy4kc2Nyb2xsZXIuY3NzKHtcbiAgICAgICAgJy13ZWJraXQtdHJhbnNmb3JtJzogJ3RyYW5zbGF0ZTNkKDAsICcgKyB0aGlzLl9jdXJyZW50U2Nyb2xsZXJZICsgJ3B4LCAwKScsXG4gICAgICAgICctbXMtdHJhbnNmb3JtJzogJ3RyYW5zbGF0ZTNkKDAsICcgKyB0aGlzLl9jdXJyZW50U2Nyb2xsZXJZICsgJ3B4LCAwKScsXG4gICAgICAgICd0cmFuc2Zvcm0nOiAndHJhbnNsYXRlM2QoMCwgJyArIHRoaXMuX2N1cnJlbnRTY3JvbGxlclkgKyAncHgsIDApJyxcbiAgICAgIH0pO1xuICAgIH0gZWxzZSBpZiAoTW9kZXJuaXpyLmNzc3RyYW5zZm9ybXMpIHtcbiAgICAgIC8v5LiN5pSv5oyBdHJhbnNsYXRlM2Qg5L2/55SodHJhbnNsYXRlWVxuICAgICAgdGhpcy4kc2Nyb2xsZXIuY3NzKHtcbiAgICAgICAgJy13ZWJraXQtdHJhbnNmb3JtJzogJ3RyYW5zbGF0ZVkoJyArIHRoaXMuX2N1cnJlbnRTY3JvbGxlclkgKyAncHgpJyxcbiAgICAgICAgJy1tcy10cmFuc2Zvcm0nOiAndHJhbnNsYXRlWSgnICsgdGhpcy5fY3VycmVudFNjcm9sbGVyWSArICdweCknLFxuICAgICAgICAndHJhbnNmb3JtJzogJ3RyYW5zbGF0ZVkoJyArIHRoaXMuX2N1cnJlbnRTY3JvbGxlclkgKyAncHgpJyxcbiAgICAgIH0pO1xuICAgIH0gZWxzZSB7XG4gICAgICAvL+i/mOS4jeaUr+aMge+8jOmCo+WwsUdHXG4gICAgICB0aGlzLiRzY3JvbGxlci5jc3Moe1xuICAgICAgICAndG9wJzogdGhpcy5fY3VycmVudFNjcm9sbGVyWSArICdweCcsXG4gICAgICB9KTtcbiAgICB9XG4gIH0sXG4gIC8v5pu05paw5Lq654mp6KeG5Zu+XG4gIHBlb3BsZVVwZGF0ZVZpZXc6IGZ1bmN0aW9uKCkge1xuICAgIGlmICh0aGlzLl9fb25GbG9vcikge1xuICAgICAgaWYgKHRoaXMuX3Blb3BsZUdvTGVmdCkge1xuICAgICAgICB0aGlzLnBlb3BsZVJvdGF0ZVogLT0gdGhpcy5wZW9wbGVSb3RhdGVEZWx0YTtcbiAgICAgIH1cbiAgICAgIGlmICh0aGlzLl9wZW9wbGVHb1JpZ2h0KSB7XG4gICAgICAgIHRoaXMucGVvcGxlUm90YXRlWiArPSB0aGlzLnBlb3BsZVJvdGF0ZURlbHRhO1xuICAgICAgfVxuICAgIH1cbiAgICBpZiAoTW9kZXJuaXpyLmNzc3RyYW5zZm9ybXMzZCkge1xuICAgICAgLy/orr7lrprkurrniankvY3nva4sIHRyYW5zbGF0ZTNk5byA5ZCvR1BV5Yqg6YCfXG4gICAgICB0aGlzLiRwZW9wbGUuY3NzKHtcbiAgICAgICAgJy13ZWJraXQtdHJhbnNmb3JtJzogJ3RyYW5zbGF0ZTNkKCcgKyB0aGlzLl9jdXJyZW50UGVvcGxlVmVydGljYWwgKyAncHggLCAnICsgdGhpcy5fY3VycmVudFBlb3BsZVkgKyAncHggLDApJyxcbiAgICAgICAgJy1tcy10cmFuc2Zvcm0nOiAndHJhbnNsYXRlM2QoJyArIHRoaXMuX2N1cnJlbnRQZW9wbGVWZXJ0aWNhbCArICdweCAsICcgKyB0aGlzLl9jdXJyZW50UGVvcGxlWSArICdweCAsMCknLFxuICAgICAgICAndHJhbnNmb3JtJzogJ3RyYW5zbGF0ZTNkKCcgKyB0aGlzLl9jdXJyZW50UGVvcGxlVmVydGljYWwgKyAncHggLCAnICsgdGhpcy5fY3VycmVudFBlb3BsZVkgKyAncHggLDApJyxcbiAgICAgIH0pO1xuICAgIH0gZWxzZSBpZiAoTW9kZXJuaXpyLmNzc3RyYW5zZm9ybXMpIHtcbiAgICAgIC8v5LiN5pSv5oyBdHJhbnNsYXRlM2Qg5L2/55SodHJhbnNsYXRlXG4gICAgICB0aGlzLiRwZW9wbGUuY3NzKHtcbiAgICAgICAgJy13ZWJraXQtdHJhbnNmb3JtJzogJ3RyYW5zbGF0ZSgnICsgdGhpcy5fY3VycmVudFBlb3BsZVZlcnRpY2FsICsgJ3B4ICwgJyArIHRoaXMuX2N1cnJlbnRQZW9wbGVZICsgJ3B4KScsXG4gICAgICAgICctbXMtdHJhbnNmb3JtJzogJ3RyYW5zbGF0ZSgnICsgdGhpcy5fY3VycmVudFBlb3BsZVZlcnRpY2FsICsgJ3B4ICwgJyArIHRoaXMuX2N1cnJlbnRQZW9wbGVZICsgJ3B4KScsXG4gICAgICAgICd0cmFuc2Zvcm0nOiAndHJhbnNsYXRlKCcgKyB0aGlzLl9jdXJyZW50UGVvcGxlVmVydGljYWwgKyAncHggLCAnICsgdGhpcy5fY3VycmVudFBlb3BsZVkgKyAncHgpJyxcbiAgICAgIH0pO1xuICAgIH0gZWxzZSB7XG4gICAgICAvL+i/mOS4jeaUr+aMge+8jOmCo+WwsUdHXG4gICAgICB0aGlzLiRwZW9wbGUuY3NzKHtcbiAgICAgICAgJ2xlZnQnOiB0aGlzLl9jdXJyZW50UGVvcGxlVmVydGljYWwgKyAncHgnLFxuICAgICAgICAndG9wJzogdGhpcy5fY3VycmVudFBlb3BsZVkgKyAncHgnLFxuICAgICAgfSk7XG4gICAgfVxuICB9LFxuICBwZW9wbGVVc2VyQ29udHJvbGxlcjogZnVuY3Rpb24oKSB7XG4gICAgdmFyIF90aGlzID0gdGhpcztcbiAgICAvL+ebkeWQrOaMiemUruaMieS4i++8jOaUueWPmOS6uueJqeW3puWPs+i/kOWKqOaWueWQkVxuICAgICQod2luZG93KS5rZXlkb3duKGZ1bmN0aW9uKGV2KSB7XG4gICAgICBpZiAoZXYua2V5ID09PSAnQXJyb3dSaWdodCcpIHtcbiAgICAgICAgX3RoaXMuX3Blb3BsZUdvUmlnaHQgPSB0cnVlO1xuICAgICAgICBfdGhpcy5fcGVvcGxlR29MZWZ0ID0gZmFsc2U7IC8v6aKE6Ziy5oyJ6ZSu5ZCM5pe25oyJ5LiL55qE5Yay56qB5oOF5Ya1IFxuICAgICAgICByZXR1cm47XG4gICAgICB9XG4gICAgICBpZiAoZXYua2V5ID09PSAnQXJyb3dMZWZ0Jykge1xuICAgICAgICBfdGhpcy5fcGVvcGxlR29SaWdodCA9IGZhbHNlOyAvL+mihOmYsuaMiemUruWQjOaXtuaMieS4i+eahOWGsueqgeaDheWGtVxuICAgICAgICBfdGhpcy5fcGVvcGxlR29MZWZ0ID0gdHJ1ZTtcbiAgICAgICAgcmV0dXJuO1xuICAgICAgfVxuICAgICAgLy/mjInplK7lvLnotbfvvIzlj5bmtojor6XmlrnlkJHkurrnianov5DliqhcbiAgICB9KS5rZXl1cChmdW5jdGlvbihldikge1xuICAgICAgaWYgKGV2LmtleSA9PT0gJ0Fycm93UmlnaHQnKSB7XG4gICAgICAgIF90aGlzLl9wZW9wbGVHb1JpZ2h0ID0gZmFsc2U7XG4gICAgICAgIHJldHVybjtcbiAgICAgIH1cbiAgICAgIGlmIChldi5rZXkgPT09ICdBcnJvd0xlZnQnKSB7XG4gICAgICAgIF90aGlzLl9wZW9wbGVHb0xlZnQgPSBmYWxzZTtcbiAgICAgICAgcmV0dXJuO1xuICAgICAgfVxuICAgIH0pO1xuXG4gICAgJCgnLmNvbnRyb2xsZXIgLmxlZnQtY3QnKS5vbigndG91Y2hzdGFydCcsIGZ1bmN0aW9uKGV2KSB7XG4gICAgICBfdGhpcy5fcGVvcGxlR29SaWdodCA9IGZhbHNlOyAvL+mihOmYsuaMiemUruWQjOaXtuaMieS4i+eahOWGsueqgeaDheWGtSBcbiAgICAgIF90aGlzLl9wZW9wbGVHb0xlZnQgPSB0cnVlO1xuICAgICAgcmV0dXJuIGZhbHNlXG4gICAgfSkub24oJ3RvdWNoZW5kJywgZnVuY3Rpb24oZXYpIHtcbiAgICAgIF90aGlzLl9wZW9wbGVHb0xlZnQgPSBmYWxzZTtcbiAgICB9KTtcblxuICAgICQoJy5jb250cm9sbGVyIC5yaWdodC1jdCcpLm9uKCd0b3VjaHN0YXJ0JywgZnVuY3Rpb24oZXYpIHtcbiAgICAgIF90aGlzLl9wZW9wbGVHb1JpZ2h0ID0gdHJ1ZTtcbiAgICAgIF90aGlzLl9wZW9wbGVHb0xlZnQgPSBmYWxzZTsgLy/pooTpmLLmjInplK7lkIzml7bmjInkuIvnmoTlhrLnqoHmg4XlhrVcbiAgICAgIHJldHVybiBmYWxzZVxuICAgIH0pLm9uKCd0b3VjaGVuZCcsIGZ1bmN0aW9uKGV2KSB7XG4gICAgICBfdGhpcy5fcGVvcGxlR29SaWdodCA9IGZhbHNlO1xuICAgIH0pO1xuXG4gIH0sXG4gIGNvcmU6IGZ1bmN0aW9uKGZwcykge1xuICAgIHZhciBfdGhpcyA9IHRoaXMsXG4gICAgICBfZGVsdGFZID0gdGhpcy5zcGVlZCAvIGZwcywgLy/ljbfovbTnurXlkJHmr4/luKfnp7vliqjot53nprtcbiAgICAgICRmbG9vciA9ICQoJy5mbG9vcicpO1xuXG4gICAgLy/orqHnrpfljbfovbTkvY3nva5cbiAgICB0aGlzLl9jdXJyZW50U2Nyb2xsZXJZIC09IF9kZWx0YVk7XG5cbiAgICAvL+W9k+WNt+i9tOi2heWHuuS4gOWumumVv+W6puS5i+WQju+8jOi/m+ihjOS9jee9rnJlc2V044CB57yp5YeP6ZW/5bqm77yM6Ziy5q2iQ3Jhc2jnjrDosaFcbiAgICBpZiAodGhpcy5fY3VycmVudFNjcm9sbGVyWSA8PSAtdGhpcy5jYW52YXNIZWlnaHQgKiAyKSB7XG4gICAgICAvL+WwhuWNt+i9tOa7muWKqOmrmOW6puWHj+Wwj+S4gOWxj1xuICAgICAgdGhpcy5fY3VycmVudFNjcm9sbGVyWSArPSB0aGlzLmNhbnZhc0hlaWdodDtcbiAgICAgIC8v5bCG5qW85qKv5YGP56e76auY5bqm5YeP5bCP5LiA5bGPXG4gICAgICB0aGlzLl9mbG9vclNjcm9sbGVyWSAtPSB0aGlzLmNhbnZhc0hlaWdodDtcbiAgICAgIC8v6YeN572u546w5pyJ5qW85qKv5L2N572uXG4gICAgICBmb3IgKHZhciBpID0gMDsgaSA8ICRmbG9vci5sZW5ndGg7IGkrKykge1xuICAgICAgICAkZmxvb3IuZXEoaSkuY3NzKHtcbiAgICAgICAgICB0b3A6IHBhcnNlSW50KCQoJy5mbG9vcicpLmVxKGkpLmNzcygndG9wJykpIC0gdGhpcy5jYW52YXNIZWlnaHRcbiAgICAgICAgfSlcbiAgICAgIH1cbiAgICB9XG5cbiAgICAvL+abtOaWsOWNt+i9tOS9jee9rlxuICAgIHRoaXMuZmxvb3JVcGRhdGVWaWV3KCk7XG5cbiAgICAvL+avj+S4quWPsOmYtuenu+WHuuinhumHjuWImea4hemZpOWPsOmYtu+8jOW5tuS4lOWcqOW6lemDqOWinuWKoOS4gOS4quaWsOeahOWPsOmYtlxuICAgIGlmICgkZmxvb3IuZXEoMCkub2Zmc2V0KCkudG9wIDw9IC0yMCkge1xuICAgICAgdGhpcy5jcmVhdGVGbG9vclNwYW4oKTtcbiAgICAgIHRoaXMucmVtb3ZlRmxvb3JTcGFuKCk7XG4gICAgfVxuXG4gICAgLy/osIPnlKjkurrnianmuLLmn5NcbiAgICB0aGlzLnBlb3BsZShmcHMpO1xuICAgIC8vIOi2iuadpei2imhpZ2hcbiAgICBpZiAodGhpcy5zcGVlZCA8PSB0aGlzLm1heFNwZWVkKSB7XG4gICAgICB0aGlzLnNwZWVkICs9IDAuMTtcbiAgICB9XG5cbiAgfSxcbiAgcnVuOiBmdW5jdGlvbihmcHMpIHtcbiAgICAvL+S4jeWFgeiuuOaJp+ihjOWkmuS4quWKqOeUu+a4suafk+WHveaVsO+8iOS9oOaDs+WNoeatu+S5iC4uLlxuICAgIGlmICh0aGlzLmFuaW1hdGlvbikge1xuICAgICAgY29uc29sZS5lcnJvcignQW5pbWF0aW9uIGhhcyBhcmVhZHkgaW4gcHJvY2VzcywgcGxlYXNlIGRvIG5vdCBydW4gYWdhaW4hJyk7XG4gICAgICByZXR1cm47XG4gICAgfVxuXG4gICAgdGhpcy5fZnBzID0gZnBzID0gZnBzIHx8IDYwO1xuICAgIHZhciBsb29wdGltZSA9IDEwMDAgLyBmcHM7IC8v5q+P5bin6Ze06ZqU5pe26Ze0XG4gICAgdmFyIF90aGlzID0gdGhpcztcblxuICAgIHZhciBydW5BbmltYXRpb24gPSBmdW5jdGlvbigpIHtcbiAgICAgIHJldHVybiBzZXRUaW1lb3V0KGZ1bmN0aW9uKCkge1xuICAgICAgICB3aW5kb3cucmVxdWVzdEFuaW1hdGlvbkZyYW1lKGZ1bmN0aW9uKCkge1xuICAgICAgICAgIF90aGlzLmNvcmUoZnBzKTtcbiAgICAgICAgfSk7XG4gICAgICAgIF90aGlzLmFuaW1hdGlvbiA9IHJ1bkFuaW1hdGlvbigpO1xuICAgICAgfSwgbG9vcHRpbWUpO1xuICAgIH07XG4gICAgLy/lvqrnjq/osIPnlKjmuLLmn5Plh73mlbDvvIzlubbmiorlvqrnjq9oYW5kbGXmmrTpnLLlh7rljrvvvIzmlrnkvr/lpJbpg6jmmoLlgZzliqjnlLtcbiAgICByZXR1cm4gdGhpcy5hbmltYXRpb24gPSBydW5BbmltYXRpb24oKVxuICB9LFxuICBzdG9wOiBmdW5jdGlvbigpIHtcbiAgICBjbGVhclRpbWVvdXQodGhpcy5hbmltYXRpb24pOyAvL+aaguWBnOWKqOeUu1xuICAgIHRoaXMuYW5pbWF0aW9uID0gdW5kZWZpbmVkO1xuICAgIHRoaXMuJGNvbnRhaW5lci50cmlnZ2VyKCdzdG9wJyk7XG4gIH0sXG4gIHJlUnVuOiBmdW5jdGlvbigpIHtcbiAgICBjb25zb2xlLmxvZyh0aGlzLl9fcGFyYW1CYWNrdXAuZmxvb3JTY29yZSk7XG4gICAgdGhpcy4kY29udGFpbmVyLnRyaWdnZXIoJ3JlcnVuJyk7XG4gICAgLy/ph43nva7lj4LmlbBcbiAgICAkLmV4dGVuZCh0aGlzLCB0aGlzLl9fcGFyYW1CYWNrdXApO1xuICAgIC8v5Yig5o6J546w5pyJ5qW85qKvXG4gICAgJCgnLmZsb29yJykucmVtb3ZlKCk7XG4gICAgLy/ph43mlrDliJ3lp4vljJZcbiAgICB0aGlzLnN0YXJ0KCk7XG4gIH0sXG4gIGJhY2t1cDogZnVuY3Rpb24oKSB7XG4gICAgLy/lpIfku73liJ3lp4vorr7nva7lj4LmlbDvvIznlKjkuo7muLjmiI9yZXNldFxuICAgIHRoaXMuX19wYXJhbUJhY2t1cCA9IHt9O1xuICAgIGZvciAodmFyIGkgaW4gdGhpcykge1xuICAgICAgaWYgKHR5cGVvZiB0aGlzW2ldID09PSAnbnVtYmVyJyB8fCB0eXBlb2YgdGhpc1tpXSA9PT0gJ3N0cmluZycpIHtcbiAgICAgICAgdGhpcy5fX3BhcmFtQmFja3VwW2ldID0gdGhpc1tpXTtcbiAgICAgIH1cbiAgICB9XG4gIH0sXG4gIHN0YXJ0OiBmdW5jdGlvbigpIHtcbiAgICB2YXIgX3RoaXMgPSB0aGlzLFxuICAgICAgZmxvb3JMb29wID0gMDtcbiAgICB0aGlzLiRjb250YWluZXIudHJpZ2dlcignc3RhcnQnKTtcbiAgICAvLyBNb2Rlcm5penIuY3NzdHJhbnNmb3JtczNkID0gZmFsc2U7XG4gICAgLy8gTW9kZXJuaXpyLmNzc3RyYW5zZm9ybXMgPSBmYWxzZTtcbiAgICAvL+W9k+inhueql+Wkp+Wwj+WPmOWKqOaXtu+8jOmHjeaWsOiuoeeul+eUu+W4g+WuvemrmFxuICAgIHRoaXMuY2FudmFzV2lkdGggPSB0aGlzLiRjYW52YXMud2lkdGgoKTtcbiAgICB0aGlzLmNhbnZhc0hlaWdodCA9IHRoaXMuJGNhbnZhcy5oZWlnaHQoKTtcbiAgICB0aGlzLmZsb29yRGVsdGFZID0gdGhpcy5jYW52YXNIZWlnaHQgLyAxMTtcbiAgICB0aGlzLmZsb29yV2lkdGggPSB0aGlzLmNhbnZhc1dpZHRoIC8gNTtcbiAgICB0aGlzLmZsb29ySGVpZ2h0ID0gdGhpcy5mbG9vcldpZHRoIC8gOTtcbiAgICB0aGlzLnBlb3BsZUhlaWdodCA9IHBhcnNlSW50KHRoaXMuJHBlb3BsZS5jc3MoJ2hlaWdodCcpKTtcbiAgICB0aGlzLnBlb3BsZVdpZHRoID0gcGFyc2VJbnQodGhpcy4kcGVvcGxlLmNzcygnd2lkdGgnKSk7XG5cbiAgICAvL+S6uueJqeS9jee9rumihOiuvlxuICAgIHRoaXMuX2N1cnJlbnRQZW9wbGVWZXJ0aWNhbCA9IHRoaXMuY2FudmFzV2lkdGggLyAyICsgdGhpcy5wZW9wbGVXaWR0aCAvIDI7XG4gICAgLy/lpIfku73liJ3lp4vlj4LmlbBcbiAgICB0aGlzLmJhY2t1cCgpO1xuICAgIC8v5Yid5aeL5YyW5Y+w6Zi2XG4gICAgd2hpbGUgKGZsb29yTG9vcCsrIDwgMTMpIHtcbiAgICAgIHRoaXMuY3JlYXRlRmxvb3JTcGFuKCk7XG4gICAgfVxuICAgIC8v5Yid5aeL5YyW5Lu75Yqh5o6n5Yi2XG4gICAgdGhpcy5wZW9wbGVVc2VyQ29udHJvbGxlcigpO1xuICAgIC8v6aaW5qyh5pu05paw5Lq654mp6KeG5Zu+XG4gICAgdGhpcy5wZW9wbGVVcGRhdGVWaWV3KCk7XG4gICAgLy/pppbmrKHmm7TmlrDkurrnianooYDph49cbiAgICB0aGlzLnVwZGF0ZUJsb29kKCk7XG4gICAgLy/pppbmrKHmm7TmlrDmpbzlsYLmlbBcbiAgICB0aGlzLnVwZGF0ZVNjb3JlKCk7XG4gICAgLy/ku6Xmr4/np5I2MOW4p+aJp+ihjOa4uOaIj+WKqOeUu1xuICAgIHRoaXMucnVuKHRoaXMuZnBzKTtcbiAgfVxufTtcblxuZXhwb3J0IGRlZmF1bHQgR2FtZUNvbnRyb2xsZXI7XG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2pzL2dhbWVfY29udHJvbGxlci5qcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBQ0E7QUFGQTtBQUtBO0FBQ0E7QUFGQTtBQUtBO0FBQ0E7QUFGQTtBQUtBO0FBQ0E7QUFGQTtBQUtBO0FBQ0E7QUFGQTtBQUtBO0FBQ0E7QUFGQTtBQUNBO0FBS0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFNQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFKQTtBQU1BO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFIQTtBQUtBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUhBO0FBS0E7QUFDQTtBQUNBO0FBQ0E7QUFEQTtBQUdBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUhBO0FBS0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBSEE7QUFLQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRkE7QUFJQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFEQTtBQUdBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQWhoQkE7QUFDQTtBQWtoQkEiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///2\n");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__(3);
+
+window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (cb) {
+  cb();
+};
+
+var GameController = function GameController() {
+  this.floorRate = [{
+    name: 'normal',
+    rate: 15
+  }, {
+    name: 'spring',
+    rate: 15
+  }, {
+    name: 'weak',
+    rate: 15
+  }, {
+    name: 'scroll-left',
+    rate: 10
+  }, {
+    name: 'scroll-right',
+    rate: 10
+  }, {
+    name: 'nail',
+    rate: 35
+  }];
+
+  this.fps = 60; //刷新频率
+  this.speed = 50; // 卷轴初始速度
+  this.maxSpeed = 350; // 卷轴最大速度
+  this.gravity = 1000; // 重力加速度 px 每秒平方
+  this.peopleVerticalSpeed = 200; // 人物横向移动速度
+  this.animation = null;
+  this.canvasWidth = 0;
+  this.canvasHeight = 0;
+  this.floorWidth = 0;
+  this.floorHeight = 0;
+  this.floorDeltaY = 50;
+  this.floorScore = 1;
+  this.blood = 12; // 人物血量
+  this.$container = $('.container');
+  this.$canvas = $('.game-canvas');
+  this.$scroller = $('.scroller');
+  this.$people = $('.people');
+  this.peopleRotateZ = 0;
+  this.peopleRotateDelta = 25; // 小球滚动角度
+  this.peopleHeight = 0;
+  this.peopleWidth = 0;
+  this._t = 0; // 人物开始下落时间
+  this._currentScrollerY = 0;
+  this._currentPeopleY = 20;
+  this._currentPeopleVertical = 0;
+  this._floorScrollerY = 200;
+  this._maxJumpDistance = 20;
+  this._currentJumpDistance = 0;
+  this._frameIndex = 0;
+  this._v0 = 0; // 初始速度 px每秒
+
+  this.checkFloorConfig();
+};
+
+GameController.prototype = {
+  constructor: GameController,
+  Events: ['gameover', 'start', 'rerun', 'stop', 'scoreupdate'],
+  // 事件机制，利用 Dom Event 来封装游戏状态事件
+  on: function on(event, fn) {
+    if (this.Events.indexOf(event) === -1) {
+      return;
+    }
+    this.$container.on(event, fn);
+  },
+  //游戏结束
+  gameover: function gameover() {
+    this.stop();
+    setTimeout(function () {
+      // 派发事件，以供外部调用
+      this.$container.trigger('gameover');
+      $('#game-ct').hide();
+      $('.game-over').show();
+    }.bind(this), 200);
+  },
+  checkFloorConfig: function checkFloorConfig() {
+    var rangeArray = [0];
+    var totalRate = 0;
+    var config = this.floorRate;
+
+    for (var i = 0; i < config.length; i++) {
+      var _rate = config[i].rate;
+      if (typeof _rate !== 'number') {
+        throw new TypeError('rate type error');
+      }
+      totalRate += _rate;
+      rangeArray.push(totalRate);
+    }
+    if (totalRate !== 100) {
+      throw new RangeError('rate 加起来务必等于 100！');
+    }
+
+    this._floorRateArray = rangeArray;
+  },
+  getRandomFloor: function getRandomFloor(rangeArray) {
+    var dice = Math.random() * 100;
+    for (var i = 0; i < rangeArray.length - 1; i++) {
+      if (dice >= rangeArray[i] && dice < rangeArray[i + 1]) {
+        return this.floorRate[i];
+      }
+    }
+  },
+  createFloorSpan: function createFloorSpan() {
+    //计算楼梯位置，200px 刚开始从距离顶部200px开始
+    var _top = this._floorScrollerY += this.floorDeltaY,
+
+    //楼梯横向位置随机出现
+    _left = Math.random() * (this.canvasWidth - this.floorWidth);
+
+    var floorConfig = this.getRandomFloor(this._floorRateArray);
+    var floorElement = '<i class="floor ' + floorConfig.name + '"></i>';
+
+    //随机新建楼梯，并添加到卷轴中去
+    $(floorElement).css({
+      top: _top,
+      left: _left,
+      width: this.floorWidth,
+      height: this.floorHeight
+    }).appendTo(this.$scroller);
+  },
+  removeFloorSpan: function removeFloorSpan() {
+    $('.floor').eq(0).remove();
+    this.floorScore++;
+    this.updateScore();
+  },
+  updateBlood: function updateBlood() {
+    var $bloodEle = $('.blood i');
+    for (var i = 0; i < $bloodEle.length; i++) {
+      if (i < this.blood) {
+        $bloodEle.eq(i).removeClass('lose');
+      } else {
+        $bloodEle.eq(i).addClass('lose');
+      }
+    }
+  },
+  updateScore: function updateScore() {
+    this.$container.trigger('scoreupdate');
+  },
+  loseBlood: function loseBlood() {
+    //当人物在平台上时，不重复扣血
+    if (this.__onFloor) {
+      return;
+    }
+    this.blood -= 4;
+    //人变红
+    this.$people.addClass('danger');
+    setTimeout(function () {
+      this.$people.removeClass('danger');
+    }.bind(this), 1000);
+
+    //背景闪烁
+    $('#game-ct').addClass('danger');
+    setTimeout(function () {
+      $('#game-ct').removeClass('danger');
+    }, 100);
+
+    if (this.blood <= 0) {
+      this.blood = 0;
+      this.updateBlood();
+      this.gameover();
+      return;
+    }
+    this.updateBlood();
+  },
+  addBlood: function addBlood() {
+    //当人物在平台上时，或者血量大于12，不重复加血
+    if (this.__onFloor || this.blood >= 12) {
+      return;
+    }
+    this.blood += 1;
+    this.updateBlood();
+  },
+  floorNormal: function floorNormal() {
+    this.addBlood();
+  },
+  floorNail: function floorNail() {
+    this.loseBlood();
+  },
+  floorWeak: function floorWeak($floorEle) {
+    this.addBlood();
+    //短暂停留后，标记该元素可强行穿过
+    setTimeout(function () {
+      $floorEle.addClass('over');
+      $floorEle[0].cross = true;
+    }, 200);
+  },
+  floorScroll: function floorScroll(direction) {
+    this.addBlood();
+    this.__floorScrollDirection = direction;
+  },
+  floorScrollEnd: function floorScrollEnd() {
+    this.__floorScrollDirection = null;
+  },
+  floorSpring: function floorSpring($floorEle) {
+    this.__$currentJumpFloor = $floorEle;
+    this.jumpStart();
+    this.addBlood();
+  },
+  jumpStart: function jumpStart() {
+    this.__jumpMode = true;
+    this.__$currentJumpFloor.addClass('up');
+    setTimeout(function () {
+      this.__$currentJumpFloor.removeClass('up');
+    }.bind(this), 200);
+  },
+  jumpEnd: function jumpEnd(hitTop) {
+    if (!this.__jumpMode) {
+      return;
+    }
+    if (hitTop) {
+      this.__$currentJumpFloor[0].cross = true;
+    }
+    //重置跳跃高度
+    this._currentJumpDistance = 0;
+    //解除跳跃
+    this.__jumpMode = false;
+  },
+  people: function people(fps) {
+    // 每帧消耗时间 ms
+    var dt = 1 / fps;
+    // 人物纵向每帧移动距离 △x = v0 * dt + (a * dt^2) / 2
+    var _deltaPeopleY = this._v0 * dt + this.gravity * dt * dt / 2;
+    // 更新时间 t = t + dt;
+    this._t += dt;
+    // 更新速度 v = at;
+    this._v0 = this.gravity * this._t;
+    //卷轴纵向每帧移动距离
+    var _deltaY = this.speed / fps;
+    //人物横向每帧移动距离
+    var _deltaPeopleVertical = this.peopleVerticalSpeed / fps;
+    //缓存floor
+    var $floor = $('.floor');
+    //缓存offset
+    var peopleOffset = this.$people.offset();
+
+    //人物掉落屏幕下方，游戏结束
+    if (peopleOffset.top > this.canvasHeight) {
+      this.gameover();
+      return;
+    }
+    //碰撞检测
+    for (var i = 0; i < $floor.length; i++) {
+      //缓存offset
+      var floorOffset = $floor.eq(i).offset();
+      //人物与楼梯纵向距离
+      var distanceGap = Math.abs(peopleOffset.top + this.peopleHeight - floorOffset.top);
+      //当人物撞到顶部，掉血+掉落+打断跳跃
+      if (peopleOffset.top <= _deltaPeopleY + _deltaY) {
+        this._t = 0;
+        this.__onFloor = false;
+        this.jumpEnd(true);
+        this.loseBlood();
+        break;
+      }
+      //跳跃模式不进入检测
+      if (!this.__jumpMode &&
+      //元素不可直接穿过
+      !$floor.eq(i)[0].cross &&
+      //人物与楼梯纵向距离在一帧移动距离之内
+      distanceGap <= _deltaPeopleY + _deltaY &&
+      //人物横向距离不超过楼梯最左
+      peopleOffset.left > floorOffset.left - this.peopleWidth &&
+      //人物横向距离不超过楼梯最右
+      peopleOffset.left < floorOffset.left + this.floorWidth) {
+        //人物与楼梯偏差修正
+        this._currentPeopleY = floorOffset.top - this.peopleHeight;
+        //施加各类楼梯特殊属性
+        if ($floor.eq(i).hasClass('normal')) {
+          this.floorNormal();
+        }
+        if ($floor.eq(i).hasClass('nail')) {
+          this.floorNail();
+        }
+        if ($floor.eq(i).hasClass('spring')) {
+          this.floorSpring($floor.eq(i));
+        }
+        if ($floor.eq(i).hasClass('weak')) {
+          this.floorWeak($floor.eq(i));
+        }
+        if ($floor.eq(i).hasClass('scroll-left')) {
+          this.floorScroll('left');
+        }
+        if ($floor.eq(i).hasClass('scroll-right')) {
+          this.floorScroll('right');
+        }
+        this._t = 0;
+        this.__onFloor = true;
+        break;
+      }
+      //当循环执行完毕，仍然没有发现碰撞，则表明人物不在平台上
+      if (i === $floor.length - 1) {
+        this.__onFloor = false;
+      }
+    }
+
+    //人物向上跳起
+    if (this.__jumpMode) {
+
+      if (this._currentJumpDistance >= this._maxJumpDistance) {
+        this.jumpEnd();
+      } else {
+        this._currentJumpDistance += _deltaPeopleY;
+        //向上跳起效果要额外加上_deltaY，以匹配卷轴运动状态
+        this._currentPeopleY -= _deltaPeopleY + _deltaY;
+      }
+    }
+
+    //人物向下坠落 + 取消楼梯左右加速状态
+    if (!this.__onFloor && !this.__jumpMode) {
+      this.floorScrollEnd();
+      this._currentPeopleY += _deltaPeopleY;
+    }
+
+    //横向运动预处理
+    var __temp_deltaPeopleVertical = _deltaPeopleVertical;
+    //处理人物向左运动
+    if (this._peopleGoLeft) {
+      if (this.__floorScrollDirection === 'left') {
+        __temp_deltaPeopleVertical *= 1.5;
+      }
+      if (this.__floorScrollDirection === 'right') {
+        __temp_deltaPeopleVertical *= 0.5;
+      }
+
+      if (this._currentPeopleVertical > 0) {
+        this._currentPeopleVertical -= __temp_deltaPeopleVertical;
+      }
+    }
+    //处理人物向右运动
+    if (this._peopleGoRight) {
+      if (this.__floorScrollDirection === 'left') {
+        __temp_deltaPeopleVertical *= 0.5;
+      }
+      if (this.__floorScrollDirection === 'right') {
+        __temp_deltaPeopleVertical *= 1.5;
+      }
+
+      if (this._currentPeopleVertical < this.canvasWidth - this.peopleWidth) {
+        this._currentPeopleVertical += __temp_deltaPeopleVertical;
+      }
+    }
+    //处理人物在滚动楼梯上的自动运动
+    if (!this._peopleGoRight && !this._peopleGoLeft) {
+      __temp_deltaPeopleVertical *= 0.5;
+      if (this.__floorScrollDirection === 'left') {
+        if (this._currentPeopleVertical > 0) {
+          this._currentPeopleVertical -= __temp_deltaPeopleVertical;
+        }
+      }
+      if (this.__floorScrollDirection === 'right') {
+        if (this._currentPeopleVertical < this.canvasWidth - this.peopleWidth) {
+          this._currentPeopleVertical += __temp_deltaPeopleVertical;
+        }
+      }
+    }
+
+    //更新人物视图
+    this.peopleUpdateView();
+  },
+  //更新卷轴位置
+  floorUpdateView: function floorUpdateView() {
+    if (Modernizr.csstransforms3d) {
+      //设定卷轴位置, translate3d开启GPU加速
+      this.$scroller.css({
+        '-webkit-transform': 'translate3d(0, ' + this._currentScrollerY + 'px, 0)',
+        '-ms-transform': 'translate3d(0, ' + this._currentScrollerY + 'px, 0)',
+        'transform': 'translate3d(0, ' + this._currentScrollerY + 'px, 0)'
+      });
+    } else if (Modernizr.csstransforms) {
+      //不支持translate3d 使用translateY
+      this.$scroller.css({
+        '-webkit-transform': 'translateY(' + this._currentScrollerY + 'px)',
+        '-ms-transform': 'translateY(' + this._currentScrollerY + 'px)',
+        'transform': 'translateY(' + this._currentScrollerY + 'px)'
+      });
+    } else {
+      //还不支持，那就GG
+      this.$scroller.css({
+        'top': this._currentScrollerY + 'px'
+      });
+    }
+  },
+  //更新人物视图
+  peopleUpdateView: function peopleUpdateView() {
+    if (this.__onFloor) {
+      if (this._peopleGoLeft) {
+        this.peopleRotateZ -= this.peopleRotateDelta;
+      }
+      if (this._peopleGoRight) {
+        this.peopleRotateZ += this.peopleRotateDelta;
+      }
+    }
+    if (Modernizr.csstransforms3d) {
+      //设定人物位置, translate3d开启GPU加速
+      this.$people.css({
+        '-webkit-transform': 'translate3d(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px ,0)',
+        '-ms-transform': 'translate3d(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px ,0)',
+        'transform': 'translate3d(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px ,0)'
+      });
+    } else if (Modernizr.csstransforms) {
+      //不支持translate3d 使用translate
+      this.$people.css({
+        '-webkit-transform': 'translate(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px)',
+        '-ms-transform': 'translate(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px)',
+        'transform': 'translate(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px)'
+      });
+    } else {
+      //还不支持，那就GG
+      this.$people.css({
+        'left': this._currentPeopleVertical + 'px',
+        'top': this._currentPeopleY + 'px'
+      });
+    }
+  },
+  peopleUserController: function peopleUserController() {
+    var _this = this;
+    //监听按键按下，改变人物左右运动方向
+    $(window).keydown(function (ev) {
+      if (ev.key === 'ArrowRight') {
+        _this._peopleGoRight = true;
+        _this._peopleGoLeft = false; //预防按键同时按下的冲突情况 
+        return;
+      }
+      if (ev.key === 'ArrowLeft') {
+        _this._peopleGoRight = false; //预防按键同时按下的冲突情况
+        _this._peopleGoLeft = true;
+        return;
+      }
+      //按键弹起，取消该方向人物运动
+    }).keyup(function (ev) {
+      if (ev.key === 'ArrowRight') {
+        _this._peopleGoRight = false;
+        return;
+      }
+      if (ev.key === 'ArrowLeft') {
+        _this._peopleGoLeft = false;
+        return;
+      }
+    });
+
+    $('.controller .left-ct').on('touchstart', function (ev) {
+      _this._peopleGoRight = false; //预防按键同时按下的冲突情况 
+      _this._peopleGoLeft = true;
+      return false;
+    }).on('touchend', function (ev) {
+      _this._peopleGoLeft = false;
+    });
+
+    $('.controller .right-ct').on('touchstart', function (ev) {
+      _this._peopleGoRight = true;
+      _this._peopleGoLeft = false; //预防按键同时按下的冲突情况
+      return false;
+    }).on('touchend', function (ev) {
+      _this._peopleGoRight = false;
+    });
+  },
+  core: function core(fps) {
+    var _this = this,
+        _deltaY = this.speed / fps,
+        //卷轴纵向每帧移动距离
+    $floor = $('.floor');
+
+    //计算卷轴位置
+    this._currentScrollerY -= _deltaY;
+
+    //当卷轴超出一定长度之后，进行位置reset、缩减长度，防止Crash现象
+    if (this._currentScrollerY <= -this.canvasHeight * 2) {
+      //将卷轴滚动高度减小一屏
+      this._currentScrollerY += this.canvasHeight;
+      //将楼梯偏移高度减小一屏
+      this._floorScrollerY -= this.canvasHeight;
+      //重置现有楼梯位置
+      for (var i = 0; i < $floor.length; i++) {
+        $floor.eq(i).css({
+          top: parseInt($('.floor').eq(i).css('top')) - this.canvasHeight
+        });
+      }
+    }
+
+    //更新卷轴位置
+    this.floorUpdateView();
+
+    //每个台阶移出视野则清除台阶，并且在底部增加一个新的台阶
+    if ($floor.eq(0).offset().top <= -20) {
+      this.createFloorSpan();
+      this.removeFloorSpan();
+    }
+
+    //调用人物渲染
+    this.people(fps);
+    // 越来越high
+    if (this.speed <= this.maxSpeed) {
+      this.speed += 0.1;
+    }
+  },
+  run: function run(fps) {
+    //不允许执行多个动画渲染函数（你想卡死么...
+    if (this.animation) {
+      console.error('Animation has aready in process, please do not run again!');
+      return;
+    }
+
+    this._fps = fps = fps || 60;
+    var looptime = 1000 / fps; //每帧间隔时间
+    var _this = this;
+
+    var runAnimation = function runAnimation() {
+      return setTimeout(function () {
+        window.requestAnimationFrame(function () {
+          _this.core(fps);
+        });
+        _this.animation = runAnimation();
+      }, looptime);
+    };
+    //循环调用渲染函数，并把循环handle暴露出去，方便外部暂停动画
+    return this.animation = runAnimation();
+  },
+  stop: function stop() {
+    clearTimeout(this.animation); //暂停动画
+    this.animation = undefined;
+    this.$container.trigger('stop');
+  },
+  reRun: function reRun() {
+    this.$container.trigger('rerun');
+    //重置参数
+    $.extend(this, this.__paramBackup);
+    //删掉现有楼梯
+    $('.floor').remove();
+    //重新初始化
+    this.start();
+  },
+  backup: function backup() {
+    //备份初始设置参数，用于游戏reset
+    this.__paramBackup = {};
+    for (var i in this) {
+      if (typeof this[i] === 'number' || typeof this[i] === 'string') {
+        this.__paramBackup[i] = this[i];
+      }
+    }
+  },
+  start: function start() {
+    var _this = this,
+        floorLoop = 0;
+    this.$container.trigger('start');
+    // Modernizr.csstransforms3d = false;
+    // Modernizr.csstransforms = false;
+    //当视窗大小变动时，重新计算画布宽高
+    this.canvasWidth = this.$canvas.width();
+    this.canvasHeight = this.$canvas.height();
+    this.floorDeltaY = this.canvasHeight / 11;
+    this.floorWidth = this.canvasWidth / 5;
+    this.floorHeight = this.floorWidth / 9;
+    this.peopleHeight = parseInt(this.$people.css('height'));
+    this.peopleWidth = parseInt(this.$people.css('width'));
+
+    //人物位置预设
+    this._currentPeopleVertical = this.canvasWidth / 2 + this.peopleWidth / 2;
+    //备份初始参数
+    this.backup();
+    //初始化台阶
+    while (floorLoop++ < 13) {
+      this.createFloorSpan();
+    }
+    //初始化任务控制
+    this.peopleUserController();
+    //首次更新人物视图
+    this.peopleUpdateView();
+    //首次更新人物血量
+    this.updateBlood();
+    //首次更新楼层数
+    this.updateScore();
+    //以每秒60帧执行游戏动画
+    this.run(this.fps);
+  }
+};
+
+exports.default = GameController;
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n//     Zepto.js\n//     (c) 2010-2016 Thomas Fuchs\n//     Zepto.js may be freely distributed under the MIT license.\n\n;(function ($) {\n  var touch = {},\n      touchTimeout,\n      tapTimeout,\n      swipeTimeout,\n      longTapTimeout,\n      longTapDelay = 750,\n      gesture;\n\n  function swipeDirection(x1, x2, y1, y2) {\n    return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? x1 - x2 > 0 ? 'Left' : 'Right' : y1 - y2 > 0 ? 'Up' : 'Down';\n  }\n\n  function longTap() {\n    longTapTimeout = null;\n    if (touch.last) {\n      touch.el.trigger('longTap');\n      touch = {};\n    }\n  }\n\n  function cancelLongTap() {\n    if (longTapTimeout) clearTimeout(longTapTimeout);\n    longTapTimeout = null;\n  }\n\n  function cancelAll() {\n    if (touchTimeout) clearTimeout(touchTimeout);\n    if (tapTimeout) clearTimeout(tapTimeout);\n    if (swipeTimeout) clearTimeout(swipeTimeout);\n    if (longTapTimeout) clearTimeout(longTapTimeout);\n    touchTimeout = tapTimeout = swipeTimeout = longTapTimeout = null;\n    touch = {};\n  }\n\n  function isPrimaryTouch(event) {\n    return (event.pointerType == 'touch' || event.pointerType == event.MSPOINTER_TYPE_TOUCH) && event.isPrimary;\n  }\n\n  function isPointerEventType(e, type) {\n    return e.type == 'pointer' + type || e.type.toLowerCase() == 'mspointer' + type;\n  }\n\n  $(document).ready(function () {\n    var now,\n        delta,\n        deltaX = 0,\n        deltaY = 0,\n        firstTouch,\n        _isPointerType;\n\n    if ('MSGesture' in window) {\n      gesture = new MSGesture();\n      gesture.target = document.body;\n    }\n\n    $(document).bind('MSGestureEnd', function (e) {\n      var swipeDirectionFromVelocity = e.velocityX > 1 ? 'Right' : e.velocityX < -1 ? 'Left' : e.velocityY > 1 ? 'Down' : e.velocityY < -1 ? 'Up' : null;\n      if (swipeDirectionFromVelocity) {\n        touch.el.trigger('swipe');\n        touch.el.trigger('swipe' + swipeDirectionFromVelocity);\n      }\n    }).on('touchstart MSPointerDown pointerdown', function (e) {\n      if ((_isPointerType = isPointerEventType(e, 'down')) && !isPrimaryTouch(e)) return;\n      firstTouch = _isPointerType ? e : e.touches[0];\n      if (e.touches && e.touches.length === 1 && touch.x2) {\n        // Clear out touch movement data if we have it sticking around\n        // This can occur if touchcancel doesn't fire due to preventDefault, etc.\n        touch.x2 = undefined;\n        touch.y2 = undefined;\n      }\n      now = Date.now();\n      delta = now - (touch.last || now);\n      touch.el = $('tagName' in firstTouch.target ? firstTouch.target : firstTouch.target.parentNode);\n      touchTimeout && clearTimeout(touchTimeout);\n      touch.x1 = firstTouch.pageX;\n      touch.y1 = firstTouch.pageY;\n      if (delta > 0 && delta <= 250) touch.isDoubleTap = true;\n      touch.last = now;\n      longTapTimeout = setTimeout(longTap, longTapDelay);\n      // adds the current touch contact for IE gesture recognition\n      if (gesture && _isPointerType) gesture.addPointer(e.pointerId);\n    }).on('touchmove MSPointerMove pointermove', function (e) {\n      if ((_isPointerType = isPointerEventType(e, 'move')) && !isPrimaryTouch(e)) return;\n      firstTouch = _isPointerType ? e : e.touches[0];\n      cancelLongTap();\n      touch.x2 = firstTouch.pageX;\n      touch.y2 = firstTouch.pageY;\n\n      deltaX += Math.abs(touch.x1 - touch.x2);\n      deltaY += Math.abs(touch.y1 - touch.y2);\n    }).on('touchend MSPointerUp pointerup', function (e) {\n      if ((_isPointerType = isPointerEventType(e, 'up')) && !isPrimaryTouch(e)) return;\n      cancelLongTap();\n\n      // swipe\n      if (touch.x2 && Math.abs(touch.x1 - touch.x2) > 30 || touch.y2 && Math.abs(touch.y1 - touch.y2) > 30) swipeTimeout = setTimeout(function () {\n        if (touch.el) {\n          touch.el.trigger('swipe');\n          touch.el.trigger('swipe' + swipeDirection(touch.x1, touch.x2, touch.y1, touch.y2));\n        }\n        touch = {};\n      }, 0);\n\n      // normal tap\n      else if ('last' in touch)\n          // don't fire tap when delta position changed by more than 30 pixels,\n          // for instance when moving to a point and back to origin\n          if (deltaX < 30 && deltaY < 30) {\n            // delay by one tick so we can cancel the 'tap' event if 'scroll' fires\n            // ('tap' fires before 'scroll')\n            tapTimeout = setTimeout(function () {\n\n              // trigger universal 'tap' with the option to cancelTouch()\n              // (cancelTouch cancels processing of single vs double taps for faster 'tap' response)\n              var event = $.Event('tap');\n              event.cancelTouch = cancelAll;\n              // [by paper] fix -> \"TypeError: 'undefined' is not an object (evaluating 'touch.el.trigger'), when double tap\n              if (touch.el) touch.el.trigger(event);\n\n              // trigger double tap immediately\n              if (touch.isDoubleTap) {\n                if (touch.el) touch.el.trigger('doubleTap');\n                touch = {};\n              }\n\n              // trigger single tap after 250ms of inactivity\n              else {\n                  touchTimeout = setTimeout(function () {\n                    touchTimeout = null;\n                    if (touch.el) touch.el.trigger('singleTap');\n                    touch = {};\n                  }, 250);\n                }\n            }, 0);\n          } else {\n            touch = {};\n          }\n      deltaX = deltaY = 0;\n    })\n    // when the browser window loses focus,\n    // for example when a modal dialog is shown,\n    // cancel all ongoing events\n    .on('touchcancel MSPointerCancel pointercancel', cancelAll);\n\n    // scrolling the window indicates intention of the user\n    // to scroll, not tap or swipe, so cancel all ongoing events\n    $(window).on('scroll', cancelAll);\n  });['swipe', 'swipeLeft', 'swipeRight', 'swipeUp', 'swipeDown', 'doubleTap', 'tap', 'singleTap', 'longTap'].forEach(function (eventName) {\n    $.fn[eventName] = function (callback) {\n      return this.on(eventName, callback);\n    };\n  });\n})(Zepto);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9hcHAvanMvemVwdG8tdG91Y2guanM/Zjg1NyJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyAgICAgWmVwdG8uanNcbi8vICAgICAoYykgMjAxMC0yMDE2IFRob21hcyBGdWNoc1xuLy8gICAgIFplcHRvLmpzIG1heSBiZSBmcmVlbHkgZGlzdHJpYnV0ZWQgdW5kZXIgdGhlIE1JVCBsaWNlbnNlLlxuXG47KGZ1bmN0aW9uKCQpe1xuICB2YXIgdG91Y2ggPSB7fSxcbiAgICB0b3VjaFRpbWVvdXQsIHRhcFRpbWVvdXQsIHN3aXBlVGltZW91dCwgbG9uZ1RhcFRpbWVvdXQsXG4gICAgbG9uZ1RhcERlbGF5ID0gNzUwLFxuICAgIGdlc3R1cmVcblxuICBmdW5jdGlvbiBzd2lwZURpcmVjdGlvbih4MSwgeDIsIHkxLCB5Mikge1xuICAgIHJldHVybiBNYXRoLmFicyh4MSAtIHgyKSA+PVxuICAgICAgTWF0aC5hYnMoeTEgLSB5MikgPyAoeDEgLSB4MiA+IDAgPyAnTGVmdCcgOiAnUmlnaHQnKSA6ICh5MSAtIHkyID4gMCA/ICdVcCcgOiAnRG93bicpXG4gIH1cblxuICBmdW5jdGlvbiBsb25nVGFwKCkge1xuICAgIGxvbmdUYXBUaW1lb3V0ID0gbnVsbFxuICAgIGlmICh0b3VjaC5sYXN0KSB7XG4gICAgICB0b3VjaC5lbC50cmlnZ2VyKCdsb25nVGFwJylcbiAgICAgIHRvdWNoID0ge31cbiAgICB9XG4gIH1cblxuICBmdW5jdGlvbiBjYW5jZWxMb25nVGFwKCkge1xuICAgIGlmIChsb25nVGFwVGltZW91dCkgY2xlYXJUaW1lb3V0KGxvbmdUYXBUaW1lb3V0KVxuICAgIGxvbmdUYXBUaW1lb3V0ID0gbnVsbFxuICB9XG5cbiAgZnVuY3Rpb24gY2FuY2VsQWxsKCkge1xuICAgIGlmICh0b3VjaFRpbWVvdXQpIGNsZWFyVGltZW91dCh0b3VjaFRpbWVvdXQpXG4gICAgaWYgKHRhcFRpbWVvdXQpIGNsZWFyVGltZW91dCh0YXBUaW1lb3V0KVxuICAgIGlmIChzd2lwZVRpbWVvdXQpIGNsZWFyVGltZW91dChzd2lwZVRpbWVvdXQpXG4gICAgaWYgKGxvbmdUYXBUaW1lb3V0KSBjbGVhclRpbWVvdXQobG9uZ1RhcFRpbWVvdXQpXG4gICAgdG91Y2hUaW1lb3V0ID0gdGFwVGltZW91dCA9IHN3aXBlVGltZW91dCA9IGxvbmdUYXBUaW1lb3V0ID0gbnVsbFxuICAgIHRvdWNoID0ge31cbiAgfVxuXG4gIGZ1bmN0aW9uIGlzUHJpbWFyeVRvdWNoKGV2ZW50KXtcbiAgICByZXR1cm4gKGV2ZW50LnBvaW50ZXJUeXBlID09ICd0b3VjaCcgfHxcbiAgICAgIGV2ZW50LnBvaW50ZXJUeXBlID09IGV2ZW50Lk1TUE9JTlRFUl9UWVBFX1RPVUNIKVxuICAgICAgJiYgZXZlbnQuaXNQcmltYXJ5XG4gIH1cblxuICBmdW5jdGlvbiBpc1BvaW50ZXJFdmVudFR5cGUoZSwgdHlwZSl7XG4gICAgcmV0dXJuIChlLnR5cGUgPT0gJ3BvaW50ZXInK3R5cGUgfHxcbiAgICAgIGUudHlwZS50b0xvd2VyQ2FzZSgpID09ICdtc3BvaW50ZXInK3R5cGUpXG4gIH1cblxuICAkKGRvY3VtZW50KS5yZWFkeShmdW5jdGlvbigpe1xuICAgIHZhciBub3csIGRlbHRhLCBkZWx0YVggPSAwLCBkZWx0YVkgPSAwLCBmaXJzdFRvdWNoLCBfaXNQb2ludGVyVHlwZVxuXG4gICAgaWYgKCdNU0dlc3R1cmUnIGluIHdpbmRvdykge1xuICAgICAgZ2VzdHVyZSA9IG5ldyBNU0dlc3R1cmUoKVxuICAgICAgZ2VzdHVyZS50YXJnZXQgPSBkb2N1bWVudC5ib2R5XG4gICAgfVxuXG4gICAgJChkb2N1bWVudClcbiAgICAgIC5iaW5kKCdNU0dlc3R1cmVFbmQnLCBmdW5jdGlvbihlKXtcbiAgICAgICAgdmFyIHN3aXBlRGlyZWN0aW9uRnJvbVZlbG9jaXR5ID1cbiAgICAgICAgICBlLnZlbG9jaXR5WCA+IDEgPyAnUmlnaHQnIDogZS52ZWxvY2l0eVggPCAtMSA/ICdMZWZ0JyA6IGUudmVsb2NpdHlZID4gMSA/ICdEb3duJyA6IGUudmVsb2NpdHlZIDwgLTEgPyAnVXAnIDogbnVsbFxuICAgICAgICBpZiAoc3dpcGVEaXJlY3Rpb25Gcm9tVmVsb2NpdHkpIHtcbiAgICAgICAgICB0b3VjaC5lbC50cmlnZ2VyKCdzd2lwZScpXG4gICAgICAgICAgdG91Y2guZWwudHJpZ2dlcignc3dpcGUnKyBzd2lwZURpcmVjdGlvbkZyb21WZWxvY2l0eSlcbiAgICAgICAgfVxuICAgICAgfSlcbiAgICAgIC5vbigndG91Y2hzdGFydCBNU1BvaW50ZXJEb3duIHBvaW50ZXJkb3duJywgZnVuY3Rpb24oZSl7XG4gICAgICAgIGlmKChfaXNQb2ludGVyVHlwZSA9IGlzUG9pbnRlckV2ZW50VHlwZShlLCAnZG93bicpKSAmJlxuICAgICAgICAgICFpc1ByaW1hcnlUb3VjaChlKSkgcmV0dXJuXG4gICAgICAgIGZpcnN0VG91Y2ggPSBfaXNQb2ludGVyVHlwZSA/IGUgOiBlLnRvdWNoZXNbMF1cbiAgICAgICAgaWYgKGUudG91Y2hlcyAmJiBlLnRvdWNoZXMubGVuZ3RoID09PSAxICYmIHRvdWNoLngyKSB7XG4gICAgICAgICAgLy8gQ2xlYXIgb3V0IHRvdWNoIG1vdmVtZW50IGRhdGEgaWYgd2UgaGF2ZSBpdCBzdGlja2luZyBhcm91bmRcbiAgICAgICAgICAvLyBUaGlzIGNhbiBvY2N1ciBpZiB0b3VjaGNhbmNlbCBkb2Vzbid0IGZpcmUgZHVlIHRvIHByZXZlbnREZWZhdWx0LCBldGMuXG4gICAgICAgICAgdG91Y2gueDIgPSB1bmRlZmluZWRcbiAgICAgICAgICB0b3VjaC55MiA9IHVuZGVmaW5lZFxuICAgICAgICB9XG4gICAgICAgIG5vdyA9IERhdGUubm93KClcbiAgICAgICAgZGVsdGEgPSBub3cgLSAodG91Y2gubGFzdCB8fCBub3cpXG4gICAgICAgIHRvdWNoLmVsID0gJCgndGFnTmFtZScgaW4gZmlyc3RUb3VjaC50YXJnZXQgP1xuICAgICAgICAgIGZpcnN0VG91Y2gudGFyZ2V0IDogZmlyc3RUb3VjaC50YXJnZXQucGFyZW50Tm9kZSlcbiAgICAgICAgdG91Y2hUaW1lb3V0ICYmIGNsZWFyVGltZW91dCh0b3VjaFRpbWVvdXQpXG4gICAgICAgIHRvdWNoLngxID0gZmlyc3RUb3VjaC5wYWdlWFxuICAgICAgICB0b3VjaC55MSA9IGZpcnN0VG91Y2gucGFnZVlcbiAgICAgICAgaWYgKGRlbHRhID4gMCAmJiBkZWx0YSA8PSAyNTApIHRvdWNoLmlzRG91YmxlVGFwID0gdHJ1ZVxuICAgICAgICB0b3VjaC5sYXN0ID0gbm93XG4gICAgICAgIGxvbmdUYXBUaW1lb3V0ID0gc2V0VGltZW91dChsb25nVGFwLCBsb25nVGFwRGVsYXkpXG4gICAgICAgIC8vIGFkZHMgdGhlIGN1cnJlbnQgdG91Y2ggY29udGFjdCBmb3IgSUUgZ2VzdHVyZSByZWNvZ25pdGlvblxuICAgICAgICBpZiAoZ2VzdHVyZSAmJiBfaXNQb2ludGVyVHlwZSkgZ2VzdHVyZS5hZGRQb2ludGVyKGUucG9pbnRlcklkKVxuICAgICAgfSlcbiAgICAgIC5vbigndG91Y2htb3ZlIE1TUG9pbnRlck1vdmUgcG9pbnRlcm1vdmUnLCBmdW5jdGlvbihlKXtcbiAgICAgICAgaWYoKF9pc1BvaW50ZXJUeXBlID0gaXNQb2ludGVyRXZlbnRUeXBlKGUsICdtb3ZlJykpICYmXG4gICAgICAgICAgIWlzUHJpbWFyeVRvdWNoKGUpKSByZXR1cm5cbiAgICAgICAgZmlyc3RUb3VjaCA9IF9pc1BvaW50ZXJUeXBlID8gZSA6IGUudG91Y2hlc1swXVxuICAgICAgICBjYW5jZWxMb25nVGFwKClcbiAgICAgICAgdG91Y2gueDIgPSBmaXJzdFRvdWNoLnBhZ2VYXG4gICAgICAgIHRvdWNoLnkyID0gZmlyc3RUb3VjaC5wYWdlWVxuXG4gICAgICAgIGRlbHRhWCArPSBNYXRoLmFicyh0b3VjaC54MSAtIHRvdWNoLngyKVxuICAgICAgICBkZWx0YVkgKz0gTWF0aC5hYnModG91Y2gueTEgLSB0b3VjaC55MilcbiAgICAgIH0pXG4gICAgICAub24oJ3RvdWNoZW5kIE1TUG9pbnRlclVwIHBvaW50ZXJ1cCcsIGZ1bmN0aW9uKGUpe1xuICAgICAgICBpZigoX2lzUG9pbnRlclR5cGUgPSBpc1BvaW50ZXJFdmVudFR5cGUoZSwgJ3VwJykpICYmXG4gICAgICAgICAgIWlzUHJpbWFyeVRvdWNoKGUpKSByZXR1cm5cbiAgICAgICAgY2FuY2VsTG9uZ1RhcCgpXG5cbiAgICAgICAgLy8gc3dpcGVcbiAgICAgICAgaWYgKCh0b3VjaC54MiAmJiBNYXRoLmFicyh0b3VjaC54MSAtIHRvdWNoLngyKSA+IDMwKSB8fFxuICAgICAgICAgICAgKHRvdWNoLnkyICYmIE1hdGguYWJzKHRvdWNoLnkxIC0gdG91Y2gueTIpID4gMzApKVxuXG4gICAgICAgICAgc3dpcGVUaW1lb3V0ID0gc2V0VGltZW91dChmdW5jdGlvbigpIHtcbiAgICAgICAgICAgIGlmICh0b3VjaC5lbCl7XG4gICAgICAgICAgICAgIHRvdWNoLmVsLnRyaWdnZXIoJ3N3aXBlJylcbiAgICAgICAgICAgICAgdG91Y2guZWwudHJpZ2dlcignc3dpcGUnICsgKHN3aXBlRGlyZWN0aW9uKHRvdWNoLngxLCB0b3VjaC54MiwgdG91Y2gueTEsIHRvdWNoLnkyKSkpXG4gICAgICAgICAgICB9XG4gICAgICAgICAgICB0b3VjaCA9IHt9XG4gICAgICAgICAgfSwgMClcblxuICAgICAgICAvLyBub3JtYWwgdGFwXG4gICAgICAgIGVsc2UgaWYgKCdsYXN0JyBpbiB0b3VjaClcbiAgICAgICAgICAvLyBkb24ndCBmaXJlIHRhcCB3aGVuIGRlbHRhIHBvc2l0aW9uIGNoYW5nZWQgYnkgbW9yZSB0aGFuIDMwIHBpeGVscyxcbiAgICAgICAgICAvLyBmb3IgaW5zdGFuY2Ugd2hlbiBtb3ZpbmcgdG8gYSBwb2ludCBhbmQgYmFjayB0byBvcmlnaW5cbiAgICAgICAgICBpZiAoZGVsdGFYIDwgMzAgJiYgZGVsdGFZIDwgMzApIHtcbiAgICAgICAgICAgIC8vIGRlbGF5IGJ5IG9uZSB0aWNrIHNvIHdlIGNhbiBjYW5jZWwgdGhlICd0YXAnIGV2ZW50IGlmICdzY3JvbGwnIGZpcmVzXG4gICAgICAgICAgICAvLyAoJ3RhcCcgZmlyZXMgYmVmb3JlICdzY3JvbGwnKVxuICAgICAgICAgICAgdGFwVGltZW91dCA9IHNldFRpbWVvdXQoZnVuY3Rpb24oKSB7XG5cbiAgICAgICAgICAgICAgLy8gdHJpZ2dlciB1bml2ZXJzYWwgJ3RhcCcgd2l0aCB0aGUgb3B0aW9uIHRvIGNhbmNlbFRvdWNoKClcbiAgICAgICAgICAgICAgLy8gKGNhbmNlbFRvdWNoIGNhbmNlbHMgcHJvY2Vzc2luZyBvZiBzaW5nbGUgdnMgZG91YmxlIHRhcHMgZm9yIGZhc3RlciAndGFwJyByZXNwb25zZSlcbiAgICAgICAgICAgICAgdmFyIGV2ZW50ID0gJC5FdmVudCgndGFwJylcbiAgICAgICAgICAgICAgZXZlbnQuY2FuY2VsVG91Y2ggPSBjYW5jZWxBbGxcbiAgICAgICAgICAgICAgLy8gW2J5IHBhcGVyXSBmaXggLT4gXCJUeXBlRXJyb3I6ICd1bmRlZmluZWQnIGlzIG5vdCBhbiBvYmplY3QgKGV2YWx1YXRpbmcgJ3RvdWNoLmVsLnRyaWdnZXInKSwgd2hlbiBkb3VibGUgdGFwXG4gICAgICAgICAgICAgIGlmICh0b3VjaC5lbCkgdG91Y2guZWwudHJpZ2dlcihldmVudClcblxuICAgICAgICAgICAgICAvLyB0cmlnZ2VyIGRvdWJsZSB0YXAgaW1tZWRpYXRlbHlcbiAgICAgICAgICAgICAgaWYgKHRvdWNoLmlzRG91YmxlVGFwKSB7XG4gICAgICAgICAgICAgICAgaWYgKHRvdWNoLmVsKSB0b3VjaC5lbC50cmlnZ2VyKCdkb3VibGVUYXAnKVxuICAgICAgICAgICAgICAgIHRvdWNoID0ge31cbiAgICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAgIC8vIHRyaWdnZXIgc2luZ2xlIHRhcCBhZnRlciAyNTBtcyBvZiBpbmFjdGl2aXR5XG4gICAgICAgICAgICAgIGVsc2Uge1xuICAgICAgICAgICAgICAgIHRvdWNoVGltZW91dCA9IHNldFRpbWVvdXQoZnVuY3Rpb24oKXtcbiAgICAgICAgICAgICAgICAgIHRvdWNoVGltZW91dCA9IG51bGxcbiAgICAgICAgICAgICAgICAgIGlmICh0b3VjaC5lbCkgdG91Y2guZWwudHJpZ2dlcignc2luZ2xlVGFwJylcbiAgICAgICAgICAgICAgICAgIHRvdWNoID0ge31cbiAgICAgICAgICAgICAgICB9LCAyNTApXG4gICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH0sIDApXG4gICAgICAgICAgfSBlbHNlIHtcbiAgICAgICAgICAgIHRvdWNoID0ge31cbiAgICAgICAgICB9XG4gICAgICAgICAgZGVsdGFYID0gZGVsdGFZID0gMFxuXG4gICAgICB9KVxuICAgICAgLy8gd2hlbiB0aGUgYnJvd3NlciB3aW5kb3cgbG9zZXMgZm9jdXMsXG4gICAgICAvLyBmb3IgZXhhbXBsZSB3aGVuIGEgbW9kYWwgZGlhbG9nIGlzIHNob3duLFxuICAgICAgLy8gY2FuY2VsIGFsbCBvbmdvaW5nIGV2ZW50c1xuICAgICAgLm9uKCd0b3VjaGNhbmNlbCBNU1BvaW50ZXJDYW5jZWwgcG9pbnRlcmNhbmNlbCcsIGNhbmNlbEFsbClcblxuICAgIC8vIHNjcm9sbGluZyB0aGUgd2luZG93IGluZGljYXRlcyBpbnRlbnRpb24gb2YgdGhlIHVzZXJcbiAgICAvLyB0byBzY3JvbGwsIG5vdCB0YXAgb3Igc3dpcGUsIHNvIGNhbmNlbCBhbGwgb25nb2luZyBldmVudHNcbiAgICAkKHdpbmRvdykub24oJ3Njcm9sbCcsIGNhbmNlbEFsbClcbiAgfSlcblxuICA7Wydzd2lwZScsICdzd2lwZUxlZnQnLCAnc3dpcGVSaWdodCcsICdzd2lwZVVwJywgJ3N3aXBlRG93bicsXG4gICAgJ2RvdWJsZVRhcCcsICd0YXAnLCAnc2luZ2xlVGFwJywgJ2xvbmdUYXAnXS5mb3JFYWNoKGZ1bmN0aW9uKGV2ZW50TmFtZSl7XG4gICAgJC5mbltldmVudE5hbWVdID0gZnVuY3Rpb24oY2FsbGJhY2speyByZXR1cm4gdGhpcy5vbihldmVudE5hbWUsIGNhbGxiYWNrKSB9XG4gIH0pXG59KShaZXB0bylcblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2pzL3plcHRvLXRvdWNoLmpzIl0sIm1hcHBpbmdzIjoiOztBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBSUE7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFHQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRUE7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRUE7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFJQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBWEE7QUFhQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFMQTtBQU9BO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQW5HQTtBQUNBO0FBcUdBO0FBQ0E7QUFDQTtBQUNBO0FBSUE7QUFBQTtBQUFBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///3\n");
+
+
+//     Zepto.js
+//     (c) 2010-2016 Thomas Fuchs
+//     Zepto.js may be freely distributed under the MIT license.
+
+;(function ($) {
+  var touch = {},
+      touchTimeout,
+      tapTimeout,
+      swipeTimeout,
+      longTapTimeout,
+      longTapDelay = 750,
+      gesture;
+
+  function swipeDirection(x1, x2, y1, y2) {
+    return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? x1 - x2 > 0 ? 'Left' : 'Right' : y1 - y2 > 0 ? 'Up' : 'Down';
+  }
+
+  function longTap() {
+    longTapTimeout = null;
+    if (touch.last) {
+      touch.el.trigger('longTap');
+      touch = {};
+    }
+  }
+
+  function cancelLongTap() {
+    if (longTapTimeout) clearTimeout(longTapTimeout);
+    longTapTimeout = null;
+  }
+
+  function cancelAll() {
+    if (touchTimeout) clearTimeout(touchTimeout);
+    if (tapTimeout) clearTimeout(tapTimeout);
+    if (swipeTimeout) clearTimeout(swipeTimeout);
+    if (longTapTimeout) clearTimeout(longTapTimeout);
+    touchTimeout = tapTimeout = swipeTimeout = longTapTimeout = null;
+    touch = {};
+  }
+
+  function isPrimaryTouch(event) {
+    return (event.pointerType == 'touch' || event.pointerType == event.MSPOINTER_TYPE_TOUCH) && event.isPrimary;
+  }
+
+  function isPointerEventType(e, type) {
+    return e.type == 'pointer' + type || e.type.toLowerCase() == 'mspointer' + type;
+  }
+
+  $(document).ready(function () {
+    var now,
+        delta,
+        deltaX = 0,
+        deltaY = 0,
+        firstTouch,
+        _isPointerType;
+
+    if ('MSGesture' in window) {
+      gesture = new MSGesture();
+      gesture.target = document.body;
+    }
+
+    $(document).bind('MSGestureEnd', function (e) {
+      var swipeDirectionFromVelocity = e.velocityX > 1 ? 'Right' : e.velocityX < -1 ? 'Left' : e.velocityY > 1 ? 'Down' : e.velocityY < -1 ? 'Up' : null;
+      if (swipeDirectionFromVelocity) {
+        touch.el.trigger('swipe');
+        touch.el.trigger('swipe' + swipeDirectionFromVelocity);
+      }
+    }).on('touchstart MSPointerDown pointerdown', function (e) {
+      if ((_isPointerType = isPointerEventType(e, 'down')) && !isPrimaryTouch(e)) return;
+      firstTouch = _isPointerType ? e : e.touches[0];
+      if (e.touches && e.touches.length === 1 && touch.x2) {
+        // Clear out touch movement data if we have it sticking around
+        // This can occur if touchcancel doesn't fire due to preventDefault, etc.
+        touch.x2 = undefined;
+        touch.y2 = undefined;
+      }
+      now = Date.now();
+      delta = now - (touch.last || now);
+      touch.el = $('tagName' in firstTouch.target ? firstTouch.target : firstTouch.target.parentNode);
+      touchTimeout && clearTimeout(touchTimeout);
+      touch.x1 = firstTouch.pageX;
+      touch.y1 = firstTouch.pageY;
+      if (delta > 0 && delta <= 250) touch.isDoubleTap = true;
+      touch.last = now;
+      longTapTimeout = setTimeout(longTap, longTapDelay);
+      // adds the current touch contact for IE gesture recognition
+      if (gesture && _isPointerType) gesture.addPointer(e.pointerId);
+    }).on('touchmove MSPointerMove pointermove', function (e) {
+      if ((_isPointerType = isPointerEventType(e, 'move')) && !isPrimaryTouch(e)) return;
+      firstTouch = _isPointerType ? e : e.touches[0];
+      cancelLongTap();
+      touch.x2 = firstTouch.pageX;
+      touch.y2 = firstTouch.pageY;
+
+      deltaX += Math.abs(touch.x1 - touch.x2);
+      deltaY += Math.abs(touch.y1 - touch.y2);
+    }).on('touchend MSPointerUp pointerup', function (e) {
+      if ((_isPointerType = isPointerEventType(e, 'up')) && !isPrimaryTouch(e)) return;
+      cancelLongTap();
+
+      // swipe
+      if (touch.x2 && Math.abs(touch.x1 - touch.x2) > 30 || touch.y2 && Math.abs(touch.y1 - touch.y2) > 30) swipeTimeout = setTimeout(function () {
+        if (touch.el) {
+          touch.el.trigger('swipe');
+          touch.el.trigger('swipe' + swipeDirection(touch.x1, touch.x2, touch.y1, touch.y2));
+        }
+        touch = {};
+      }, 0);
+
+      // normal tap
+      else if ('last' in touch)
+          // don't fire tap when delta position changed by more than 30 pixels,
+          // for instance when moving to a point and back to origin
+          if (deltaX < 30 && deltaY < 30) {
+            // delay by one tick so we can cancel the 'tap' event if 'scroll' fires
+            // ('tap' fires before 'scroll')
+            tapTimeout = setTimeout(function () {
+
+              // trigger universal 'tap' with the option to cancelTouch()
+              // (cancelTouch cancels processing of single vs double taps for faster 'tap' response)
+              var event = $.Event('tap');
+              event.cancelTouch = cancelAll;
+              // [by paper] fix -> "TypeError: 'undefined' is not an object (evaluating 'touch.el.trigger'), when double tap
+              if (touch.el) touch.el.trigger(event);
+
+              // trigger double tap immediately
+              if (touch.isDoubleTap) {
+                if (touch.el) touch.el.trigger('doubleTap');
+                touch = {};
+              }
+
+              // trigger single tap after 250ms of inactivity
+              else {
+                  touchTimeout = setTimeout(function () {
+                    touchTimeout = null;
+                    if (touch.el) touch.el.trigger('singleTap');
+                    touch = {};
+                  }, 250);
+                }
+            }, 0);
+          } else {
+            touch = {};
+          }
+      deltaX = deltaY = 0;
+    })
+    // when the browser window loses focus,
+    // for example when a modal dialog is shown,
+    // cancel all ongoing events
+    .on('touchcancel MSPointerCancel pointercancel', cancelAll);
+
+    // scrolling the window indicates intention of the user
+    // to scroll, not tap or swipe, so cancel all ongoing events
+    $(window).on('scroll', cancelAll);
+  });['swipe', 'swipeLeft', 'swipeRight', 'swipeUp', 'swipeDown', 'doubleTap', 'tap', 'singleTap', 'longTap'].forEach(function (eventName) {
+    $.fn[eventName] = function (callback) {
+      return this.on(eventName, callback);
+    };
+  });
+})(Zepto);
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// style-loader: Adds some css to the DOM by adding a <style> tag\n\n// load the styles\nvar content = __webpack_require__(5);\nif(typeof content === 'string') content = [[module.i, content, '']];\n// Prepare cssTransformation\nvar transform;\n\nvar options = {}\noptions.transform = transform\n// add the styles to the DOM\nvar update = __webpack_require__(7)(content, options);\nif(content.locals) module.exports = content.locals;\n// Hot Module Replacement\nif(false) {\n\t// When the styles change, update the <style> tags\n\tif(!content.locals) {\n\t\tmodule.hot.accept(\"!!../../node_modules/css-loader/index.js!../../node_modules/less-loader/dist/cjs.js!./style.less\", function() {\n\t\t\tvar newContent = require(\"!!../../node_modules/css-loader/index.js!../../node_modules/less-loader/dist/cjs.js!./style.less\");\n\t\t\tif(typeof newContent === 'string') newContent = [[module.id, newContent, '']];\n\t\t\tupdate(newContent);\n\t\t});\n\t}\n\t// When the module is disposed, remove the <style> tags\n\tmodule.hot.dispose(function() { update(); });\n}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2FwcC9sZXNzL3N0eWxlLmxlc3M/ZDM3OSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBzdHlsZS1sb2FkZXI6IEFkZHMgc29tZSBjc3MgdG8gdGhlIERPTSBieSBhZGRpbmcgYSA8c3R5bGU+IHRhZ1xuXG4vLyBsb2FkIHRoZSBzdHlsZXNcbnZhciBjb250ZW50ID0gcmVxdWlyZShcIiEhLi4vLi4vbm9kZV9tb2R1bGVzL2Nzcy1sb2FkZXIvaW5kZXguanMhLi4vLi4vbm9kZV9tb2R1bGVzL2xlc3MtbG9hZGVyL2Rpc3QvY2pzLmpzIS4vc3R5bGUubGVzc1wiKTtcbmlmKHR5cGVvZiBjb250ZW50ID09PSAnc3RyaW5nJykgY29udGVudCA9IFtbbW9kdWxlLmlkLCBjb250ZW50LCAnJ11dO1xuLy8gUHJlcGFyZSBjc3NUcmFuc2Zvcm1hdGlvblxudmFyIHRyYW5zZm9ybTtcblxudmFyIG9wdGlvbnMgPSB7fVxub3B0aW9ucy50cmFuc2Zvcm0gPSB0cmFuc2Zvcm1cbi8vIGFkZCB0aGUgc3R5bGVzIHRvIHRoZSBET01cbnZhciB1cGRhdGUgPSByZXF1aXJlKFwiIS4uLy4uL25vZGVfbW9kdWxlcy9zdHlsZS1sb2FkZXIvbGliL2FkZFN0eWxlcy5qc1wiKShjb250ZW50LCBvcHRpb25zKTtcbmlmKGNvbnRlbnQubG9jYWxzKSBtb2R1bGUuZXhwb3J0cyA9IGNvbnRlbnQubG9jYWxzO1xuLy8gSG90IE1vZHVsZSBSZXBsYWNlbWVudFxuaWYobW9kdWxlLmhvdCkge1xuXHQvLyBXaGVuIHRoZSBzdHlsZXMgY2hhbmdlLCB1cGRhdGUgdGhlIDxzdHlsZT4gdGFnc1xuXHRpZighY29udGVudC5sb2NhbHMpIHtcblx0XHRtb2R1bGUuaG90LmFjY2VwdChcIiEhLi4vLi4vbm9kZV9tb2R1bGVzL2Nzcy1sb2FkZXIvaW5kZXguanMhLi4vLi4vbm9kZV9tb2R1bGVzL2xlc3MtbG9hZGVyL2Rpc3QvY2pzLmpzIS4vc3R5bGUubGVzc1wiLCBmdW5jdGlvbigpIHtcblx0XHRcdHZhciBuZXdDb250ZW50ID0gcmVxdWlyZShcIiEhLi4vLi4vbm9kZV9tb2R1bGVzL2Nzcy1sb2FkZXIvaW5kZXguanMhLi4vLi4vbm9kZV9tb2R1bGVzL2xlc3MtbG9hZGVyL2Rpc3QvY2pzLmpzIS4vc3R5bGUubGVzc1wiKTtcblx0XHRcdGlmKHR5cGVvZiBuZXdDb250ZW50ID09PSAnc3RyaW5nJykgbmV3Q29udGVudCA9IFtbbW9kdWxlLmlkLCBuZXdDb250ZW50LCAnJ11dO1xuXHRcdFx0dXBkYXRlKG5ld0NvbnRlbnQpO1xuXHRcdH0pO1xuXHR9XG5cdC8vIFdoZW4gdGhlIG1vZHVsZSBpcyBkaXNwb3NlZCwgcmVtb3ZlIHRoZSA8c3R5bGU+IHRhZ3Ncblx0bW9kdWxlLmhvdC5kaXNwb3NlKGZ1bmN0aW9uKCkgeyB1cGRhdGUoKTsgfSk7XG59XG5cblxuLy8vLy8vLy8vLy8vLy8vLy8vXG4vLyBXRUJQQUNLIEZPT1RFUlxuLy8gLi9hcHAvbGVzcy9zdHlsZS5sZXNzXG4vLyBtb2R1bGUgaWQgPSA0XG4vLyBtb2R1bGUgY2h1bmtzID0gMCJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///4\n");
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(5);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(7)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/less-loader/dist/cjs.js!./style.less", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/less-loader/dist/cjs.js!./style.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(6)(undefined);\n// imports\n\n\n// module\nexports.push([module.i, \"[title=\\\"站长统计\\\"] {\\n  display: none!important;\\n}\\n* {\\n  -webkit-tap-highlight-color: transparent;\\n}\\nhtml,\\nbody {\\n  position: relative;\\n  height: 100%;\\n}\\nbody {\\n  max-width: 500px;\\n  margin: auto;\\n  background: url('/public/images/bg.jpg') no-repeat center center;\\n  background-size: cover;\\n}\\n#game-ct {\\n  display: none;\\n  height: 100%;\\n  background: url('/public/images/bg-cover.png') no-repeat center center;\\n  background-size: cover;\\n  padding-bottom: 170px;\\n  box-sizing: border-box;\\n  position: relative;\\n}\\n#game-ct:after {\\n  content: ' ';\\n  position: absolute;\\n  left: 0;\\n  top: 0;\\n  height: 14px;\\n  width: 100%;\\n  background: url('/public/images/top-nail.png') repeat-x left top;\\n  background-size: auto 100%;\\n}\\n#game-ct:before {\\n  content: ' ';\\n  position: absolute;\\n  left: 0;\\n  top: 0;\\n  width: 100%;\\n  height: 100%;\\n  background-color: transparent;\\n  pointer-events: none;\\n  transition: background-color 0.1s ease;\\n}\\n#game-ct.danger:before {\\n  background-color: rgba(255, 0, 0, 0.3);\\n}\\n.game-intro .index-text-img {\\n  display: block;\\n  width: 45%;\\n  margin: 139px auto 0;\\n}\\n.bottom-btn-ct {\\n  position: absolute;\\n  width: 100%;\\n  bottom: 67px;\\n}\\n.bottom-btn-ct .start-btn {\\n  background: #ECFF00;\\n  border-radius: 100px;\\n  margin: 0 25px;\\n  font-size: 18px;\\n  color: #16142E;\\n  height: 48px;\\n  line-height: 48px;\\n  text-align: center;\\n  cursor: pointer;\\n}\\n.bottom-btn-ct .start-btn:active {\\n  background: #bdcc00;\\n  transform: translateY(3px);\\n}\\n.game-over {\\n  text-align: center;\\n  display: none;\\n}\\n.game-over .text-gameover {\\n  margin-top: 103px;\\n  font-family: 'Roboto Condensed';\\n  font-size: 48px;\\n  color: #3945E6;\\n}\\n.game-over .text-score-title {\\n  font-family: 'Roboto Condensed';\\n  margin-top: 30px;\\n  font-size: 12px;\\n  color: #4F5BFF;\\n}\\n.game-over .text-score {\\n  font-family: 'Roboto Condensed';\\n  font-size: 100px;\\n  color: #FFFFFF;\\n}\\n.game-over .share-btn {\\n  height: 64px;\\n  width: 64px;\\n  display: block;\\n  cursor: pointer;\\n  margin: auto;\\n}\\n.container {\\n  height: 100%;\\n  overflow: hidden;\\n  -webkit-user-select: none;\\n  position: relative;\\n}\\n.container .controller .blood-ct {\\n  margin: 10px 17px;\\n}\\n.container .controller .blood-ct .blood {\\n  border: 1px solid #4955FF;\\n  border-radius: 5px;\\n  height: 6px;\\n  position: relative;\\n  overflow: hidden;\\n}\\n.container .controller .blood-ct .blood i {\\n  float: left;\\n  box-sizing: border-box;\\n  width: 8.333333333%;\\n  height: 100%;\\n  border-right: 1px solid #4955FF;\\n  background-color: #ECFD36;\\n}\\n.container .controller .blood-ct .blood i:last-child {\\n  border-right: none;\\n}\\n.container .controller .blood-ct .blood i.lose {\\n  background-color: red;\\n  transition: opacity .3s ease .5s;\\n  opacity: 0;\\n}\\n.container .controller .ctrl-ct {\\n  width: 50%;\\n  float: left;\\n  overflow: auto;\\n  position: relative;\\n  z-index: 100;\\n}\\n.container .controller .ctrl-ct .item {\\n  width: 64px;\\n  height: 64px;\\n  margin: 20px;\\n  -webkit-user-select: none;\\n  -webkit-touch-callout: none;\\n  pointer-events: none;\\n}\\n.container .controller .ctrl-ct .item img {\\n  width: 100%;\\n  display: block;\\n}\\n.container .controller .ctrl-ct .item.left {\\n  float: left;\\n}\\n.container .controller .ctrl-ct .item.right {\\n  float: right;\\n}\\n.container .controller .score-ct {\\n  position: absolute;\\n  bottom: 58px;\\n  width: 100%;\\n  text-align: center;\\n}\\n.container .controller .score-ct .text-score {\\n  font-family: 'Roboto Condensed';\\n  font-size: 48px;\\n  color: #FFFFFF;\\n}\\n.container .controller .score-ct .text-score-title {\\n  font-family: 'Roboto Condensed';\\n  font-size: 12px;\\n  color: #4F5BFF;\\n}\\n.game-canvas {\\n  height: 100%;\\n  position: relative;\\n  overflow: hidden;\\n  pointer-events: none;\\n}\\n.game-canvas .people {\\n  position: absolute;\\n  top: 0;\\n  left: 0;\\n  width: 15px;\\n  height: 15px;\\n  border-radius: 50%;\\n  transform: translate3d(0, 0, 0);\\n  background-color: #00acff;\\n  overflow: hidden;\\n}\\n.game-canvas .people.danger {\\n  background-color: red;\\n}\\n.game-canvas .scroller {\\n  height: 1000px;\\n  position: relative;\\n}\\n.game-canvas .scroller .floor {\\n  position: absolute;\\n  width: 90px;\\n  height: 10px;\\n}\\n.game-canvas .scroller .floor.normal {\\n  background: url('/public/images/normal.png') no-repeat center center;\\n  background-size: 100% 100%;\\n}\\n.game-canvas .scroller .floor.weak {\\n  transition: opacity .3s ease .3s, transform .3s ease;\\n}\\n.game-canvas .scroller .floor.weak:before {\\n  content: ' ';\\n  transition: transform .3s ease;\\n  transform-origin: 0 0;\\n  width: 52%;\\n  height: 100%;\\n  background: url('/public/images/weak-left.png') no-repeat center center;\\n  background-size: 100% 100%;\\n  left: 0;\\n  top: 0;\\n  position: absolute;\\n}\\n.game-canvas .scroller .floor.weak:after {\\n  content: ' ';\\n  transition: transform .3s ease;\\n  transform-origin: 100% 0;\\n  width: 52%;\\n  height: 100%;\\n  background: url('/public/images/weak-right.png') no-repeat center center;\\n  background-size: 100% 100%;\\n  right: 0;\\n  top: 0;\\n  position: absolute;\\n}\\n.game-canvas .scroller .floor.weak.over {\\n  opacity: 0;\\n}\\n.game-canvas .scroller .floor.weak.over:before {\\n  transform: rotateZ(35deg) translateX(5px);\\n}\\n.game-canvas .scroller .floor.weak.over:after {\\n  transform: rotateZ(-20deg) translateX(-5px);\\n}\\n.game-canvas .scroller .floor.nail:after {\\n  content: ' ';\\n  background: url('/public/images/nail.png') no-repeat center center;\\n  background-size: 100% 100%;\\n  position: absolute;\\n  left: 0;\\n  bottom: 0;\\n  width: 100%;\\n  height: 200%;\\n}\\n.game-canvas .scroller .floor.scroll-left {\\n  background-image: url('/public/images/scroll-left.png');\\n  background-size: 400% 100%;\\n  background-position: 100% top;\\n  animation: bgScroolToLeft 0.5s step-end infinite;\\n}\\n.game-canvas .scroller .floor.scroll-right {\\n  background-image: url('/public/images/scroll-right.png');\\n  background-size: 400% 100%;\\n  background-position: 0 top;\\n  animation: bgScroolToRight 0.5s step-end infinite;\\n}\\n.game-canvas .scroller .floor.spring {\\n  background-color: transparent;\\n}\\n.game-canvas .scroller .floor.spring:after {\\n  content: ' ';\\n  background: url('/public/images/spring-normal.png') no-repeat center center;\\n  background-size: 100% 100%;\\n  position: absolute;\\n  left: 0;\\n  bottom: 0;\\n  width: 100%;\\n  height: 100%;\\n}\\n.game-canvas .scroller .floor.spring.up:after {\\n  background: url('/public/images/spring-up.png') no-repeat center center;\\n  background-size: 100% 100%;\\n  height: 150%;\\n}\\n@keyframes bgShake {\\n  0% {\\n    background-color: #00acff;\\n  }\\n  25% {\\n    background-color: red;\\n  }\\n  50% {\\n    background-color: #00acff;\\n  }\\n  75% {\\n    background-color: red;\\n  }\\n  100% {\\n    background-color: #00acff;\\n  }\\n}\\n@keyframes bloodLose {\\n  0% {\\n    opacity: 1;\\n  }\\n  100% {\\n    opacity: 0;\\n  }\\n}\\n@keyframes bgScroolToRight {\\n  0% {\\n    background-position: 0 top;\\n  }\\n  33% {\\n    background-position: 33% top;\\n  }\\n  66.5% {\\n    background-position: 66.5% top;\\n  }\\n  100% {\\n    background-position: 100% top;\\n  }\\n}\\n@keyframes bgScroolToLeft {\\n  0% {\\n    background-position: 100% top;\\n  }\\n  33% {\\n    background-position: 66.5% top;\\n  }\\n  66.5% {\\n    background-position: 33.5% top;\\n  }\\n  100% {\\n    background-position: 0 top;\\n  }\\n}\\n\", \"\"]);\n\n// exports\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNS5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2FwcC9sZXNzL3N0eWxlLmxlc3M/ZmNlYSJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnRzID0gbW9kdWxlLmV4cG9ydHMgPSByZXF1aXJlKFwiLi4vLi4vbm9kZV9tb2R1bGVzL2Nzcy1sb2FkZXIvbGliL2Nzcy1iYXNlLmpzXCIpKHVuZGVmaW5lZCk7XG4vLyBpbXBvcnRzXG5cblxuLy8gbW9kdWxlXG5leHBvcnRzLnB1c2goW21vZHVsZS5pZCwgXCJbdGl0bGU9XFxcIuermemVv+e7n+iuoVxcXCJdIHtcXG4gIGRpc3BsYXk6IG5vbmUhaW1wb3J0YW50O1xcbn1cXG4qIHtcXG4gIC13ZWJraXQtdGFwLWhpZ2hsaWdodC1jb2xvcjogdHJhbnNwYXJlbnQ7XFxufVxcbmh0bWwsXFxuYm9keSB7XFxuICBwb3NpdGlvbjogcmVsYXRpdmU7XFxuICBoZWlnaHQ6IDEwMCU7XFxufVxcbmJvZHkge1xcbiAgbWF4LXdpZHRoOiA1MDBweDtcXG4gIG1hcmdpbjogYXV0bztcXG4gIGJhY2tncm91bmQ6IHVybCgnL3B1YmxpYy9pbWFnZXMvYmcuanBnJykgbm8tcmVwZWF0IGNlbnRlciBjZW50ZXI7XFxuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xcbn1cXG4jZ2FtZS1jdCB7XFxuICBkaXNwbGF5OiBub25lO1xcbiAgaGVpZ2h0OiAxMDAlO1xcbiAgYmFja2dyb3VuZDogdXJsKCcvcHVibGljL2ltYWdlcy9iZy1jb3Zlci5wbmcnKSBuby1yZXBlYXQgY2VudGVyIGNlbnRlcjtcXG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XFxuICBwYWRkaW5nLWJvdHRvbTogMTcwcHg7XFxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xcbn1cXG4jZ2FtZS1jdDphZnRlciB7XFxuICBjb250ZW50OiAnICc7XFxuICBwb3NpdGlvbjogYWJzb2x1dGU7XFxuICBsZWZ0OiAwO1xcbiAgdG9wOiAwO1xcbiAgaGVpZ2h0OiAxNHB4O1xcbiAgd2lkdGg6IDEwMCU7XFxuICBiYWNrZ3JvdW5kOiB1cmwoJy9wdWJsaWMvaW1hZ2VzL3RvcC1uYWlsLnBuZycpIHJlcGVhdC14IGxlZnQgdG9wO1xcbiAgYmFja2dyb3VuZC1zaXplOiBhdXRvIDEwMCU7XFxufVxcbiNnYW1lLWN0OmJlZm9yZSB7XFxuICBjb250ZW50OiAnICc7XFxuICBwb3NpdGlvbjogYWJzb2x1dGU7XFxuICBsZWZ0OiAwO1xcbiAgdG9wOiAwO1xcbiAgd2lkdGg6IDEwMCU7XFxuICBoZWlnaHQ6IDEwMCU7XFxuICBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDtcXG4gIHBvaW50ZXItZXZlbnRzOiBub25lO1xcbiAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjFzIGVhc2U7XFxufVxcbiNnYW1lLWN0LmRhbmdlcjpiZWZvcmUge1xcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyNTUsIDAsIDAsIDAuMyk7XFxufVxcbi5nYW1lLWludHJvIC5pbmRleC10ZXh0LWltZyB7XFxuICBkaXNwbGF5OiBibG9jaztcXG4gIHdpZHRoOiA0NSU7XFxuICBtYXJnaW46IDEzOXB4IGF1dG8gMDtcXG59XFxuLmJvdHRvbS1idG4tY3Qge1xcbiAgcG9zaXRpb246IGFic29sdXRlO1xcbiAgd2lkdGg6IDEwMCU7XFxuICBib3R0b206IDY3cHg7XFxufVxcbi5ib3R0b20tYnRuLWN0IC5zdGFydC1idG4ge1xcbiAgYmFja2dyb3VuZDogI0VDRkYwMDtcXG4gIGJvcmRlci1yYWRpdXM6IDEwMHB4O1xcbiAgbWFyZ2luOiAwIDI1cHg7XFxuICBmb250LXNpemU6IDE4cHg7XFxuICBjb2xvcjogIzE2MTQyRTtcXG4gIGhlaWdodDogNDhweDtcXG4gIGxpbmUtaGVpZ2h0OiA0OHB4O1xcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xcbiAgY3Vyc29yOiBwb2ludGVyO1xcbn1cXG4uYm90dG9tLWJ0bi1jdCAuc3RhcnQtYnRuOmFjdGl2ZSB7XFxuICBiYWNrZ3JvdW5kOiAjYmRjYzAwO1xcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDNweCk7XFxufVxcbi5nYW1lLW92ZXIge1xcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xcbiAgZGlzcGxheTogbm9uZTtcXG59XFxuLmdhbWUtb3ZlciAudGV4dC1nYW1lb3ZlciB7XFxuICBtYXJnaW4tdG9wOiAxMDNweDtcXG4gIGZvbnQtZmFtaWx5OiAnUm9ib3RvIENvbmRlbnNlZCc7XFxuICBmb250LXNpemU6IDQ4cHg7XFxuICBjb2xvcjogIzM5NDVFNjtcXG59XFxuLmdhbWUtb3ZlciAudGV4dC1zY29yZS10aXRsZSB7XFxuICBmb250LWZhbWlseTogJ1JvYm90byBDb25kZW5zZWQnO1xcbiAgbWFyZ2luLXRvcDogMzBweDtcXG4gIGZvbnQtc2l6ZTogMTJweDtcXG4gIGNvbG9yOiAjNEY1QkZGO1xcbn1cXG4uZ2FtZS1vdmVyIC50ZXh0LXNjb3JlIHtcXG4gIGZvbnQtZmFtaWx5OiAnUm9ib3RvIENvbmRlbnNlZCc7XFxuICBmb250LXNpemU6IDEwMHB4O1xcbiAgY29sb3I6ICNGRkZGRkY7XFxufVxcbi5nYW1lLW92ZXIgLnNoYXJlLWJ0biB7XFxuICBoZWlnaHQ6IDY0cHg7XFxuICB3aWR0aDogNjRweDtcXG4gIGRpc3BsYXk6IGJsb2NrO1xcbiAgY3Vyc29yOiBwb2ludGVyO1xcbiAgbWFyZ2luOiBhdXRvO1xcbn1cXG4uY29udGFpbmVyIHtcXG4gIGhlaWdodDogMTAwJTtcXG4gIG92ZXJmbG93OiBoaWRkZW47XFxuICAtd2Via2l0LXVzZXItc2VsZWN0OiBub25lO1xcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xcbn1cXG4uY29udGFpbmVyIC5jb250cm9sbGVyIC5ibG9vZC1jdCB7XFxuICBtYXJnaW46IDEwcHggMTdweDtcXG59XFxuLmNvbnRhaW5lciAuY29udHJvbGxlciAuYmxvb2QtY3QgLmJsb29kIHtcXG4gIGJvcmRlcjogMXB4IHNvbGlkICM0OTU1RkY7XFxuICBib3JkZXItcmFkaXVzOiA1cHg7XFxuICBoZWlnaHQ6IDZweDtcXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcXG4gIG92ZXJmbG93OiBoaWRkZW47XFxufVxcbi5jb250YWluZXIgLmNvbnRyb2xsZXIgLmJsb29kLWN0IC5ibG9vZCBpIHtcXG4gIGZsb2F0OiBsZWZ0O1xcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcXG4gIHdpZHRoOiA4LjMzMzMzMzMzMyU7XFxuICBoZWlnaHQ6IDEwMCU7XFxuICBib3JkZXItcmlnaHQ6IDFweCBzb2xpZCAjNDk1NUZGO1xcbiAgYmFja2dyb3VuZC1jb2xvcjogI0VDRkQzNjtcXG59XFxuLmNvbnRhaW5lciAuY29udHJvbGxlciAuYmxvb2QtY3QgLmJsb29kIGk6bGFzdC1jaGlsZCB7XFxuICBib3JkZXItcmlnaHQ6IG5vbmU7XFxufVxcbi5jb250YWluZXIgLmNvbnRyb2xsZXIgLmJsb29kLWN0IC5ibG9vZCBpLmxvc2Uge1xcbiAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xcbiAgdHJhbnNpdGlvbjogb3BhY2l0eSAuM3MgZWFzZSAuNXM7XFxuICBvcGFjaXR5OiAwO1xcbn1cXG4uY29udGFpbmVyIC5jb250cm9sbGVyIC5jdHJsLWN0IHtcXG4gIHdpZHRoOiA1MCU7XFxuICBmbG9hdDogbGVmdDtcXG4gIG92ZXJmbG93OiBhdXRvO1xcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xcbiAgei1pbmRleDogMTAwO1xcbn1cXG4uY29udGFpbmVyIC5jb250cm9sbGVyIC5jdHJsLWN0IC5pdGVtIHtcXG4gIHdpZHRoOiA2NHB4O1xcbiAgaGVpZ2h0OiA2NHB4O1xcbiAgbWFyZ2luOiAyMHB4O1xcbiAgLXdlYmtpdC11c2VyLXNlbGVjdDogbm9uZTtcXG4gIC13ZWJraXQtdG91Y2gtY2FsbG91dDogbm9uZTtcXG4gIHBvaW50ZXItZXZlbnRzOiBub25lO1xcbn1cXG4uY29udGFpbmVyIC5jb250cm9sbGVyIC5jdHJsLWN0IC5pdGVtIGltZyB7XFxuICB3aWR0aDogMTAwJTtcXG4gIGRpc3BsYXk6IGJsb2NrO1xcbn1cXG4uY29udGFpbmVyIC5jb250cm9sbGVyIC5jdHJsLWN0IC5pdGVtLmxlZnQge1xcbiAgZmxvYXQ6IGxlZnQ7XFxufVxcbi5jb250YWluZXIgLmNvbnRyb2xsZXIgLmN0cmwtY3QgLml0ZW0ucmlnaHQge1xcbiAgZmxvYXQ6IHJpZ2h0O1xcbn1cXG4uY29udGFpbmVyIC5jb250cm9sbGVyIC5zY29yZS1jdCB7XFxuICBwb3NpdGlvbjogYWJzb2x1dGU7XFxuICBib3R0b206IDU4cHg7XFxuICB3aWR0aDogMTAwJTtcXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcXG59XFxuLmNvbnRhaW5lciAuY29udHJvbGxlciAuc2NvcmUtY3QgLnRleHQtc2NvcmUge1xcbiAgZm9udC1mYW1pbHk6ICdSb2JvdG8gQ29uZGVuc2VkJztcXG4gIGZvbnQtc2l6ZTogNDhweDtcXG4gIGNvbG9yOiAjRkZGRkZGO1xcbn1cXG4uY29udGFpbmVyIC5jb250cm9sbGVyIC5zY29yZS1jdCAudGV4dC1zY29yZS10aXRsZSB7XFxuICBmb250LWZhbWlseTogJ1JvYm90byBDb25kZW5zZWQnO1xcbiAgZm9udC1zaXplOiAxMnB4O1xcbiAgY29sb3I6ICM0RjVCRkY7XFxufVxcbi5nYW1lLWNhbnZhcyB7XFxuICBoZWlnaHQ6IDEwMCU7XFxuICBwb3NpdGlvbjogcmVsYXRpdmU7XFxuICBvdmVyZmxvdzogaGlkZGVuO1xcbiAgcG9pbnRlci1ldmVudHM6IG5vbmU7XFxufVxcbi5nYW1lLWNhbnZhcyAucGVvcGxlIHtcXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcXG4gIHRvcDogMDtcXG4gIGxlZnQ6IDA7XFxuICB3aWR0aDogMTVweDtcXG4gIGhlaWdodDogMTVweDtcXG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcXG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMCwgMCwgMCk7XFxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDBhY2ZmO1xcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcXG59XFxuLmdhbWUtY2FudmFzIC5wZW9wbGUuZGFuZ2VyIHtcXG4gIGJhY2tncm91bmQtY29sb3I6IHJlZDtcXG59XFxuLmdhbWUtY2FudmFzIC5zY3JvbGxlciB7XFxuICBoZWlnaHQ6IDEwMDBweDtcXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcXG59XFxuLmdhbWUtY2FudmFzIC5zY3JvbGxlciAuZmxvb3Ige1xcbiAgcG9zaXRpb246IGFic29sdXRlO1xcbiAgd2lkdGg6IDkwcHg7XFxuICBoZWlnaHQ6IDEwcHg7XFxufVxcbi5nYW1lLWNhbnZhcyAuc2Nyb2xsZXIgLmZsb29yLm5vcm1hbCB7XFxuICBiYWNrZ3JvdW5kOiB1cmwoJy9wdWJsaWMvaW1hZ2VzL25vcm1hbC5wbmcnKSBuby1yZXBlYXQgY2VudGVyIGNlbnRlcjtcXG4gIGJhY2tncm91bmQtc2l6ZTogMTAwJSAxMDAlO1xcbn1cXG4uZ2FtZS1jYW52YXMgLnNjcm9sbGVyIC5mbG9vci53ZWFrIHtcXG4gIHRyYW5zaXRpb246IG9wYWNpdHkgLjNzIGVhc2UgLjNzLCB0cmFuc2Zvcm0gLjNzIGVhc2U7XFxufVxcbi5nYW1lLWNhbnZhcyAuc2Nyb2xsZXIgLmZsb29yLndlYWs6YmVmb3JlIHtcXG4gIGNvbnRlbnQ6ICcgJztcXG4gIHRyYW5zaXRpb246IHRyYW5zZm9ybSAuM3MgZWFzZTtcXG4gIHRyYW5zZm9ybS1vcmlnaW46IDAgMDtcXG4gIHdpZHRoOiA1MiU7XFxuICBoZWlnaHQ6IDEwMCU7XFxuICBiYWNrZ3JvdW5kOiB1cmwoJy9wdWJsaWMvaW1hZ2VzL3dlYWstbGVmdC5wbmcnKSBuby1yZXBlYXQgY2VudGVyIGNlbnRlcjtcXG4gIGJhY2tncm91bmQtc2l6ZTogMTAwJSAxMDAlO1xcbiAgbGVmdDogMDtcXG4gIHRvcDogMDtcXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcXG59XFxuLmdhbWUtY2FudmFzIC5zY3JvbGxlciAuZmxvb3Iud2VhazphZnRlciB7XFxuICBjb250ZW50OiAnICc7XFxuICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gLjNzIGVhc2U7XFxuICB0cmFuc2Zvcm0tb3JpZ2luOiAxMDAlIDA7XFxuICB3aWR0aDogNTIlO1xcbiAgaGVpZ2h0OiAxMDAlO1xcbiAgYmFja2dyb3VuZDogdXJsKCcvcHVibGljL2ltYWdlcy93ZWFrLXJpZ2h0LnBuZycpIG5vLXJlcGVhdCBjZW50ZXIgY2VudGVyO1xcbiAgYmFja2dyb3VuZC1zaXplOiAxMDAlIDEwMCU7XFxuICByaWdodDogMDtcXG4gIHRvcDogMDtcXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcXG59XFxuLmdhbWUtY2FudmFzIC5zY3JvbGxlciAuZmxvb3Iud2Vhay5vdmVyIHtcXG4gIG9wYWNpdHk6IDA7XFxufVxcbi5nYW1lLWNhbnZhcyAuc2Nyb2xsZXIgLmZsb29yLndlYWsub3ZlcjpiZWZvcmUge1xcbiAgdHJhbnNmb3JtOiByb3RhdGVaKDM1ZGVnKSB0cmFuc2xhdGVYKDVweCk7XFxufVxcbi5nYW1lLWNhbnZhcyAuc2Nyb2xsZXIgLmZsb29yLndlYWsub3ZlcjphZnRlciB7XFxuICB0cmFuc2Zvcm06IHJvdGF0ZVooLTIwZGVnKSB0cmFuc2xhdGVYKC01cHgpO1xcbn1cXG4uZ2FtZS1jYW52YXMgLnNjcm9sbGVyIC5mbG9vci5uYWlsOmFmdGVyIHtcXG4gIGNvbnRlbnQ6ICcgJztcXG4gIGJhY2tncm91bmQ6IHVybCgnL3B1YmxpYy9pbWFnZXMvbmFpbC5wbmcnKSBuby1yZXBlYXQgY2VudGVyIGNlbnRlcjtcXG4gIGJhY2tncm91bmQtc2l6ZTogMTAwJSAxMDAlO1xcbiAgcG9zaXRpb246IGFic29sdXRlO1xcbiAgbGVmdDogMDtcXG4gIGJvdHRvbTogMDtcXG4gIHdpZHRoOiAxMDAlO1xcbiAgaGVpZ2h0OiAyMDAlO1xcbn1cXG4uZ2FtZS1jYW52YXMgLnNjcm9sbGVyIC5mbG9vci5zY3JvbGwtbGVmdCB7XFxuICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoJy9wdWJsaWMvaW1hZ2VzL3Njcm9sbC1sZWZ0LnBuZycpO1xcbiAgYmFja2dyb3VuZC1zaXplOiA0MDAlIDEwMCU7XFxuICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiAxMDAlIHRvcDtcXG4gIGFuaW1hdGlvbjogYmdTY3Jvb2xUb0xlZnQgMC41cyBzdGVwLWVuZCBpbmZpbml0ZTtcXG59XFxuLmdhbWUtY2FudmFzIC5zY3JvbGxlciAuZmxvb3Iuc2Nyb2xsLXJpZ2h0IHtcXG4gIGJhY2tncm91bmQtaW1hZ2U6IHVybCgnL3B1YmxpYy9pbWFnZXMvc2Nyb2xsLXJpZ2h0LnBuZycpO1xcbiAgYmFja2dyb3VuZC1zaXplOiA0MDAlIDEwMCU7XFxuICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiAwIHRvcDtcXG4gIGFuaW1hdGlvbjogYmdTY3Jvb2xUb1JpZ2h0IDAuNXMgc3RlcC1lbmQgaW5maW5pdGU7XFxufVxcbi5nYW1lLWNhbnZhcyAuc2Nyb2xsZXIgLmZsb29yLnNwcmluZyB7XFxuICBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDtcXG59XFxuLmdhbWUtY2FudmFzIC5zY3JvbGxlciAuZmxvb3Iuc3ByaW5nOmFmdGVyIHtcXG4gIGNvbnRlbnQ6ICcgJztcXG4gIGJhY2tncm91bmQ6IHVybCgnL3B1YmxpYy9pbWFnZXMvc3ByaW5nLW5vcm1hbC5wbmcnKSBuby1yZXBlYXQgY2VudGVyIGNlbnRlcjtcXG4gIGJhY2tncm91bmQtc2l6ZTogMTAwJSAxMDAlO1xcbiAgcG9zaXRpb246IGFic29sdXRlO1xcbiAgbGVmdDogMDtcXG4gIGJvdHRvbTogMDtcXG4gIHdpZHRoOiAxMDAlO1xcbiAgaGVpZ2h0OiAxMDAlO1xcbn1cXG4uZ2FtZS1jYW52YXMgLnNjcm9sbGVyIC5mbG9vci5zcHJpbmcudXA6YWZ0ZXIge1xcbiAgYmFja2dyb3VuZDogdXJsKCcvcHVibGljL2ltYWdlcy9zcHJpbmctdXAucG5nJykgbm8tcmVwZWF0IGNlbnRlciBjZW50ZXI7XFxuICBiYWNrZ3JvdW5kLXNpemU6IDEwMCUgMTAwJTtcXG4gIGhlaWdodDogMTUwJTtcXG59XFxuQGtleWZyYW1lcyBiZ1NoYWtlIHtcXG4gIDAlIHtcXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzAwYWNmZjtcXG4gIH1cXG4gIDI1JSB7XFxuICAgIGJhY2tncm91bmQtY29sb3I6IHJlZDtcXG4gIH1cXG4gIDUwJSB7XFxuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMGFjZmY7XFxuICB9XFxuICA3NSUge1xcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZWQ7XFxuICB9XFxuICAxMDAlIHtcXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzAwYWNmZjtcXG4gIH1cXG59XFxuQGtleWZyYW1lcyBibG9vZExvc2Uge1xcbiAgMCUge1xcbiAgICBvcGFjaXR5OiAxO1xcbiAgfVxcbiAgMTAwJSB7XFxuICAgIG9wYWNpdHk6IDA7XFxuICB9XFxufVxcbkBrZXlmcmFtZXMgYmdTY3Jvb2xUb1JpZ2h0IHtcXG4gIDAlIHtcXG4gICAgYmFja2dyb3VuZC1wb3NpdGlvbjogMCB0b3A7XFxuICB9XFxuICAzMyUge1xcbiAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiAzMyUgdG9wO1xcbiAgfVxcbiAgNjYuNSUge1xcbiAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiA2Ni41JSB0b3A7XFxuICB9XFxuICAxMDAlIHtcXG4gICAgYmFja2dyb3VuZC1wb3NpdGlvbjogMTAwJSB0b3A7XFxuICB9XFxufVxcbkBrZXlmcmFtZXMgYmdTY3Jvb2xUb0xlZnQge1xcbiAgMCUge1xcbiAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiAxMDAlIHRvcDtcXG4gIH1cXG4gIDMzJSB7XFxuICAgIGJhY2tncm91bmQtcG9zaXRpb246IDY2LjUlIHRvcDtcXG4gIH1cXG4gIDY2LjUlIHtcXG4gICAgYmFja2dyb3VuZC1wb3NpdGlvbjogMzMuNSUgdG9wO1xcbiAgfVxcbiAgMTAwJSB7XFxuICAgIGJhY2tncm91bmQtcG9zaXRpb246IDAgdG9wO1xcbiAgfVxcbn1cXG5cIiwgXCJcIl0pO1xuXG4vLyBleHBvcnRzXG5cblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL25vZGVfbW9kdWxlcy9jc3MtbG9hZGVyIS4vbm9kZV9tb2R1bGVzL2xlc3MtbG9hZGVyL2Rpc3QvY2pzLmpzIS4vYXBwL2xlc3Mvc3R5bGUubGVzc1xuLy8gbW9kdWxlIGlkID0gNVxuLy8gbW9kdWxlIGNodW5rcyA9IDAiXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///5\n");
+exports = module.exports = __webpack_require__(6)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "[title=\"站长统计\"] {\n  display: none!important;\n}\n* {\n  -webkit-tap-highlight-color: transparent;\n}\nhtml,\nbody {\n  position: relative;\n  height: 100%;\n}\nbody {\n  max-width: 500px;\n  margin: auto;\n  background: url('/public/images/bg.jpg') no-repeat center center;\n  background-size: cover;\n}\n#game-ct {\n  display: none;\n  height: 100%;\n  background: url('/public/images/bg-cover.png') no-repeat center center;\n  background-size: cover;\n  padding-bottom: 170px;\n  box-sizing: border-box;\n  position: relative;\n}\n#game-ct:after {\n  content: ' ';\n  position: absolute;\n  left: 0;\n  top: 0;\n  height: 14px;\n  width: 100%;\n  background: url('/public/images/top-nail.png') repeat-x left top;\n  background-size: auto 100%;\n}\n#game-ct:before {\n  content: ' ';\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background-color: transparent;\n  pointer-events: none;\n  transition: background-color 0.1s ease;\n}\n#game-ct.danger:before {\n  background-color: rgba(255, 0, 0, 0.3);\n}\n.game-intro .index-text-img {\n  display: block;\n  width: 45%;\n  margin: 139px auto 0;\n}\n.game-intro .text-desc {\n  text-align: center;\n  color: #7179da;\n  margin-top: 50px;\n  font-size: 14px;\n}\n.bottom-btn-ct {\n  position: absolute;\n  width: 100%;\n  bottom: 67px;\n}\n.bottom-btn-ct .start-btn {\n  background: #ECFF00;\n  border-radius: 100px;\n  margin: 0 25px;\n  font-size: 18px;\n  color: #16142E;\n  height: 48px;\n  line-height: 48px;\n  text-align: center;\n  cursor: pointer;\n}\n.bottom-btn-ct .start-btn:active {\n  background: #bdcc00;\n  transform: translateY(3px);\n}\n.game-over {\n  text-align: center;\n  display: none;\n}\n.game-over .text-gameover {\n  margin-top: 103px;\n  font-family: 'Roboto Condensed';\n  font-size: 48px;\n  color: #3945E6;\n}\n.game-over .text-score-title {\n  font-family: 'Roboto Condensed';\n  margin-top: 30px;\n  font-size: 12px;\n  color: #4F5BFF;\n}\n.game-over .text-score {\n  font-family: 'Roboto Condensed';\n  font-size: 100px;\n  color: #FFFFFF;\n}\n.game-over .share-btn {\n  height: 64px;\n  width: 64px;\n  display: block;\n  cursor: pointer;\n  margin: auto;\n}\n.game-over .text-desc {\n  text-align: center;\n  color: #FFFFFF;\n  margin-top: 50px;\n  font-size: 14px;\n}\n.game-over .author {\n  position: absolute;\n  bottom: 16px;\n  left: 0;\n  width: 100%;\n  color: #7179da;\n  text-decoration: none;\n}\n.container {\n  height: 100%;\n  overflow: hidden;\n  -webkit-user-select: none;\n  position: relative;\n}\n.container .controller .blood-ct {\n  margin: 10px 17px;\n}\n.container .controller .blood-ct .blood {\n  border: 1px solid #4955FF;\n  border-radius: 5px;\n  height: 6px;\n  position: relative;\n  overflow: hidden;\n}\n.container .controller .blood-ct .blood i {\n  float: left;\n  box-sizing: border-box;\n  width: 8.333333333%;\n  height: 100%;\n  border-right: 1px solid #4955FF;\n  background-color: #ECFD36;\n}\n.container .controller .blood-ct .blood i:last-child {\n  border-right: none;\n}\n.container .controller .blood-ct .blood i.lose {\n  background-color: red;\n  transition: opacity .3s ease .5s;\n  opacity: 0;\n}\n.container .controller .ctrl-ct {\n  width: 50%;\n  float: left;\n  overflow: auto;\n  position: relative;\n  z-index: 100;\n}\n.container .controller .ctrl-ct .item {\n  width: 64px;\n  height: 64px;\n  margin: 20px;\n  -webkit-user-select: none;\n  -webkit-touch-callout: none;\n  pointer-events: none;\n}\n.container .controller .ctrl-ct .item img {\n  width: 100%;\n  display: block;\n}\n.container .controller .ctrl-ct .item.left {\n  float: left;\n}\n.container .controller .ctrl-ct .item.right {\n  float: right;\n}\n.container .controller .score-ct {\n  position: absolute;\n  bottom: 58px;\n  width: 100%;\n  text-align: center;\n}\n.container .controller .score-ct .text-score {\n  font-family: 'Roboto Condensed';\n  font-size: 48px;\n  color: #FFFFFF;\n}\n.container .controller .score-ct .text-score-title {\n  font-family: 'Roboto Condensed';\n  font-size: 12px;\n  color: #4F5BFF;\n}\n.game-canvas {\n  height: 100%;\n  position: relative;\n  overflow: hidden;\n  pointer-events: none;\n}\n.game-canvas .people {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 15px;\n  height: 15px;\n  border-radius: 50%;\n  transform: translate3d(0, 0, 0);\n  background-color: #00acff;\n  overflow: hidden;\n}\n.game-canvas .people.danger {\n  background-color: red;\n}\n.game-canvas .scroller {\n  height: 1000px;\n  position: relative;\n}\n.game-canvas .scroller .floor {\n  position: absolute;\n  width: 90px;\n  height: 10px;\n}\n.game-canvas .scroller .floor.normal {\n  background: url('/public/images/normal.png') no-repeat center center;\n  background-size: 100% 100%;\n}\n.game-canvas .scroller .floor.weak {\n  transition: opacity .3s ease .3s, transform .3s ease;\n}\n.game-canvas .scroller .floor.weak:before {\n  content: ' ';\n  transition: transform .3s ease;\n  transform-origin: 0 0;\n  width: 52%;\n  height: 100%;\n  background: url('/public/images/weak-left.png') no-repeat center center;\n  background-size: 100% 100%;\n  left: 0;\n  top: 0;\n  position: absolute;\n}\n.game-canvas .scroller .floor.weak:after {\n  content: ' ';\n  transition: transform .3s ease;\n  transform-origin: 100% 0;\n  width: 52%;\n  height: 100%;\n  background: url('/public/images/weak-right.png') no-repeat center center;\n  background-size: 100% 100%;\n  right: 0;\n  top: 0;\n  position: absolute;\n}\n.game-canvas .scroller .floor.weak.over {\n  opacity: 0;\n}\n.game-canvas .scroller .floor.weak.over:before {\n  transform: rotateZ(35deg) translateX(5px);\n}\n.game-canvas .scroller .floor.weak.over:after {\n  transform: rotateZ(-20deg) translateX(-5px);\n}\n.game-canvas .scroller .floor.nail:after {\n  content: ' ';\n  background: url('/public/images/nail.png') no-repeat center center;\n  background-size: 100% 100%;\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 200%;\n}\n.game-canvas .scroller .floor.scroll-left {\n  background-image: url('/public/images/scroll-left.png');\n  background-size: 400% 100%;\n  background-position: 100% top;\n  animation: bgScroolToLeft 0.5s step-end infinite;\n}\n.game-canvas .scroller .floor.scroll-right {\n  background-image: url('/public/images/scroll-right.png');\n  background-size: 400% 100%;\n  background-position: 0 top;\n  animation: bgScroolToRight 0.5s step-end infinite;\n}\n.game-canvas .scroller .floor.spring {\n  background-color: transparent;\n}\n.game-canvas .scroller .floor.spring:after {\n  content: ' ';\n  background: url('/public/images/spring-normal.png') no-repeat center center;\n  background-size: 100% 100%;\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n}\n.game-canvas .scroller .floor.spring.up:after {\n  background: url('/public/images/spring-up.png') no-repeat center center;\n  background-size: 100% 100%;\n  height: 150%;\n}\n@keyframes bgShake {\n  0% {\n    background-color: #00acff;\n  }\n  25% {\n    background-color: red;\n  }\n  50% {\n    background-color: #00acff;\n  }\n  75% {\n    background-color: red;\n  }\n  100% {\n    background-color: #00acff;\n  }\n}\n@keyframes bloodLose {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n@keyframes bgScroolToRight {\n  0% {\n    background-position: 0 top;\n  }\n  33% {\n    background-position: 33% top;\n  }\n  66.5% {\n    background-position: 66.5% top;\n  }\n  100% {\n    background-position: 100% top;\n  }\n}\n@keyframes bgScroolToLeft {\n  0% {\n    background-position: 100% top;\n  }\n  33% {\n    background-position: 66.5% top;\n  }\n  66.5% {\n    background-position: 33.5% top;\n  }\n  100% {\n    background-position: 0 top;\n  }\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-eval("/*\n\tMIT License http://www.opensource.org/licenses/mit-license.php\n\tAuthor Tobias Koppers @sokra\n*/\n// css base code, injected by the css-loader\nmodule.exports = function(useSourceMap) {\n\tvar list = [];\n\n\t// return the list of modules as css string\n\tlist.toString = function toString() {\n\t\treturn this.map(function (item) {\n\t\t\tvar content = cssWithMappingToString(item, useSourceMap);\n\t\t\tif(item[2]) {\n\t\t\t\treturn \"@media \" + item[2] + \"{\" + content + \"}\";\n\t\t\t} else {\n\t\t\t\treturn content;\n\t\t\t}\n\t\t}).join(\"\");\n\t};\n\n\t// import a list of modules into the list\n\tlist.i = function(modules, mediaQuery) {\n\t\tif(typeof modules === \"string\")\n\t\t\tmodules = [[null, modules, \"\"]];\n\t\tvar alreadyImportedModules = {};\n\t\tfor(var i = 0; i < this.length; i++) {\n\t\t\tvar id = this[i][0];\n\t\t\tif(typeof id === \"number\")\n\t\t\t\talreadyImportedModules[id] = true;\n\t\t}\n\t\tfor(i = 0; i < modules.length; i++) {\n\t\t\tvar item = modules[i];\n\t\t\t// skip already imported module\n\t\t\t// this implementation is not 100% perfect for weird media query combinations\n\t\t\t//  when a module is imported multiple times with different media queries.\n\t\t\t//  I hope this will never occur (Hey this way we have smaller bundles)\n\t\t\tif(typeof item[0] !== \"number\" || !alreadyImportedModules[item[0]]) {\n\t\t\t\tif(mediaQuery && !item[2]) {\n\t\t\t\t\titem[2] = mediaQuery;\n\t\t\t\t} else if(mediaQuery) {\n\t\t\t\t\titem[2] = \"(\" + item[2] + \") and (\" + mediaQuery + \")\";\n\t\t\t\t}\n\t\t\t\tlist.push(item);\n\t\t\t}\n\t\t}\n\t};\n\treturn list;\n};\n\nfunction cssWithMappingToString(item, useSourceMap) {\n\tvar content = item[1] || '';\n\tvar cssMapping = item[3];\n\tif (!cssMapping) {\n\t\treturn content;\n\t}\n\n\tif (useSourceMap && typeof btoa === 'function') {\n\t\tvar sourceMapping = toComment(cssMapping);\n\t\tvar sourceURLs = cssMapping.sources.map(function (source) {\n\t\t\treturn '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'\n\t\t});\n\n\t\treturn [content].concat(sourceURLs).concat([sourceMapping]).join('\\n');\n\t}\n\n\treturn [content].join('\\n');\n}\n\n// Adapted from convert-source-map (MIT)\nfunction toComment(sourceMap) {\n\t// eslint-disable-next-line no-undef\n\tvar base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));\n\tvar data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;\n\n\treturn '/*# ' + data + ' */';\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNi5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL25vZGVfbW9kdWxlcy9jc3MtbG9hZGVyL2xpYi9jc3MtYmFzZS5qcz8xNTlmIl0sInNvdXJjZXNDb250ZW50IjpbIi8qXG5cdE1JVCBMaWNlbnNlIGh0dHA6Ly93d3cub3BlbnNvdXJjZS5vcmcvbGljZW5zZXMvbWl0LWxpY2Vuc2UucGhwXG5cdEF1dGhvciBUb2JpYXMgS29wcGVycyBAc29rcmFcbiovXG4vLyBjc3MgYmFzZSBjb2RlLCBpbmplY3RlZCBieSB0aGUgY3NzLWxvYWRlclxubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbih1c2VTb3VyY2VNYXApIHtcblx0dmFyIGxpc3QgPSBbXTtcblxuXHQvLyByZXR1cm4gdGhlIGxpc3Qgb2YgbW9kdWxlcyBhcyBjc3Mgc3RyaW5nXG5cdGxpc3QudG9TdHJpbmcgPSBmdW5jdGlvbiB0b1N0cmluZygpIHtcblx0XHRyZXR1cm4gdGhpcy5tYXAoZnVuY3Rpb24gKGl0ZW0pIHtcblx0XHRcdHZhciBjb250ZW50ID0gY3NzV2l0aE1hcHBpbmdUb1N0cmluZyhpdGVtLCB1c2VTb3VyY2VNYXApO1xuXHRcdFx0aWYoaXRlbVsyXSkge1xuXHRcdFx0XHRyZXR1cm4gXCJAbWVkaWEgXCIgKyBpdGVtWzJdICsgXCJ7XCIgKyBjb250ZW50ICsgXCJ9XCI7XG5cdFx0XHR9IGVsc2Uge1xuXHRcdFx0XHRyZXR1cm4gY29udGVudDtcblx0XHRcdH1cblx0XHR9KS5qb2luKFwiXCIpO1xuXHR9O1xuXG5cdC8vIGltcG9ydCBhIGxpc3Qgb2YgbW9kdWxlcyBpbnRvIHRoZSBsaXN0XG5cdGxpc3QuaSA9IGZ1bmN0aW9uKG1vZHVsZXMsIG1lZGlhUXVlcnkpIHtcblx0XHRpZih0eXBlb2YgbW9kdWxlcyA9PT0gXCJzdHJpbmdcIilcblx0XHRcdG1vZHVsZXMgPSBbW251bGwsIG1vZHVsZXMsIFwiXCJdXTtcblx0XHR2YXIgYWxyZWFkeUltcG9ydGVkTW9kdWxlcyA9IHt9O1xuXHRcdGZvcih2YXIgaSA9IDA7IGkgPCB0aGlzLmxlbmd0aDsgaSsrKSB7XG5cdFx0XHR2YXIgaWQgPSB0aGlzW2ldWzBdO1xuXHRcdFx0aWYodHlwZW9mIGlkID09PSBcIm51bWJlclwiKVxuXHRcdFx0XHRhbHJlYWR5SW1wb3J0ZWRNb2R1bGVzW2lkXSA9IHRydWU7XG5cdFx0fVxuXHRcdGZvcihpID0gMDsgaSA8IG1vZHVsZXMubGVuZ3RoOyBpKyspIHtcblx0XHRcdHZhciBpdGVtID0gbW9kdWxlc1tpXTtcblx0XHRcdC8vIHNraXAgYWxyZWFkeSBpbXBvcnRlZCBtb2R1bGVcblx0XHRcdC8vIHRoaXMgaW1wbGVtZW50YXRpb24gaXMgbm90IDEwMCUgcGVyZmVjdCBmb3Igd2VpcmQgbWVkaWEgcXVlcnkgY29tYmluYXRpb25zXG5cdFx0XHQvLyAgd2hlbiBhIG1vZHVsZSBpcyBpbXBvcnRlZCBtdWx0aXBsZSB0aW1lcyB3aXRoIGRpZmZlcmVudCBtZWRpYSBxdWVyaWVzLlxuXHRcdFx0Ly8gIEkgaG9wZSB0aGlzIHdpbGwgbmV2ZXIgb2NjdXIgKEhleSB0aGlzIHdheSB3ZSBoYXZlIHNtYWxsZXIgYnVuZGxlcylcblx0XHRcdGlmKHR5cGVvZiBpdGVtWzBdICE9PSBcIm51bWJlclwiIHx8ICFhbHJlYWR5SW1wb3J0ZWRNb2R1bGVzW2l0ZW1bMF1dKSB7XG5cdFx0XHRcdGlmKG1lZGlhUXVlcnkgJiYgIWl0ZW1bMl0pIHtcblx0XHRcdFx0XHRpdGVtWzJdID0gbWVkaWFRdWVyeTtcblx0XHRcdFx0fSBlbHNlIGlmKG1lZGlhUXVlcnkpIHtcblx0XHRcdFx0XHRpdGVtWzJdID0gXCIoXCIgKyBpdGVtWzJdICsgXCIpIGFuZCAoXCIgKyBtZWRpYVF1ZXJ5ICsgXCIpXCI7XG5cdFx0XHRcdH1cblx0XHRcdFx0bGlzdC5wdXNoKGl0ZW0pO1xuXHRcdFx0fVxuXHRcdH1cblx0fTtcblx0cmV0dXJuIGxpc3Q7XG59O1xuXG5mdW5jdGlvbiBjc3NXaXRoTWFwcGluZ1RvU3RyaW5nKGl0ZW0sIHVzZVNvdXJjZU1hcCkge1xuXHR2YXIgY29udGVudCA9IGl0ZW1bMV0gfHwgJyc7XG5cdHZhciBjc3NNYXBwaW5nID0gaXRlbVszXTtcblx0aWYgKCFjc3NNYXBwaW5nKSB7XG5cdFx0cmV0dXJuIGNvbnRlbnQ7XG5cdH1cblxuXHRpZiAodXNlU291cmNlTWFwICYmIHR5cGVvZiBidG9hID09PSAnZnVuY3Rpb24nKSB7XG5cdFx0dmFyIHNvdXJjZU1hcHBpbmcgPSB0b0NvbW1lbnQoY3NzTWFwcGluZyk7XG5cdFx0dmFyIHNvdXJjZVVSTHMgPSBjc3NNYXBwaW5nLnNvdXJjZXMubWFwKGZ1bmN0aW9uIChzb3VyY2UpIHtcblx0XHRcdHJldHVybiAnLyojIHNvdXJjZVVSTD0nICsgY3NzTWFwcGluZy5zb3VyY2VSb290ICsgc291cmNlICsgJyAqLydcblx0XHR9KTtcblxuXHRcdHJldHVybiBbY29udGVudF0uY29uY2F0KHNvdXJjZVVSTHMpLmNvbmNhdChbc291cmNlTWFwcGluZ10pLmpvaW4oJ1xcbicpO1xuXHR9XG5cblx0cmV0dXJuIFtjb250ZW50XS5qb2luKCdcXG4nKTtcbn1cblxuLy8gQWRhcHRlZCBmcm9tIGNvbnZlcnQtc291cmNlLW1hcCAoTUlUKVxuZnVuY3Rpb24gdG9Db21tZW50KHNvdXJjZU1hcCkge1xuXHQvLyBlc2xpbnQtZGlzYWJsZS1uZXh0LWxpbmUgbm8tdW5kZWZcblx0dmFyIGJhc2U2NCA9IGJ0b2EodW5lc2NhcGUoZW5jb2RlVVJJQ29tcG9uZW50KEpTT04uc3RyaW5naWZ5KHNvdXJjZU1hcCkpKSk7XG5cdHZhciBkYXRhID0gJ3NvdXJjZU1hcHBpbmdVUkw9ZGF0YTphcHBsaWNhdGlvbi9qc29uO2NoYXJzZXQ9dXRmLTg7YmFzZTY0LCcgKyBiYXNlNjQ7XG5cblx0cmV0dXJuICcvKiMgJyArIGRhdGEgKyAnICovJztcbn1cblxuXG5cbi8vLy8vLy8vLy8vLy8vLy8vL1xuLy8gV0VCUEFDSyBGT09URVJcbi8vIC4vbm9kZV9tb2R1bGVzL2Nzcy1sb2FkZXIvbGliL2Nzcy1iYXNlLmpzXG4vLyBtb2R1bGUgaWQgPSA2XG4vLyBtb2R1bGUgY2h1bmtzID0gMCJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///6\n");
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/*\n\tMIT License http://www.opensource.org/licenses/mit-license.php\n\tAuthor Tobias Koppers @sokra\n*/\n\nvar stylesInDom = {};\n\nvar\tmemoize = function (fn) {\n\tvar memo;\n\n\treturn function () {\n\t\tif (typeof memo === \"undefined\") memo = fn.apply(this, arguments);\n\t\treturn memo;\n\t};\n};\n\nvar isOldIE = memoize(function () {\n\t// Test for IE <= 9 as proposed by Browserhacks\n\t// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805\n\t// Tests for existence of standard globals is to allow style-loader\n\t// to operate correctly into non-standard environments\n\t// @see https://github.com/webpack-contrib/style-loader/issues/177\n\treturn window && document && document.all && !window.atob;\n});\n\nvar getElement = (function (fn) {\n\tvar memo = {};\n\n\treturn function(selector) {\n\t\tif (typeof memo[selector] === \"undefined\") {\n\t\t\tmemo[selector] = fn.call(this, selector);\n\t\t}\n\n\t\treturn memo[selector]\n\t};\n})(function (target) {\n\treturn document.querySelector(target)\n});\n\nvar singleton = null;\nvar\tsingletonCounter = 0;\nvar\tstylesInsertedAtTop = [];\n\nvar\tfixUrls = __webpack_require__(8);\n\nmodule.exports = function(list, options) {\n\tif (typeof DEBUG !== \"undefined\" && DEBUG) {\n\t\tif (typeof document !== \"object\") throw new Error(\"The style-loader cannot be used in a non-browser environment\");\n\t}\n\n\toptions = options || {};\n\n\toptions.attrs = typeof options.attrs === \"object\" ? options.attrs : {};\n\n\t// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>\n\t// tags it will allow on a page\n\tif (!options.singleton) options.singleton = isOldIE();\n\n\t// By default, add <style> tags to the <head> element\n\tif (!options.insertInto) options.insertInto = \"head\";\n\n\t// By default, add <style> tags to the bottom of the target\n\tif (!options.insertAt) options.insertAt = \"bottom\";\n\n\tvar styles = listToStyles(list, options);\n\n\taddStylesToDom(styles, options);\n\n\treturn function update (newList) {\n\t\tvar mayRemove = [];\n\n\t\tfor (var i = 0; i < styles.length; i++) {\n\t\t\tvar item = styles[i];\n\t\t\tvar domStyle = stylesInDom[item.id];\n\n\t\t\tdomStyle.refs--;\n\t\t\tmayRemove.push(domStyle);\n\t\t}\n\n\t\tif(newList) {\n\t\t\tvar newStyles = listToStyles(newList, options);\n\t\t\taddStylesToDom(newStyles, options);\n\t\t}\n\n\t\tfor (var i = 0; i < mayRemove.length; i++) {\n\t\t\tvar domStyle = mayRemove[i];\n\n\t\t\tif(domStyle.refs === 0) {\n\t\t\t\tfor (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();\n\n\t\t\t\tdelete stylesInDom[domStyle.id];\n\t\t\t}\n\t\t}\n\t};\n};\n\nfunction addStylesToDom (styles, options) {\n\tfor (var i = 0; i < styles.length; i++) {\n\t\tvar item = styles[i];\n\t\tvar domStyle = stylesInDom[item.id];\n\n\t\tif(domStyle) {\n\t\t\tdomStyle.refs++;\n\n\t\t\tfor(var j = 0; j < domStyle.parts.length; j++) {\n\t\t\t\tdomStyle.parts[j](item.parts[j]);\n\t\t\t}\n\n\t\t\tfor(; j < item.parts.length; j++) {\n\t\t\t\tdomStyle.parts.push(addStyle(item.parts[j], options));\n\t\t\t}\n\t\t} else {\n\t\t\tvar parts = [];\n\n\t\t\tfor(var j = 0; j < item.parts.length; j++) {\n\t\t\t\tparts.push(addStyle(item.parts[j], options));\n\t\t\t}\n\n\t\t\tstylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};\n\t\t}\n\t}\n}\n\nfunction listToStyles (list, options) {\n\tvar styles = [];\n\tvar newStyles = {};\n\n\tfor (var i = 0; i < list.length; i++) {\n\t\tvar item = list[i];\n\t\tvar id = options.base ? item[0] + options.base : item[0];\n\t\tvar css = item[1];\n\t\tvar media = item[2];\n\t\tvar sourceMap = item[3];\n\t\tvar part = {css: css, media: media, sourceMap: sourceMap};\n\n\t\tif(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});\n\t\telse newStyles[id].parts.push(part);\n\t}\n\n\treturn styles;\n}\n\nfunction insertStyleElement (options, style) {\n\tvar target = getElement(options.insertInto)\n\n\tif (!target) {\n\t\tthrow new Error(\"Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.\");\n\t}\n\n\tvar lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];\n\n\tif (options.insertAt === \"top\") {\n\t\tif (!lastStyleElementInsertedAtTop) {\n\t\t\ttarget.insertBefore(style, target.firstChild);\n\t\t} else if (lastStyleElementInsertedAtTop.nextSibling) {\n\t\t\ttarget.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);\n\t\t} else {\n\t\t\ttarget.appendChild(style);\n\t\t}\n\t\tstylesInsertedAtTop.push(style);\n\t} else if (options.insertAt === \"bottom\") {\n\t\ttarget.appendChild(style);\n\t} else {\n\t\tthrow new Error(\"Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.\");\n\t}\n}\n\nfunction removeStyleElement (style) {\n\tif (style.parentNode === null) return false;\n\tstyle.parentNode.removeChild(style);\n\n\tvar idx = stylesInsertedAtTop.indexOf(style);\n\tif(idx >= 0) {\n\t\tstylesInsertedAtTop.splice(idx, 1);\n\t}\n}\n\nfunction createStyleElement (options) {\n\tvar style = document.createElement(\"style\");\n\n\toptions.attrs.type = \"text/css\";\n\n\taddAttrs(style, options.attrs);\n\tinsertStyleElement(options, style);\n\n\treturn style;\n}\n\nfunction createLinkElement (options) {\n\tvar link = document.createElement(\"link\");\n\n\toptions.attrs.type = \"text/css\";\n\toptions.attrs.rel = \"stylesheet\";\n\n\taddAttrs(link, options.attrs);\n\tinsertStyleElement(options, link);\n\n\treturn link;\n}\n\nfunction addAttrs (el, attrs) {\n\tObject.keys(attrs).forEach(function (key) {\n\t\tel.setAttribute(key, attrs[key]);\n\t});\n}\n\nfunction addStyle (obj, options) {\n\tvar style, update, remove, result;\n\n\t// If a transform function was defined, run it on the css\n\tif (options.transform && obj.css) {\n\t    result = options.transform(obj.css);\n\n\t    if (result) {\n\t    \t// If transform returns a value, use that instead of the original css.\n\t    \t// This allows running runtime transformations on the css.\n\t    \tobj.css = result;\n\t    } else {\n\t    \t// If the transform function returns a falsy value, don't add this css.\n\t    \t// This allows conditional loading of css\n\t    \treturn function() {\n\t    \t\t// noop\n\t    \t};\n\t    }\n\t}\n\n\tif (options.singleton) {\n\t\tvar styleIndex = singletonCounter++;\n\n\t\tstyle = singleton || (singleton = createStyleElement(options));\n\n\t\tupdate = applyToSingletonTag.bind(null, style, styleIndex, false);\n\t\tremove = applyToSingletonTag.bind(null, style, styleIndex, true);\n\n\t} else if (\n\t\tobj.sourceMap &&\n\t\ttypeof URL === \"function\" &&\n\t\ttypeof URL.createObjectURL === \"function\" &&\n\t\ttypeof URL.revokeObjectURL === \"function\" &&\n\t\ttypeof Blob === \"function\" &&\n\t\ttypeof btoa === \"function\"\n\t) {\n\t\tstyle = createLinkElement(options);\n\t\tupdate = updateLink.bind(null, style, options);\n\t\tremove = function () {\n\t\t\tremoveStyleElement(style);\n\n\t\t\tif(style.href) URL.revokeObjectURL(style.href);\n\t\t};\n\t} else {\n\t\tstyle = createStyleElement(options);\n\t\tupdate = applyToTag.bind(null, style);\n\t\tremove = function () {\n\t\t\tremoveStyleElement(style);\n\t\t};\n\t}\n\n\tupdate(obj);\n\n\treturn function updateStyle (newObj) {\n\t\tif (newObj) {\n\t\t\tif (\n\t\t\t\tnewObj.css === obj.css &&\n\t\t\t\tnewObj.media === obj.media &&\n\t\t\t\tnewObj.sourceMap === obj.sourceMap\n\t\t\t) {\n\t\t\t\treturn;\n\t\t\t}\n\n\t\t\tupdate(obj = newObj);\n\t\t} else {\n\t\t\tremove();\n\t\t}\n\t};\n}\n\nvar replaceText = (function () {\n\tvar textStore = [];\n\n\treturn function (index, replacement) {\n\t\ttextStore[index] = replacement;\n\n\t\treturn textStore.filter(Boolean).join('\\n');\n\t};\n})();\n\nfunction applyToSingletonTag (style, index, remove, obj) {\n\tvar css = remove ? \"\" : obj.css;\n\n\tif (style.styleSheet) {\n\t\tstyle.styleSheet.cssText = replaceText(index, css);\n\t} else {\n\t\tvar cssNode = document.createTextNode(css);\n\t\tvar childNodes = style.childNodes;\n\n\t\tif (childNodes[index]) style.removeChild(childNodes[index]);\n\n\t\tif (childNodes.length) {\n\t\t\tstyle.insertBefore(cssNode, childNodes[index]);\n\t\t} else {\n\t\t\tstyle.appendChild(cssNode);\n\t\t}\n\t}\n}\n\nfunction applyToTag (style, obj) {\n\tvar css = obj.css;\n\tvar media = obj.media;\n\n\tif(media) {\n\t\tstyle.setAttribute(\"media\", media)\n\t}\n\n\tif(style.styleSheet) {\n\t\tstyle.styleSheet.cssText = css;\n\t} else {\n\t\twhile(style.firstChild) {\n\t\t\tstyle.removeChild(style.firstChild);\n\t\t}\n\n\t\tstyle.appendChild(document.createTextNode(css));\n\t}\n}\n\nfunction updateLink (link, options, obj) {\n\tvar css = obj.css;\n\tvar sourceMap = obj.sourceMap;\n\n\t/*\n\t\tIf convertToAbsoluteUrls isn't defined, but sourcemaps are enabled\n\t\tand there is no publicPath defined then lets turn convertToAbsoluteUrls\n\t\ton by default.  Otherwise default to the convertToAbsoluteUrls option\n\t\tdirectly\n\t*/\n\tvar autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;\n\n\tif (options.convertToAbsoluteUrls || autoFixUrls) {\n\t\tcss = fixUrls(css);\n\t}\n\n\tif (sourceMap) {\n\t\t// http://stackoverflow.com/a/26603875\n\t\tcss += \"\\n/*# sourceMappingURL=data:application/json;base64,\" + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + \" */\";\n\t}\n\n\tvar blob = new Blob([css], { type: \"text/css\" });\n\n\tvar oldSrc = link.href;\n\n\tlink.href = URL.createObjectURL(blob);\n\n\tif(oldSrc) URL.revokeObjectURL(oldSrc);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL25vZGVfbW9kdWxlcy9zdHlsZS1sb2FkZXIvbGliL2FkZFN0eWxlcy5qcz8zMTMyIl0sInNvdXJjZXNDb250ZW50IjpbIi8qXG5cdE1JVCBMaWNlbnNlIGh0dHA6Ly93d3cub3BlbnNvdXJjZS5vcmcvbGljZW5zZXMvbWl0LWxpY2Vuc2UucGhwXG5cdEF1dGhvciBUb2JpYXMgS29wcGVycyBAc29rcmFcbiovXG5cbnZhciBzdHlsZXNJbkRvbSA9IHt9O1xuXG52YXJcdG1lbW9pemUgPSBmdW5jdGlvbiAoZm4pIHtcblx0dmFyIG1lbW87XG5cblx0cmV0dXJuIGZ1bmN0aW9uICgpIHtcblx0XHRpZiAodHlwZW9mIG1lbW8gPT09IFwidW5kZWZpbmVkXCIpIG1lbW8gPSBmbi5hcHBseSh0aGlzLCBhcmd1bWVudHMpO1xuXHRcdHJldHVybiBtZW1vO1xuXHR9O1xufTtcblxudmFyIGlzT2xkSUUgPSBtZW1vaXplKGZ1bmN0aW9uICgpIHtcblx0Ly8gVGVzdCBmb3IgSUUgPD0gOSBhcyBwcm9wb3NlZCBieSBCcm93c2VyaGFja3Ncblx0Ly8gQHNlZSBodHRwOi8vYnJvd3NlcmhhY2tzLmNvbS8jaGFjay1lNzFkODY5MmY2NTMzNDE3M2ZlZTcxNWMyMjJjYjgwNVxuXHQvLyBUZXN0cyBmb3IgZXhpc3RlbmNlIG9mIHN0YW5kYXJkIGdsb2JhbHMgaXMgdG8gYWxsb3cgc3R5bGUtbG9hZGVyXG5cdC8vIHRvIG9wZXJhdGUgY29ycmVjdGx5IGludG8gbm9uLXN0YW5kYXJkIGVudmlyb25tZW50c1xuXHQvLyBAc2VlIGh0dHBzOi8vZ2l0aHViLmNvbS93ZWJwYWNrLWNvbnRyaWIvc3R5bGUtbG9hZGVyL2lzc3Vlcy8xNzdcblx0cmV0dXJuIHdpbmRvdyAmJiBkb2N1bWVudCAmJiBkb2N1bWVudC5hbGwgJiYgIXdpbmRvdy5hdG9iO1xufSk7XG5cbnZhciBnZXRFbGVtZW50ID0gKGZ1bmN0aW9uIChmbikge1xuXHR2YXIgbWVtbyA9IHt9O1xuXG5cdHJldHVybiBmdW5jdGlvbihzZWxlY3Rvcikge1xuXHRcdGlmICh0eXBlb2YgbWVtb1tzZWxlY3Rvcl0gPT09IFwidW5kZWZpbmVkXCIpIHtcblx0XHRcdG1lbW9bc2VsZWN0b3JdID0gZm4uY2FsbCh0aGlzLCBzZWxlY3Rvcik7XG5cdFx0fVxuXG5cdFx0cmV0dXJuIG1lbW9bc2VsZWN0b3JdXG5cdH07XG59KShmdW5jdGlvbiAodGFyZ2V0KSB7XG5cdHJldHVybiBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKHRhcmdldClcbn0pO1xuXG52YXIgc2luZ2xldG9uID0gbnVsbDtcbnZhclx0c2luZ2xldG9uQ291bnRlciA9IDA7XG52YXJcdHN0eWxlc0luc2VydGVkQXRUb3AgPSBbXTtcblxudmFyXHRmaXhVcmxzID0gcmVxdWlyZShcIi4vdXJsc1wiKTtcblxubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbihsaXN0LCBvcHRpb25zKSB7XG5cdGlmICh0eXBlb2YgREVCVUcgIT09IFwidW5kZWZpbmVkXCIgJiYgREVCVUcpIHtcblx0XHRpZiAodHlwZW9mIGRvY3VtZW50ICE9PSBcIm9iamVjdFwiKSB0aHJvdyBuZXcgRXJyb3IoXCJUaGUgc3R5bGUtbG9hZGVyIGNhbm5vdCBiZSB1c2VkIGluIGEgbm9uLWJyb3dzZXIgZW52aXJvbm1lbnRcIik7XG5cdH1cblxuXHRvcHRpb25zID0gb3B0aW9ucyB8fCB7fTtcblxuXHRvcHRpb25zLmF0dHJzID0gdHlwZW9mIG9wdGlvbnMuYXR0cnMgPT09IFwib2JqZWN0XCIgPyBvcHRpb25zLmF0dHJzIDoge307XG5cblx0Ly8gRm9yY2Ugc2luZ2xlLXRhZyBzb2x1dGlvbiBvbiBJRTYtOSwgd2hpY2ggaGFzIGEgaGFyZCBsaW1pdCBvbiB0aGUgIyBvZiA8c3R5bGU+XG5cdC8vIHRhZ3MgaXQgd2lsbCBhbGxvdyBvbiBhIHBhZ2Vcblx0aWYgKCFvcHRpb25zLnNpbmdsZXRvbikgb3B0aW9ucy5zaW5nbGV0b24gPSBpc09sZElFKCk7XG5cblx0Ly8gQnkgZGVmYXVsdCwgYWRkIDxzdHlsZT4gdGFncyB0byB0aGUgPGhlYWQ+IGVsZW1lbnRcblx0aWYgKCFvcHRpb25zLmluc2VydEludG8pIG9wdGlvbnMuaW5zZXJ0SW50byA9IFwiaGVhZFwiO1xuXG5cdC8vIEJ5IGRlZmF1bHQsIGFkZCA8c3R5bGU+IHRhZ3MgdG8gdGhlIGJvdHRvbSBvZiB0aGUgdGFyZ2V0XG5cdGlmICghb3B0aW9ucy5pbnNlcnRBdCkgb3B0aW9ucy5pbnNlcnRBdCA9IFwiYm90dG9tXCI7XG5cblx0dmFyIHN0eWxlcyA9IGxpc3RUb1N0eWxlcyhsaXN0LCBvcHRpb25zKTtcblxuXHRhZGRTdHlsZXNUb0RvbShzdHlsZXMsIG9wdGlvbnMpO1xuXG5cdHJldHVybiBmdW5jdGlvbiB1cGRhdGUgKG5ld0xpc3QpIHtcblx0XHR2YXIgbWF5UmVtb3ZlID0gW107XG5cblx0XHRmb3IgKHZhciBpID0gMDsgaSA8IHN0eWxlcy5sZW5ndGg7IGkrKykge1xuXHRcdFx0dmFyIGl0ZW0gPSBzdHlsZXNbaV07XG5cdFx0XHR2YXIgZG9tU3R5bGUgPSBzdHlsZXNJbkRvbVtpdGVtLmlkXTtcblxuXHRcdFx0ZG9tU3R5bGUucmVmcy0tO1xuXHRcdFx0bWF5UmVtb3ZlLnB1c2goZG9tU3R5bGUpO1xuXHRcdH1cblxuXHRcdGlmKG5ld0xpc3QpIHtcblx0XHRcdHZhciBuZXdTdHlsZXMgPSBsaXN0VG9TdHlsZXMobmV3TGlzdCwgb3B0aW9ucyk7XG5cdFx0XHRhZGRTdHlsZXNUb0RvbShuZXdTdHlsZXMsIG9wdGlvbnMpO1xuXHRcdH1cblxuXHRcdGZvciAodmFyIGkgPSAwOyBpIDwgbWF5UmVtb3ZlLmxlbmd0aDsgaSsrKSB7XG5cdFx0XHR2YXIgZG9tU3R5bGUgPSBtYXlSZW1vdmVbaV07XG5cblx0XHRcdGlmKGRvbVN0eWxlLnJlZnMgPT09IDApIHtcblx0XHRcdFx0Zm9yICh2YXIgaiA9IDA7IGogPCBkb21TdHlsZS5wYXJ0cy5sZW5ndGg7IGorKykgZG9tU3R5bGUucGFydHNbal0oKTtcblxuXHRcdFx0XHRkZWxldGUgc3R5bGVzSW5Eb21bZG9tU3R5bGUuaWRdO1xuXHRcdFx0fVxuXHRcdH1cblx0fTtcbn07XG5cbmZ1bmN0aW9uIGFkZFN0eWxlc1RvRG9tIChzdHlsZXMsIG9wdGlvbnMpIHtcblx0Zm9yICh2YXIgaSA9IDA7IGkgPCBzdHlsZXMubGVuZ3RoOyBpKyspIHtcblx0XHR2YXIgaXRlbSA9IHN0eWxlc1tpXTtcblx0XHR2YXIgZG9tU3R5bGUgPSBzdHlsZXNJbkRvbVtpdGVtLmlkXTtcblxuXHRcdGlmKGRvbVN0eWxlKSB7XG5cdFx0XHRkb21TdHlsZS5yZWZzKys7XG5cblx0XHRcdGZvcih2YXIgaiA9IDA7IGogPCBkb21TdHlsZS5wYXJ0cy5sZW5ndGg7IGorKykge1xuXHRcdFx0XHRkb21TdHlsZS5wYXJ0c1tqXShpdGVtLnBhcnRzW2pdKTtcblx0XHRcdH1cblxuXHRcdFx0Zm9yKDsgaiA8IGl0ZW0ucGFydHMubGVuZ3RoOyBqKyspIHtcblx0XHRcdFx0ZG9tU3R5bGUucGFydHMucHVzaChhZGRTdHlsZShpdGVtLnBhcnRzW2pdLCBvcHRpb25zKSk7XG5cdFx0XHR9XG5cdFx0fSBlbHNlIHtcblx0XHRcdHZhciBwYXJ0cyA9IFtdO1xuXG5cdFx0XHRmb3IodmFyIGogPSAwOyBqIDwgaXRlbS5wYXJ0cy5sZW5ndGg7IGorKykge1xuXHRcdFx0XHRwYXJ0cy5wdXNoKGFkZFN0eWxlKGl0ZW0ucGFydHNbal0sIG9wdGlvbnMpKTtcblx0XHRcdH1cblxuXHRcdFx0c3R5bGVzSW5Eb21baXRlbS5pZF0gPSB7aWQ6IGl0ZW0uaWQsIHJlZnM6IDEsIHBhcnRzOiBwYXJ0c307XG5cdFx0fVxuXHR9XG59XG5cbmZ1bmN0aW9uIGxpc3RUb1N0eWxlcyAobGlzdCwgb3B0aW9ucykge1xuXHR2YXIgc3R5bGVzID0gW107XG5cdHZhciBuZXdTdHlsZXMgPSB7fTtcblxuXHRmb3IgKHZhciBpID0gMDsgaSA8IGxpc3QubGVuZ3RoOyBpKyspIHtcblx0XHR2YXIgaXRlbSA9IGxpc3RbaV07XG5cdFx0dmFyIGlkID0gb3B0aW9ucy5iYXNlID8gaXRlbVswXSArIG9wdGlvbnMuYmFzZSA6IGl0ZW1bMF07XG5cdFx0dmFyIGNzcyA9IGl0ZW1bMV07XG5cdFx0dmFyIG1lZGlhID0gaXRlbVsyXTtcblx0XHR2YXIgc291cmNlTWFwID0gaXRlbVszXTtcblx0XHR2YXIgcGFydCA9IHtjc3M6IGNzcywgbWVkaWE6IG1lZGlhLCBzb3VyY2VNYXA6IHNvdXJjZU1hcH07XG5cblx0XHRpZighbmV3U3R5bGVzW2lkXSkgc3R5bGVzLnB1c2gobmV3U3R5bGVzW2lkXSA9IHtpZDogaWQsIHBhcnRzOiBbcGFydF19KTtcblx0XHRlbHNlIG5ld1N0eWxlc1tpZF0ucGFydHMucHVzaChwYXJ0KTtcblx0fVxuXG5cdHJldHVybiBzdHlsZXM7XG59XG5cbmZ1bmN0aW9uIGluc2VydFN0eWxlRWxlbWVudCAob3B0aW9ucywgc3R5bGUpIHtcblx0dmFyIHRhcmdldCA9IGdldEVsZW1lbnQob3B0aW9ucy5pbnNlcnRJbnRvKVxuXG5cdGlmICghdGFyZ2V0KSB7XG5cdFx0dGhyb3cgbmV3IEVycm9yKFwiQ291bGRuJ3QgZmluZCBhIHN0eWxlIHRhcmdldC4gVGhpcyBwcm9iYWJseSBtZWFucyB0aGF0IHRoZSB2YWx1ZSBmb3IgdGhlICdpbnNlcnRJbnRvJyBwYXJhbWV0ZXIgaXMgaW52YWxpZC5cIik7XG5cdH1cblxuXHR2YXIgbGFzdFN0eWxlRWxlbWVudEluc2VydGVkQXRUb3AgPSBzdHlsZXNJbnNlcnRlZEF0VG9wW3N0eWxlc0luc2VydGVkQXRUb3AubGVuZ3RoIC0gMV07XG5cblx0aWYgKG9wdGlvbnMuaW5zZXJ0QXQgPT09IFwidG9wXCIpIHtcblx0XHRpZiAoIWxhc3RTdHlsZUVsZW1lbnRJbnNlcnRlZEF0VG9wKSB7XG5cdFx0XHR0YXJnZXQuaW5zZXJ0QmVmb3JlKHN0eWxlLCB0YXJnZXQuZmlyc3RDaGlsZCk7XG5cdFx0fSBlbHNlIGlmIChsYXN0U3R5bGVFbGVtZW50SW5zZXJ0ZWRBdFRvcC5uZXh0U2libGluZykge1xuXHRcdFx0dGFyZ2V0Lmluc2VydEJlZm9yZShzdHlsZSwgbGFzdFN0eWxlRWxlbWVudEluc2VydGVkQXRUb3AubmV4dFNpYmxpbmcpO1xuXHRcdH0gZWxzZSB7XG5cdFx0XHR0YXJnZXQuYXBwZW5kQ2hpbGQoc3R5bGUpO1xuXHRcdH1cblx0XHRzdHlsZXNJbnNlcnRlZEF0VG9wLnB1c2goc3R5bGUpO1xuXHR9IGVsc2UgaWYgKG9wdGlvbnMuaW5zZXJ0QXQgPT09IFwiYm90dG9tXCIpIHtcblx0XHR0YXJnZXQuYXBwZW5kQ2hpbGQoc3R5bGUpO1xuXHR9IGVsc2Uge1xuXHRcdHRocm93IG5ldyBFcnJvcihcIkludmFsaWQgdmFsdWUgZm9yIHBhcmFtZXRlciAnaW5zZXJ0QXQnLiBNdXN0IGJlICd0b3AnIG9yICdib3R0b20nLlwiKTtcblx0fVxufVxuXG5mdW5jdGlvbiByZW1vdmVTdHlsZUVsZW1lbnQgKHN0eWxlKSB7XG5cdGlmIChzdHlsZS5wYXJlbnROb2RlID09PSBudWxsKSByZXR1cm4gZmFsc2U7XG5cdHN0eWxlLnBhcmVudE5vZGUucmVtb3ZlQ2hpbGQoc3R5bGUpO1xuXG5cdHZhciBpZHggPSBzdHlsZXNJbnNlcnRlZEF0VG9wLmluZGV4T2Yoc3R5bGUpO1xuXHRpZihpZHggPj0gMCkge1xuXHRcdHN0eWxlc0luc2VydGVkQXRUb3Auc3BsaWNlKGlkeCwgMSk7XG5cdH1cbn1cblxuZnVuY3Rpb24gY3JlYXRlU3R5bGVFbGVtZW50IChvcHRpb25zKSB7XG5cdHZhciBzdHlsZSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJzdHlsZVwiKTtcblxuXHRvcHRpb25zLmF0dHJzLnR5cGUgPSBcInRleHQvY3NzXCI7XG5cblx0YWRkQXR0cnMoc3R5bGUsIG9wdGlvbnMuYXR0cnMpO1xuXHRpbnNlcnRTdHlsZUVsZW1lbnQob3B0aW9ucywgc3R5bGUpO1xuXG5cdHJldHVybiBzdHlsZTtcbn1cblxuZnVuY3Rpb24gY3JlYXRlTGlua0VsZW1lbnQgKG9wdGlvbnMpIHtcblx0dmFyIGxpbmsgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwibGlua1wiKTtcblxuXHRvcHRpb25zLmF0dHJzLnR5cGUgPSBcInRleHQvY3NzXCI7XG5cdG9wdGlvbnMuYXR0cnMucmVsID0gXCJzdHlsZXNoZWV0XCI7XG5cblx0YWRkQXR0cnMobGluaywgb3B0aW9ucy5hdHRycyk7XG5cdGluc2VydFN0eWxlRWxlbWVudChvcHRpb25zLCBsaW5rKTtcblxuXHRyZXR1cm4gbGluaztcbn1cblxuZnVuY3Rpb24gYWRkQXR0cnMgKGVsLCBhdHRycykge1xuXHRPYmplY3Qua2V5cyhhdHRycykuZm9yRWFjaChmdW5jdGlvbiAoa2V5KSB7XG5cdFx0ZWwuc2V0QXR0cmlidXRlKGtleSwgYXR0cnNba2V5XSk7XG5cdH0pO1xufVxuXG5mdW5jdGlvbiBhZGRTdHlsZSAob2JqLCBvcHRpb25zKSB7XG5cdHZhciBzdHlsZSwgdXBkYXRlLCByZW1vdmUsIHJlc3VsdDtcblxuXHQvLyBJZiBhIHRyYW5zZm9ybSBmdW5jdGlvbiB3YXMgZGVmaW5lZCwgcnVuIGl0IG9uIHRoZSBjc3Ncblx0aWYgKG9wdGlvbnMudHJhbnNmb3JtICYmIG9iai5jc3MpIHtcblx0ICAgIHJlc3VsdCA9IG9wdGlvbnMudHJhbnNmb3JtKG9iai5jc3MpO1xuXG5cdCAgICBpZiAocmVzdWx0KSB7XG5cdCAgICBcdC8vIElmIHRyYW5zZm9ybSByZXR1cm5zIGEgdmFsdWUsIHVzZSB0aGF0IGluc3RlYWQgb2YgdGhlIG9yaWdpbmFsIGNzcy5cblx0ICAgIFx0Ly8gVGhpcyBhbGxvd3MgcnVubmluZyBydW50aW1lIHRyYW5zZm9ybWF0aW9ucyBvbiB0aGUgY3NzLlxuXHQgICAgXHRvYmouY3NzID0gcmVzdWx0O1xuXHQgICAgfSBlbHNlIHtcblx0ICAgIFx0Ly8gSWYgdGhlIHRyYW5zZm9ybSBmdW5jdGlvbiByZXR1cm5zIGEgZmFsc3kgdmFsdWUsIGRvbid0IGFkZCB0aGlzIGNzcy5cblx0ICAgIFx0Ly8gVGhpcyBhbGxvd3MgY29uZGl0aW9uYWwgbG9hZGluZyBvZiBjc3Ncblx0ICAgIFx0cmV0dXJuIGZ1bmN0aW9uKCkge1xuXHQgICAgXHRcdC8vIG5vb3Bcblx0ICAgIFx0fTtcblx0ICAgIH1cblx0fVxuXG5cdGlmIChvcHRpb25zLnNpbmdsZXRvbikge1xuXHRcdHZhciBzdHlsZUluZGV4ID0gc2luZ2xldG9uQ291bnRlcisrO1xuXG5cdFx0c3R5bGUgPSBzaW5nbGV0b24gfHwgKHNpbmdsZXRvbiA9IGNyZWF0ZVN0eWxlRWxlbWVudChvcHRpb25zKSk7XG5cblx0XHR1cGRhdGUgPSBhcHBseVRvU2luZ2xldG9uVGFnLmJpbmQobnVsbCwgc3R5bGUsIHN0eWxlSW5kZXgsIGZhbHNlKTtcblx0XHRyZW1vdmUgPSBhcHBseVRvU2luZ2xldG9uVGFnLmJpbmQobnVsbCwgc3R5bGUsIHN0eWxlSW5kZXgsIHRydWUpO1xuXG5cdH0gZWxzZSBpZiAoXG5cdFx0b2JqLnNvdXJjZU1hcCAmJlxuXHRcdHR5cGVvZiBVUkwgPT09IFwiZnVuY3Rpb25cIiAmJlxuXHRcdHR5cGVvZiBVUkwuY3JlYXRlT2JqZWN0VVJMID09PSBcImZ1bmN0aW9uXCIgJiZcblx0XHR0eXBlb2YgVVJMLnJldm9rZU9iamVjdFVSTCA9PT0gXCJmdW5jdGlvblwiICYmXG5cdFx0dHlwZW9mIEJsb2IgPT09IFwiZnVuY3Rpb25cIiAmJlxuXHRcdHR5cGVvZiBidG9hID09PSBcImZ1bmN0aW9uXCJcblx0KSB7XG5cdFx0c3R5bGUgPSBjcmVhdGVMaW5rRWxlbWVudChvcHRpb25zKTtcblx0XHR1cGRhdGUgPSB1cGRhdGVMaW5rLmJpbmQobnVsbCwgc3R5bGUsIG9wdGlvbnMpO1xuXHRcdHJlbW92ZSA9IGZ1bmN0aW9uICgpIHtcblx0XHRcdHJlbW92ZVN0eWxlRWxlbWVudChzdHlsZSk7XG5cblx0XHRcdGlmKHN0eWxlLmhyZWYpIFVSTC5yZXZva2VPYmplY3RVUkwoc3R5bGUuaHJlZik7XG5cdFx0fTtcblx0fSBlbHNlIHtcblx0XHRzdHlsZSA9IGNyZWF0ZVN0eWxlRWxlbWVudChvcHRpb25zKTtcblx0XHR1cGRhdGUgPSBhcHBseVRvVGFnLmJpbmQobnVsbCwgc3R5bGUpO1xuXHRcdHJlbW92ZSA9IGZ1bmN0aW9uICgpIHtcblx0XHRcdHJlbW92ZVN0eWxlRWxlbWVudChzdHlsZSk7XG5cdFx0fTtcblx0fVxuXG5cdHVwZGF0ZShvYmopO1xuXG5cdHJldHVybiBmdW5jdGlvbiB1cGRhdGVTdHlsZSAobmV3T2JqKSB7XG5cdFx0aWYgKG5ld09iaikge1xuXHRcdFx0aWYgKFxuXHRcdFx0XHRuZXdPYmouY3NzID09PSBvYmouY3NzICYmXG5cdFx0XHRcdG5ld09iai5tZWRpYSA9PT0gb2JqLm1lZGlhICYmXG5cdFx0XHRcdG5ld09iai5zb3VyY2VNYXAgPT09IG9iai5zb3VyY2VNYXBcblx0XHRcdCkge1xuXHRcdFx0XHRyZXR1cm47XG5cdFx0XHR9XG5cblx0XHRcdHVwZGF0ZShvYmogPSBuZXdPYmopO1xuXHRcdH0gZWxzZSB7XG5cdFx0XHRyZW1vdmUoKTtcblx0XHR9XG5cdH07XG59XG5cbnZhciByZXBsYWNlVGV4dCA9IChmdW5jdGlvbiAoKSB7XG5cdHZhciB0ZXh0U3RvcmUgPSBbXTtcblxuXHRyZXR1cm4gZnVuY3Rpb24gKGluZGV4LCByZXBsYWNlbWVudCkge1xuXHRcdHRleHRTdG9yZVtpbmRleF0gPSByZXBsYWNlbWVudDtcblxuXHRcdHJldHVybiB0ZXh0U3RvcmUuZmlsdGVyKEJvb2xlYW4pLmpvaW4oJ1xcbicpO1xuXHR9O1xufSkoKTtcblxuZnVuY3Rpb24gYXBwbHlUb1NpbmdsZXRvblRhZyAoc3R5bGUsIGluZGV4LCByZW1vdmUsIG9iaikge1xuXHR2YXIgY3NzID0gcmVtb3ZlID8gXCJcIiA6IG9iai5jc3M7XG5cblx0aWYgKHN0eWxlLnN0eWxlU2hlZXQpIHtcblx0XHRzdHlsZS5zdHlsZVNoZWV0LmNzc1RleHQgPSByZXBsYWNlVGV4dChpbmRleCwgY3NzKTtcblx0fSBlbHNlIHtcblx0XHR2YXIgY3NzTm9kZSA9IGRvY3VtZW50LmNyZWF0ZVRleHROb2RlKGNzcyk7XG5cdFx0dmFyIGNoaWxkTm9kZXMgPSBzdHlsZS5jaGlsZE5vZGVzO1xuXG5cdFx0aWYgKGNoaWxkTm9kZXNbaW5kZXhdKSBzdHlsZS5yZW1vdmVDaGlsZChjaGlsZE5vZGVzW2luZGV4XSk7XG5cblx0XHRpZiAoY2hpbGROb2Rlcy5sZW5ndGgpIHtcblx0XHRcdHN0eWxlLmluc2VydEJlZm9yZShjc3NOb2RlLCBjaGlsZE5vZGVzW2luZGV4XSk7XG5cdFx0fSBlbHNlIHtcblx0XHRcdHN0eWxlLmFwcGVuZENoaWxkKGNzc05vZGUpO1xuXHRcdH1cblx0fVxufVxuXG5mdW5jdGlvbiBhcHBseVRvVGFnIChzdHlsZSwgb2JqKSB7XG5cdHZhciBjc3MgPSBvYmouY3NzO1xuXHR2YXIgbWVkaWEgPSBvYmoubWVkaWE7XG5cblx0aWYobWVkaWEpIHtcblx0XHRzdHlsZS5zZXRBdHRyaWJ1dGUoXCJtZWRpYVwiLCBtZWRpYSlcblx0fVxuXG5cdGlmKHN0eWxlLnN0eWxlU2hlZXQpIHtcblx0XHRzdHlsZS5zdHlsZVNoZWV0LmNzc1RleHQgPSBjc3M7XG5cdH0gZWxzZSB7XG5cdFx0d2hpbGUoc3R5bGUuZmlyc3RDaGlsZCkge1xuXHRcdFx0c3R5bGUucmVtb3ZlQ2hpbGQoc3R5bGUuZmlyc3RDaGlsZCk7XG5cdFx0fVxuXG5cdFx0c3R5bGUuYXBwZW5kQ2hpbGQoZG9jdW1lbnQuY3JlYXRlVGV4dE5vZGUoY3NzKSk7XG5cdH1cbn1cblxuZnVuY3Rpb24gdXBkYXRlTGluayAobGluaywgb3B0aW9ucywgb2JqKSB7XG5cdHZhciBjc3MgPSBvYmouY3NzO1xuXHR2YXIgc291cmNlTWFwID0gb2JqLnNvdXJjZU1hcDtcblxuXHQvKlxuXHRcdElmIGNvbnZlcnRUb0Fic29sdXRlVXJscyBpc24ndCBkZWZpbmVkLCBidXQgc291cmNlbWFwcyBhcmUgZW5hYmxlZFxuXHRcdGFuZCB0aGVyZSBpcyBubyBwdWJsaWNQYXRoIGRlZmluZWQgdGhlbiBsZXRzIHR1cm4gY29udmVydFRvQWJzb2x1dGVVcmxzXG5cdFx0b24gYnkgZGVmYXVsdC4gIE90aGVyd2lzZSBkZWZhdWx0IHRvIHRoZSBjb252ZXJ0VG9BYnNvbHV0ZVVybHMgb3B0aW9uXG5cdFx0ZGlyZWN0bHlcblx0Ki9cblx0dmFyIGF1dG9GaXhVcmxzID0gb3B0aW9ucy5jb252ZXJ0VG9BYnNvbHV0ZVVybHMgPT09IHVuZGVmaW5lZCAmJiBzb3VyY2VNYXA7XG5cblx0aWYgKG9wdGlvbnMuY29udmVydFRvQWJzb2x1dGVVcmxzIHx8IGF1dG9GaXhVcmxzKSB7XG5cdFx0Y3NzID0gZml4VXJscyhjc3MpO1xuXHR9XG5cblx0aWYgKHNvdXJjZU1hcCkge1xuXHRcdC8vIGh0dHA6Ly9zdGFja292ZXJmbG93LmNvbS9hLzI2NjAzODc1XG5cdFx0Y3NzICs9IFwiXFxuLyojIHNvdXJjZU1hcHBpbmdVUkw9ZGF0YTphcHBsaWNhdGlvbi9qc29uO2Jhc2U2NCxcIiArIGJ0b2EodW5lc2NhcGUoZW5jb2RlVVJJQ29tcG9uZW50KEpTT04uc3RyaW5naWZ5KHNvdXJjZU1hcCkpKSkgKyBcIiAqL1wiO1xuXHR9XG5cblx0dmFyIGJsb2IgPSBuZXcgQmxvYihbY3NzXSwgeyB0eXBlOiBcInRleHQvY3NzXCIgfSk7XG5cblx0dmFyIG9sZFNyYyA9IGxpbmsuaHJlZjtcblxuXHRsaW5rLmhyZWYgPSBVUkwuY3JlYXRlT2JqZWN0VVJMKGJsb2IpO1xuXG5cdGlmKG9sZFNyYykgVVJMLnJldm9rZU9iamVjdFVSTChvbGRTcmMpO1xufVxuXG5cblxuLy8vLy8vLy8vLy8vLy8vLy8vXG4vLyBXRUJQQUNLIEZPT1RFUlxuLy8gLi9ub2RlX21vZHVsZXMvc3R5bGUtbG9hZGVyL2xpYi9hZGRTdHlsZXMuanNcbi8vIG1vZHVsZSBpZCA9IDdcbi8vIG1vZHVsZSBjaHVua3MgPSAwIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOyIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///7\n");
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(selector) {
+		if (typeof memo[selector] === "undefined") {
+			memo[selector] = fn.call(this, selector);
+		}
+
+		return memo[selector]
+	};
+})(function (target) {
+	return document.querySelector(target)
+});
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(8);
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton) options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+	if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else {
+		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	options.attrs.type = "text/css";
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	options.attrs.type = "text/css";
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = options.transform(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element with a data-uri to\n * embed the css on the page. This breaks all relative urls because now they are relative to a\n * bundle instead of the current page.\n *\n * One solution is to only use full urls, but that may be impossible.\n *\n * Instead, this function \"fixes\" the relative urls to be absolute according to the current page location.\n *\n * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.\n *\n */\n\nmodule.exports = function (css) {\n  // get current location\n  var location = typeof window !== \"undefined\" && window.location;\n\n  if (!location) {\n    throw new Error(\"fixUrls requires window.location\");\n  }\n\n\t// blank or null?\n\tif (!css || typeof css !== \"string\") {\n\t  return css;\n  }\n\n  var baseUrl = location.protocol + \"//\" + location.host;\n  var currentDir = baseUrl + location.pathname.replace(/\\/[^\\/]*$/, \"/\");\n\n\t// convert each url(...)\n\t/*\n\tThis regular expression is just a way to recursively match brackets within\n\ta string.\n\n\t /url\\s*\\(  = Match on the word \"url\" with any whitespace after it and then a parens\n\t   (  = Start a capturing group\n\t     (?:  = Start a non-capturing group\n\t         [^)(]  = Match anything that isn't a parentheses\n\t         |  = OR\n\t         \\(  = Match a start parentheses\n\t             (?:  = Start another non-capturing groups\n\t                 [^)(]+  = Match anything that isn't a parentheses\n\t                 |  = OR\n\t                 \\(  = Match a start parentheses\n\t                     [^)(]*  = Match anything that isn't a parentheses\n\t                 \\)  = Match a end parentheses\n\t             )  = End Group\n              *\\) = Match anything and then a close parens\n          )  = Close non-capturing group\n          *  = Match anything\n       )  = Close capturing group\n\t \\)  = Match a close parens\n\n\t /gi  = Get all matches, not the first.  Be case insensitive.\n\t */\n\tvar fixedCss = css.replace(/url\\s*\\(((?:[^)(]|\\((?:[^)(]+|\\([^)(]*\\))*\\))*)\\)/gi, function(fullMatch, origUrl) {\n\t\t// strip quotes (if they exist)\n\t\tvar unquotedOrigUrl = origUrl\n\t\t\t.trim()\n\t\t\t.replace(/^\"(.*)\"$/, function(o, $1){ return $1; })\n\t\t\t.replace(/^'(.*)'$/, function(o, $1){ return $1; });\n\n\t\t// already a full url? no change\n\t\tif (/^(#|data:|http:\\/\\/|https:\\/\\/|file:\\/\\/\\/)/i.test(unquotedOrigUrl)) {\n\t\t  return fullMatch;\n\t\t}\n\n\t\t// convert the url to a full url\n\t\tvar newUrl;\n\n\t\tif (unquotedOrigUrl.indexOf(\"//\") === 0) {\n\t\t  \t//TODO: should we add protocol?\n\t\t\tnewUrl = unquotedOrigUrl;\n\t\t} else if (unquotedOrigUrl.indexOf(\"/\") === 0) {\n\t\t\t// path should be relative to the base url\n\t\t\tnewUrl = baseUrl + unquotedOrigUrl; // already starts with '/'\n\t\t} else {\n\t\t\t// path should be relative to current directory\n\t\t\tnewUrl = currentDir + unquotedOrigUrl.replace(/^\\.\\//, \"\"); // Strip leading './'\n\t\t}\n\n\t\t// send back the fixed url(...)\n\t\treturn \"url(\" + JSON.stringify(newUrl) + \")\";\n\t});\n\n\t// send back the fixed css\n\treturn fixedCss;\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiOC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL25vZGVfbW9kdWxlcy9zdHlsZS1sb2FkZXIvbGliL3VybHMuanM/OTg5MyJdLCJzb3VyY2VzQ29udGVudCI6WyJcbi8qKlxuICogV2hlbiBzb3VyY2UgbWFwcyBhcmUgZW5hYmxlZCwgYHN0eWxlLWxvYWRlcmAgdXNlcyBhIGxpbmsgZWxlbWVudCB3aXRoIGEgZGF0YS11cmkgdG9cbiAqIGVtYmVkIHRoZSBjc3Mgb24gdGhlIHBhZ2UuIFRoaXMgYnJlYWtzIGFsbCByZWxhdGl2ZSB1cmxzIGJlY2F1c2Ugbm93IHRoZXkgYXJlIHJlbGF0aXZlIHRvIGFcbiAqIGJ1bmRsZSBpbnN0ZWFkIG9mIHRoZSBjdXJyZW50IHBhZ2UuXG4gKlxuICogT25lIHNvbHV0aW9uIGlzIHRvIG9ubHkgdXNlIGZ1bGwgdXJscywgYnV0IHRoYXQgbWF5IGJlIGltcG9zc2libGUuXG4gKlxuICogSW5zdGVhZCwgdGhpcyBmdW5jdGlvbiBcImZpeGVzXCIgdGhlIHJlbGF0aXZlIHVybHMgdG8gYmUgYWJzb2x1dGUgYWNjb3JkaW5nIHRvIHRoZSBjdXJyZW50IHBhZ2UgbG9jYXRpb24uXG4gKlxuICogQSBydWRpbWVudGFyeSB0ZXN0IHN1aXRlIGlzIGxvY2F0ZWQgYXQgYHRlc3QvZml4VXJscy5qc2AgYW5kIGNhbiBiZSBydW4gdmlhIHRoZSBgbnBtIHRlc3RgIGNvbW1hbmQuXG4gKlxuICovXG5cbm1vZHVsZS5leHBvcnRzID0gZnVuY3Rpb24gKGNzcykge1xuICAvLyBnZXQgY3VycmVudCBsb2NhdGlvblxuICB2YXIgbG9jYXRpb24gPSB0eXBlb2Ygd2luZG93ICE9PSBcInVuZGVmaW5lZFwiICYmIHdpbmRvdy5sb2NhdGlvbjtcblxuICBpZiAoIWxvY2F0aW9uKSB7XG4gICAgdGhyb3cgbmV3IEVycm9yKFwiZml4VXJscyByZXF1aXJlcyB3aW5kb3cubG9jYXRpb25cIik7XG4gIH1cblxuXHQvLyBibGFuayBvciBudWxsP1xuXHRpZiAoIWNzcyB8fCB0eXBlb2YgY3NzICE9PSBcInN0cmluZ1wiKSB7XG5cdCAgcmV0dXJuIGNzcztcbiAgfVxuXG4gIHZhciBiYXNlVXJsID0gbG9jYXRpb24ucHJvdG9jb2wgKyBcIi8vXCIgKyBsb2NhdGlvbi5ob3N0O1xuICB2YXIgY3VycmVudERpciA9IGJhc2VVcmwgKyBsb2NhdGlvbi5wYXRobmFtZS5yZXBsYWNlKC9cXC9bXlxcL10qJC8sIFwiL1wiKTtcblxuXHQvLyBjb252ZXJ0IGVhY2ggdXJsKC4uLilcblx0Lypcblx0VGhpcyByZWd1bGFyIGV4cHJlc3Npb24gaXMganVzdCBhIHdheSB0byByZWN1cnNpdmVseSBtYXRjaCBicmFja2V0cyB3aXRoaW5cblx0YSBzdHJpbmcuXG5cblx0IC91cmxcXHMqXFwoICA9IE1hdGNoIG9uIHRoZSB3b3JkIFwidXJsXCIgd2l0aCBhbnkgd2hpdGVzcGFjZSBhZnRlciBpdCBhbmQgdGhlbiBhIHBhcmVuc1xuXHQgICAoICA9IFN0YXJ0IGEgY2FwdHVyaW5nIGdyb3VwXG5cdCAgICAgKD86ICA9IFN0YXJ0IGEgbm9uLWNhcHR1cmluZyBncm91cFxuXHQgICAgICAgICBbXikoXSAgPSBNYXRjaCBhbnl0aGluZyB0aGF0IGlzbid0IGEgcGFyZW50aGVzZXNcblx0ICAgICAgICAgfCAgPSBPUlxuXHQgICAgICAgICBcXCggID0gTWF0Y2ggYSBzdGFydCBwYXJlbnRoZXNlc1xuXHQgICAgICAgICAgICAgKD86ICA9IFN0YXJ0IGFub3RoZXIgbm9uLWNhcHR1cmluZyBncm91cHNcblx0ICAgICAgICAgICAgICAgICBbXikoXSsgID0gTWF0Y2ggYW55dGhpbmcgdGhhdCBpc24ndCBhIHBhcmVudGhlc2VzXG5cdCAgICAgICAgICAgICAgICAgfCAgPSBPUlxuXHQgICAgICAgICAgICAgICAgIFxcKCAgPSBNYXRjaCBhIHN0YXJ0IHBhcmVudGhlc2VzXG5cdCAgICAgICAgICAgICAgICAgICAgIFteKShdKiAgPSBNYXRjaCBhbnl0aGluZyB0aGF0IGlzbid0IGEgcGFyZW50aGVzZXNcblx0ICAgICAgICAgICAgICAgICBcXCkgID0gTWF0Y2ggYSBlbmQgcGFyZW50aGVzZXNcblx0ICAgICAgICAgICAgICkgID0gRW5kIEdyb3VwXG4gICAgICAgICAgICAgICpcXCkgPSBNYXRjaCBhbnl0aGluZyBhbmQgdGhlbiBhIGNsb3NlIHBhcmVuc1xuICAgICAgICAgICkgID0gQ2xvc2Ugbm9uLWNhcHR1cmluZyBncm91cFxuICAgICAgICAgICogID0gTWF0Y2ggYW55dGhpbmdcbiAgICAgICApICA9IENsb3NlIGNhcHR1cmluZyBncm91cFxuXHQgXFwpICA9IE1hdGNoIGEgY2xvc2UgcGFyZW5zXG5cblx0IC9naSAgPSBHZXQgYWxsIG1hdGNoZXMsIG5vdCB0aGUgZmlyc3QuICBCZSBjYXNlIGluc2Vuc2l0aXZlLlxuXHQgKi9cblx0dmFyIGZpeGVkQ3NzID0gY3NzLnJlcGxhY2UoL3VybFxccypcXCgoKD86W14pKF18XFwoKD86W14pKF0rfFxcKFteKShdKlxcKSkqXFwpKSopXFwpL2dpLCBmdW5jdGlvbihmdWxsTWF0Y2gsIG9yaWdVcmwpIHtcblx0XHQvLyBzdHJpcCBxdW90ZXMgKGlmIHRoZXkgZXhpc3QpXG5cdFx0dmFyIHVucXVvdGVkT3JpZ1VybCA9IG9yaWdVcmxcblx0XHRcdC50cmltKClcblx0XHRcdC5yZXBsYWNlKC9eXCIoLiopXCIkLywgZnVuY3Rpb24obywgJDEpeyByZXR1cm4gJDE7IH0pXG5cdFx0XHQucmVwbGFjZSgvXicoLiopJyQvLCBmdW5jdGlvbihvLCAkMSl7IHJldHVybiAkMTsgfSk7XG5cblx0XHQvLyBhbHJlYWR5IGEgZnVsbCB1cmw/IG5vIGNoYW5nZVxuXHRcdGlmICgvXigjfGRhdGE6fGh0dHA6XFwvXFwvfGh0dHBzOlxcL1xcL3xmaWxlOlxcL1xcL1xcLykvaS50ZXN0KHVucXVvdGVkT3JpZ1VybCkpIHtcblx0XHQgIHJldHVybiBmdWxsTWF0Y2g7XG5cdFx0fVxuXG5cdFx0Ly8gY29udmVydCB0aGUgdXJsIHRvIGEgZnVsbCB1cmxcblx0XHR2YXIgbmV3VXJsO1xuXG5cdFx0aWYgKHVucXVvdGVkT3JpZ1VybC5pbmRleE9mKFwiLy9cIikgPT09IDApIHtcblx0XHQgIFx0Ly9UT0RPOiBzaG91bGQgd2UgYWRkIHByb3RvY29sP1xuXHRcdFx0bmV3VXJsID0gdW5xdW90ZWRPcmlnVXJsO1xuXHRcdH0gZWxzZSBpZiAodW5xdW90ZWRPcmlnVXJsLmluZGV4T2YoXCIvXCIpID09PSAwKSB7XG5cdFx0XHQvLyBwYXRoIHNob3VsZCBiZSByZWxhdGl2ZSB0byB0aGUgYmFzZSB1cmxcblx0XHRcdG5ld1VybCA9IGJhc2VVcmwgKyB1bnF1b3RlZE9yaWdVcmw7IC8vIGFscmVhZHkgc3RhcnRzIHdpdGggJy8nXG5cdFx0fSBlbHNlIHtcblx0XHRcdC8vIHBhdGggc2hvdWxkIGJlIHJlbGF0aXZlIHRvIGN1cnJlbnQgZGlyZWN0b3J5XG5cdFx0XHRuZXdVcmwgPSBjdXJyZW50RGlyICsgdW5xdW90ZWRPcmlnVXJsLnJlcGxhY2UoL15cXC5cXC8vLCBcIlwiKTsgLy8gU3RyaXAgbGVhZGluZyAnLi8nXG5cdFx0fVxuXG5cdFx0Ly8gc2VuZCBiYWNrIHRoZSBmaXhlZCB1cmwoLi4uKVxuXHRcdHJldHVybiBcInVybChcIiArIEpTT04uc3RyaW5naWZ5KG5ld1VybCkgKyBcIilcIjtcblx0fSk7XG5cblx0Ly8gc2VuZCBiYWNrIHRoZSBmaXhlZCBjc3Ncblx0cmV0dXJuIGZpeGVkQ3NzO1xufTtcblxuXG5cbi8vLy8vLy8vLy8vLy8vLy8vL1xuLy8gV0VCUEFDSyBGT09URVJcbi8vIC4vbm9kZV9tb2R1bGVzL3N0eWxlLWxvYWRlci9saWIvdXJscy5qc1xuLy8gbW9kdWxlIGlkID0gOFxuLy8gbW9kdWxlIGNodW5rcyA9IDAiXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///8\n");
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
 
 /***/ })
 /******/ ]);

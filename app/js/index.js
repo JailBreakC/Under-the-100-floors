@@ -1,15 +1,11 @@
 import GameController from './game_controller';
 import '../less/style.less';
 
-window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(cb) {
-  cb();
-};
-
-$('body').show();
-
 $(function() {
 
   var gc = new GameController();
+
+  $('body').show();
 
   gc.on('gameover', function(e) {
     $('#github-fork').show();
@@ -37,7 +33,7 @@ $(function() {
 
   var preloadImg = function() {
     var imgList = [
-      '../../public/images/spring-up.png'
+      '/public/images/spring-up.png'
     ]
     for (var i = 0; i < imgList.length; i++) {
       var _img = new Image();

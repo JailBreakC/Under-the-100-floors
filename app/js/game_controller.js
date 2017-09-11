@@ -5,6 +5,33 @@ window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequ
 };
 
 var GameController = function() {
+  this.floorRate = [
+    {
+      name: 'normal',
+      rate: 15,
+    },
+    {
+      name: 'spring',
+      rate: 15,
+    },
+    {
+      name: 'weak',
+      rate: 15,
+    },
+    {
+      name: 'scroll-left',
+      rate: 10,
+    },
+    {
+      name: 'scroll-right',
+      rate: 10,
+    },
+    {
+      name: 'nail',
+      rate: 35
+    }
+  ]
+
   this.fps = 60; //刷新频率
   this.speed = 50; // 卷轴初始速度
   this.maxSpeed = 350; // 卷轴最大速度
@@ -35,6 +62,8 @@ var GameController = function() {
   this._currentJumpDistance = 0;
   this._frameIndex = 0;
   this._v0 = 0; // 初始速度 px每秒
+
+  this.checkFloorConfig();
 }
   
 GameController.prototype = {
@@ -64,38 +93,45 @@ GameController.prototype = {
     $('title').text('老子' + this.floorScore + '层!-是男人就下100层');
     _czc.push(['_trackEvent', 'score', 'game', 'gameover', this.floorScore]);
   },
+  checkFloorConfig: function() {
+    var rangeArray = [0];
+    var totalRate = 0;
+    var config = this.floorRate;
+
+    for(var i = 0; i < config.length; i++ ) {
+      var _rate = config[i].rate;
+      console.log(_rate);
+      if(typeof _rate !== 'number') {
+        throw new TypeError('rate type error');
+      }
+      totalRate += _rate;
+      rangeArray.push(totalRate);
+    }
+    if(totalRate !== 100) {
+      throw new RangeError('rate 加起来务必等于 100！');
+    }
+
+    this._floorRateArray = rangeArray;
+  },
+  getRandomFloor: function(rangeArray) {
+    var dice = Math.random() * 100;
+    for (var i = 0; i < rangeArray.length - 1; i++) {
+      if (dice >= rangeArray[i] && dice < rangeArray[i + 1]) {
+        return this.floorRate[i];
+      }
+    }
+  },
   createFloorSpan: function() {
     //计算楼梯位置，200px 刚开始从距离顶部200px开始
     var _top = this._floorScrollerY += this.floorDeltaY,
       //楼梯横向位置随机出现
       _left = Math.random() * (this.canvasWidth - this.floorWidth);
-    //数组中【按比例】随机抽取一个index
-    //参数是一个概率比例值数组，数字越大比例越高
-    // var randomRate = function(arr) {
-    //     var randomArr = [];
-    //     for(var i = 0; i < arr.length; i++) {
-    //         randomArr[i] = arr[i] * Math.random();
-    //     }
-    //     // console.log(randomArr);
-    //     var biggestNumber = Math.max.apply(Math, randomArr);
-    //     return randomArr.indexOf(biggestNumber);
-    // };
-    var floors = [
-      '<i class="floor normal"></i>',
-      '<i class="floor normal"></i>',
-      '<i class="floor spring"></i>',
-      '<i class="floor spring"></i>',
-      '<i class="floor weak"></i>',
-      '<i class="floor weak"></i>',
-      '<i class="floor scroll-left"></i>',
-      '<i class="floor scroll-right"></i>',
-      '<i class="floor nail"></i>',
-      '<i class="floor nail"></i>',
-      '<i class="floor nail"></i>',
-      '<i class="floor nail"></i>',
-    ];
+
+    var floorConfig = this.getRandomFloor(this._floorRateArray);
+    var floorElement = '<i class="floor '+ floorConfig.name + '"></i>';
+
     //随机新建楼梯，并添加到卷轴中去
-    $(floors[Math.floor(Math.random() * floors.length)]).css({
+    $(floorElement).css({
       top: _top,
       left: _left,
       width: this.floorWidth,
@@ -202,7 +238,7 @@ GameController.prototype = {
   people: function(fps) {
     // 每帧消耗时间 ms
     var dt = 1/fps;
-    // 人物纵向每帧移动距离 △x = v0 * dt + (adt^2) / 2
+    // 人物纵向每帧移动距离 △x = v0 * dt + (a * dt^2) / 2
     var _deltaPeopleY = this._v0 * dt + this.gravity * (dt) * (dt) / 2
     // 更新时间 t = t + dt;
     this._t += dt;

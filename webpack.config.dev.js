@@ -4,7 +4,6 @@ var webpackBase = {
   context: __dirname,
   entry: {
     app: [
-      'webpack-dev-server/client?http://localhost:8081',
       './app/js/index.js'
     ]
   }, output: {

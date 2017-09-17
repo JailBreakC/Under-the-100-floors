@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>是男人就下100层</title>
+	<link href="http://cdn.bootcss.com/normalize/4.2.0/normalize.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="public/fonts/roboto/RobotoCondensed-Bold.css">
+	<link rel="Shortcut Icon" href="public/images/favicon.ico">
+</head>
+<body style="display: none">
+	<div class="wechat" style="display:none;">
+	    <img src="public/images/icon.png" alt="shareimg" width="300" height="300">
+	</div>
+	<a id="github-fork" style="position: absolute; top: 0; right: 0; z-index: 1000" target="_blank" href="https://github.com/JailBreakC/Under-the-100-floors"><img style="border: 0;" src="http://static.vgee.cn/181013198028385.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>	
+	<div class="container">
+		<div class="game-intro">
+			<img class="index-text-img" src="public/images/index-text.png" alt="是男人就下100层">
+			<div class="text-desc">
+				『落到红色梯子会掉4点血<br>
+				 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;落到其他梯子上加1点血』
+			 </div>
+			<div class="bottom-btn-ct">
+				<div id="start-game" class="start-btn" onclick="_czc.push(﻿['_trackEvent','btn','click','start']);">
+					开始游戏
+				</div>
+			</div>
+		</div>
+		<div class="game-over">
+			<div class="text-gameover">
+				Game Over
+			</div>
+			<div class="text-score-title">
+				FLOOR
+			</div>
+			<div class="text-score">
+				0
+			</div>
+			<img class="share-btn" src="public/images/share-btn.png" alt="share" onclick="_czc.push(﻿['_trackEvent','btn','click','share']);">
+			<div class="text-desc">
+			</div>
+			<div class="bottom-btn-ct">
+				<div id="restart-game" class="start-btn" onclick="_czc.push(﻿['_trackEvent','btn','click','restart']);">
+					重玩
+				</div>
+			</div>
+			<a class="author" target="_blank" href="http://vgee.cn">作者: JailBreakC</a>
+		</div>
+		<div id="game-ct">
+			<canvas class="game-canvas canvas"></canvas>
+			<div class="controller">
+				<div class="blood-ct">
+					<div class="blood">
+						<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+					</div>
+				</div>
+				<div class="score-ct">
+					<div class="text-score">
+						1
+					</div>
+					<div class="text-score-title">
+						FLOOR
+					</div>
+				</div>
+				<div class="ctrl-ct left-ct">
+					<div class="item left"><img src="public/images/left-button.png" alt="left"></div>
+				</div>
+				<div class="ctrl-ct right-ct">
+					<div class="item right"><img src="public/images/right-button.png" alt="left"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+  <script src="https://s4.cnzz.com/z_stat.php?id=1260493813&web_id=1260493813" language="JavaScript"></script>
+	<script src="http://cdn.bootcss.com/modernizr/2.8.3/modernizr.min.js"></script>
+  <script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+  <script>
+    _RENDERER = 'canvas';
+  </script>
+	<script src="dist/app.js"></script>
+</body>
+</html>

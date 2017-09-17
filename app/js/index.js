@@ -1,4 +1,5 @@
 import GameController from './game_controller';
+import GameControllerCanvas from './game_controller_canvas';
 import '../less/style.less';
 
 var tips = {
@@ -17,10 +18,18 @@ var preloadImg = function() {
 }
 
 $(function() {
-
-  var gc = new GameController();
-
+  var gc
   $('body').show();
+  
+  if(typeof _RENDERER !=='undefined' && _RENDERER !== 'canvas') {
+    gc = new GameController();    
+  } else {
+    gc = new GameControllerCanvas();
+    $('.game-intro').hide();
+    $('#game-ct').show();
+    gc.start();
+  }
+
 
   gc.on('gameover', function(e) {
     $('#github-fork').show();

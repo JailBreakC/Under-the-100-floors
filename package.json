@@ -4,7 +4,7 @@
   "description": "game",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config webpack.config.dev.js",
+    "start": "webpack -w --config webpack.config.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,7 +29,6 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "style-loader": "^0.18.2",
-    "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.7.1"
+    "webpack": "^3.3.0"
   }
 }

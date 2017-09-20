@@ -74,6 +74,9 @@ var GameController = function() {
   this._frameIndex = 0;
   this._v0 = 0; // 初始速度 px每秒
 
+  this.canvas.width = $('#game-ct').width();
+  this.canvas.height = $('#game-ct').height();
+
   this.checkFloorConfig();
   this.loadImages();
 }
@@ -157,8 +160,33 @@ GameController.prototype = {
     this._floorpool.push(floorElement)
   },
   drawFloor: function() {
+    var floorLoop = 0;
+    while (floorLoop++ < 13) {
+      this.createFloorSpan();
+    }
+
     this._floorpool.map(function(floor) {
-      var img = this.imgObj[floor.name]
+      var img
+      switch(floor.name) {
+        case 'normal':
+          img = this.imgObj['normal']
+          break;
+        case 'spring': 
+          img = this.imgObj['springUp']
+          break;
+        case 'nail': 
+          img = this.imgObj['nail']
+          break;
+        case 'scroll-left': 
+          img = this.imgObj['scrollLeft']
+          break;
+        case 'scroll-right':
+          img = this.imgObj['scrollRight']
+          break;
+        case 'weak':
+          img = this.imgObj['weakLeft']
+          break;
+      }
       console.log(img, floor.left, floor.top , this.floorWidth, this.floorHeight);
       if(!img) {
         return
@@ -589,8 +617,8 @@ GameController.prototype = {
     }
   },
   start: function() {
-    var _this = this,
-      floorLoop = 0;
+    var _this = this;
+    
     this.$container.trigger('start');
     // Modernizr.csstransforms3d = false;
     // Modernizr.csstransforms = false;
@@ -612,12 +640,9 @@ GameController.prototype = {
     //备份初始参数
     this.backup();
     //初始化台阶
-    while (floorLoop++ < 13) {
-      this.createFloorSpan();
-    }
     setTimeout(() => {
       this.drawFloor();      
-    })
+    }, 100)
     // //初始化任务控制
     // this.peopleUserController();
     // //首次更新人物视图

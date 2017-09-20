@@ -21,13 +21,13 @@ $(function() {
   var gc
   $('body').show();
   
-  if(typeof _RENDERER !=='undefined' && _RENDERER !== 'canvas') {
-    gc = new GameController();    
-  } else {
+  if(typeof _RENDERER !=='undefined' && _RENDERER === 'canvas') {
     gc = new GameControllerCanvas();
     $('.game-intro').hide();
     $('#game-ct').show();
     gc.start();
+  } else {
+    gc = new GameController();    
   }
 
 

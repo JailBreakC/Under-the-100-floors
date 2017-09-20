@@ -67,7 +67,7 @@ var GameController = function() {
   this._t = 0; // 人物开始下落时间
   this._currentScrollerY = 0;
   this._currentPeopleY = 20;
-  this._currentPeopleVertical = 0;
+  this._currentPeopleX = 0;
   this._floorScrollerY = 200;
   this._maxJumpDistance = 20;
   this._currentJumpDistance = 0;
@@ -160,39 +160,48 @@ GameController.prototype = {
     this._floorpool.push(floorElement)
   },
   drawFloor: function() {
+    this._floorpool.map(function(floor) {
+      switch(floor.name) {
+        case 'normal':
+          var img = this.imgObj['normal']
+          this.ctx.drawImage(img, floor.left, floor.top , this.floorWidth, this.floorHeight);
+          break;
+        case 'spring':
+          var img = this.imgObj['springNormal']
+          this.ctx.drawImage(img, floor.left, floor.top , this.floorWidth, this.floorHeight);
+          break;
+        case 'nail': 
+          var img = this.imgObj['nail']
+          var overRate = 32/140;
+          var height = this.floorWidth * overRate;
+          var deltaY = height - this.floorHeight;
+          this.ctx.drawImage(img, floor.left, floor.top - deltaY , this.floorWidth, height);
+          break;
+        case 'scroll-left':   
+          var img = this.imgObj['scrollLeft']
+          this.ctx.drawImage(img, 0, 0, 140 * 1, 20, floor.left, floor.top, this.floorWidth, this.floorHeight);
+          break;
+        case 'scroll-right':
+          var img = this.imgObj['scrollRight']
+          this.ctx.drawImage(img, 0, 0, 140 * 1, 20, floor.left, floor.top, this.floorWidth, this.floorHeight);
+          break;
+        case 'weak':
+          var imgLeft = this.imgObj['weakLeft'];
+          var imgRight = this.imgObj['weakRight'];
+          var width = 144 / 140 * this.floorWidth / 2;
+          this.ctx.drawImage(imgLeft, floor.left, floor.top , width, this.floorHeight);
+          this.ctx.drawImage(imgRight, floor.left + this.floorWidth - width, floor.top , width, this.floorHeight);
+          break;
+      }
+    }.bind(this));
+  },
+  initFloor: function() {
     var floorLoop = 0;
+
     while (floorLoop++ < 13) {
       this.createFloorSpan();
     }
-
-    this._floorpool.map(function(floor) {
-      var img
-      switch(floor.name) {
-        case 'normal':
-          img = this.imgObj['normal']
-          break;
-        case 'spring': 
-          img = this.imgObj['springUp']
-          break;
-        case 'nail': 
-          img = this.imgObj['nail']
-          break;
-        case 'scroll-left': 
-          img = this.imgObj['scrollLeft']
-          break;
-        case 'scroll-right':
-          img = this.imgObj['scrollRight']
-          break;
-        case 'weak':
-          img = this.imgObj['weakLeft']
-          break;
-      }
-      console.log(img, floor.left, floor.top , this.floorWidth, this.floorHeight);
-      if(!img) {
-        return
-      }
-      this.ctx.drawImage(img, floor.left, floor.top , this.floorWidth, this.floorHeight);
-    }.bind(this))
+    this.drawFloor();
   },
   removeFloorSpan: function() {
     $('.floor').eq(0).remove();
@@ -211,6 +220,7 @@ GameController.prototype = {
   },
   updateScore: function() {
     this.$container.trigger('scoreupdate');
+    $('.text-score').text(this.floorScore);
   },
   loseBlood: function() {
     //当人物在平台上时，不重复扣血
@@ -398,8 +408,8 @@ GameController.prototype = {
         __temp_deltaPeopleVertical *= 0.5;
       }
 
-      if (this._currentPeopleVertical > 0) {
-        this._currentPeopleVertical -= __temp_deltaPeopleVertical;
+      if (this._currentPeopleX > 0) {
+        this._currentPeopleX -= __temp_deltaPeopleVertical;
       }
     }
     //处理人物向右运动
@@ -411,22 +421,22 @@ GameController.prototype = {
         __temp_deltaPeopleVertical *= 1.5;
       }
 
-      if (this._currentPeopleVertical < this.canvasWidth - this.peopleWidth) {
-        this._currentPeopleVertical += __temp_deltaPeopleVertical;
+      if (this._currentPeopleX < this.canvasWidth - this.peopleWidth) {
+        this._currentPeopleX += __temp_deltaPeopleVertical;
       }
     }
     //处理人物在滚动楼梯上的自动运动
     if (!this._peopleGoRight && !this._peopleGoLeft) {
       __temp_deltaPeopleVertical *= 0.5;
       if (this.__floorScrollDirection === 'left') {
-        if (this._currentPeopleVertical > 0) {
-          this._currentPeopleVertical -= __temp_deltaPeopleVertical;
+        if (this._currentPeopleX > 0) {
+          this._currentPeopleX -= __temp_deltaPeopleVertical;
         }
 
       }
       if (this.__floorScrollDirection === 'right') {
-        if (this._currentPeopleVertical < this.canvasWidth - this.peopleWidth) {
-          this._currentPeopleVertical += __temp_deltaPeopleVertical;
+        if (this._currentPeopleX < this.canvasWidth - this.peopleWidth) {
+          this._currentPeopleX += __temp_deltaPeopleVertical;
         }
       }
     }
@@ -467,27 +477,16 @@ GameController.prototype = {
         this.peopleRotateZ += this.peopleRotateDelta;
       }
     }
-    if (Modernizr.csstransforms3d) {
-      //设定人物位置, translate3d开启GPU加速
-      this.$people.css({
-        '-webkit-transform': 'translate3d(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px ,0)',
-        '-ms-transform': 'translate3d(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px ,0)',
-        'transform': 'translate3d(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px ,0)',
-      });
-    } else if (Modernizr.csstransforms) {
-      //不支持translate3d 使用translate
-      this.$people.css({
-        '-webkit-transform': 'translate(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px)',
-        '-ms-transform': 'translate(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px)',
-        'transform': 'translate(' + this._currentPeopleVertical + 'px , ' + this._currentPeopleY + 'px)',
-      });
-    } else {
-      //还不支持，那就GG
-      this.$people.css({
-        'left': this._currentPeopleVertical + 'px',
-        'top': this._currentPeopleY + 'px',
-      });
-    }
+
+    this.ctx.arc(
+      this._currentPeopleX - this.peopleWidth / 2,
+      this._currentPeopleY + this.peopleHeight / 2,
+      parseInt(this.peopleWidth / 2),
+      0,
+      Math.PI * 2
+    );
+    ctx.fillStyle = "#00acff";
+    this.ctx.fill();
   },
   peopleUserController: function() {
     var _this = this;
@@ -624,33 +623,33 @@ GameController.prototype = {
     // Modernizr.csstransforms = false;
     //当视窗大小变动时，重新计算画布宽高
     this.canvas.width = $('#game-ct').width();
-    this.canvas.height = $('#game-ct').height();
+    this.canvas.height = $('#game-ct').height() - 170;
     window.ctx = this.ctx = this.canvas.getContext('2d');
 
     this.canvasWidth = this.canvas.width;
     this.canvasHeight = this.canvas.height;
     this.floorDeltaY = this.canvasHeight / 11;
     this.floorWidth = this.canvasWidth / 5;
-    this.floorHeight = this.floorWidth / 9;
+    this.floorHeight = this.floorWidth / 7;
     this.peopleHeight = 15
     this.peopleWidth = 15
 
     //人物位置预设
-    this._currentPeopleVertical = this.canvasWidth / 2 + this.peopleWidth / 2;
+    this._currentPeopleX = this.canvasWidth / 2 + this.peopleWidth / 2;
     //备份初始参数
     this.backup();
     //初始化台阶
     setTimeout(() => {
-      this.drawFloor();      
+      this.initFloor();      
     }, 100)
-    // //初始化任务控制
-    // this.peopleUserController();
-    // //首次更新人物视图
-    // this.peopleUpdateView();
+    //初始化任务控制
+    this.peopleUserController();
+    //首次更新人物视图
+    this.peopleUpdateView();
     // //首次更新人物血量
-    // this.updateBlood();
-    // //首次更新楼层数
-    // this.updateScore();
+    this.updateBlood();
+    //首次更新楼层数
+    this.updateScore();
     // //以每秒60帧执行游戏动画
     // this.run(this.fps);
   }

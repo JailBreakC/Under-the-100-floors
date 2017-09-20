@@ -23,9 +23,9 @@ $(function() {
   
   if(typeof _RENDERER !=='undefined' && _RENDERER === 'canvas') {
     gc = new GameControllerCanvas();
-    $('.game-intro').hide();
-    $('#game-ct').show();
-    gc.start();
+    setTimeout(function() {
+      $('#start-game').trigger('click');      
+    })
   } else {
     gc = new GameController();    
   }

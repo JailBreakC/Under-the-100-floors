@@ -305,6 +305,7 @@ GameController.prototype = {
   },
   updateScore: function updateScore() {
     this.$container.trigger('scoreupdate');
+    $('.text-score').text(this.floorScore);
   },
   loseBlood: function loseBlood() {
     //当人物在平台上时，不重复扣血

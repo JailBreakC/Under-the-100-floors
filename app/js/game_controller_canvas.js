@@ -158,7 +158,7 @@ GameController.prototype = {
     this._floorpool.push(floorElement)
   },
   drawFloor: function() {
-    ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+    ctx.clearRect(0,0, this.canvas.width, this.canvas.height);    
     this._floorpool.map(function(floor) {
       switch(floor.name) {
         case 'normal':
@@ -244,9 +244,9 @@ GameController.prototype = {
     }
     this.blood -= 4;
     //人变红
-    this.$people.addClass('danger');
+    this.peopleDanger = true;
     setTimeout(function() {
-      this.$people.removeClass('danger');
+      this.peopleDanger = false;
     }.bind(this), 1000);
 
     //背景闪烁
@@ -277,12 +277,12 @@ GameController.prototype = {
   floorNail: function() {
     this.loseBlood();
   },
-  floorWeak: function($floorEle) {
+  floorWeak: function(floor) {
     this.addBlood();
     //短暂停留后，标记该元素可强行穿过
     setTimeout(function() {
-      $floorEle.addClass('over');
-      $floorEle[0].cross = true;
+      floor.over = true;
+      floor.cross = true;
     }, 200);
   },
   floorScroll: function(direction) {
@@ -292,16 +292,16 @@ GameController.prototype = {
   floorScrollEnd: function() {
     this.__floorScrollDirection = null;
   },
-  floorSpring: function($floorEle) {
-    this.__$currentJumpFloor = $floorEle;
+  floorSpring: function(floor) {
+    this._currentJumpFloor = floor;
     this.jumpStart();
     this.addBlood();
   },
   jumpStart: function() {
     this.__jumpMode = true;
-    this.__$currentJumpFloor.addClass('up');
+    this._currentJumpFloor.up = true;
     setTimeout(function() {
-      this.__$currentJumpFloor.removeClass('up');
+      this._currentJumpFloor.up = false;
     }.bind(this), 200);
   },
   jumpEnd: function(hitTop) {
@@ -309,7 +309,7 @@ GameController.prototype = {
       return;
     }
     if (hitTop) {
-      this.__$currentJumpFloor[0].cross = true;
+      this._currentJumpFloor.cross = true;
     }
     //重置跳跃高度
     this._currentJumpDistance = 0;
@@ -329,24 +329,19 @@ GameController.prototype = {
     var _deltaY = this.speed / fps;
     //人物横向每帧移动距离
     var _deltaPeopleVertical = this.peopleVerticalSpeed / fps;
-    //缓存floor
-    var $floor = $('.floor');
-    //缓存offset
-    var peopleOffset = this.$people.offset();
 
     //人物掉落屏幕下方，游戏结束
-    if (peopleOffset.top > this.canvasHeight) {
+    if (this._currentPeopleY > this.canvasHeight) {
       this.gameover();
       return
     }
     //碰撞检测
-    for (var i = 0; i < $floor.length; i++) {
-      //缓存offset
-      var floorOffset = $floor.eq(i).offset();
+    for(var index = 0; index < this._floorpool.length; index++) {
+      var floor = this._floorpool[index];
       //人物与楼梯纵向距离
-      var distanceGap = Math.abs(peopleOffset.top + this.peopleHeight - floorOffset.top);
+      var distanceGap = Math.abs(this._currentPeopleY + this.peopleHeight - floor.y);
       //当人物撞到顶部，掉血+掉落+打断跳跃
-      if (peopleOffset.top <= _deltaPeopleY + _deltaY) {
+      if (this._currentPeopleY <= _deltaPeopleY + _deltaY) {
         this._t = 0;
         this.__onFloor = false;
         this.jumpEnd(true);
@@ -356,32 +351,32 @@ GameController.prototype = {
       //跳跃模式不进入检测
       if (!this.__jumpMode &&
         //元素不可直接穿过
-        !$floor.eq(i)[0].cross &&
+        !floor.cross &&
         //人物与楼梯纵向距离在一帧移动距离之内
         distanceGap <= _deltaPeopleY + _deltaY &&
         //人物横向距离不超过楼梯最左
-        peopleOffset.left > floorOffset.left - this.peopleWidth &&
+        this._currentPeopleX > floor.x - this.peopleWidth &&
         //人物横向距离不超过楼梯最右
-        peopleOffset.left < floorOffset.left + this.floorWidth) {
+        this._currentPeopleX < floor.x + this.floorWidth) {
         //人物与楼梯偏差修正
-        this._currentPeopleY = floorOffset.top - this.peopleHeight;
+        this._currentPeopleY = floor.y - this.peopleHeight;
         //施加各类楼梯特殊属性
-        if ($floor.eq(i).hasClass('normal')) {
+        if (floor.name === 'normal') {
           this.floorNormal();
         }
-        if ($floor.eq(i).hasClass('nail')) {
+        if (floor.name === 'nail') {
           this.floorNail();
         }
-        if ($floor.eq(i).hasClass('spring')) {
-          this.floorSpring($floor.eq(i));
+        if (floor.name === 'spring') {
+          this.floorSpring(floor);
         }
-        if ($floor.eq(i).hasClass('weak')) {
-          this.floorWeak($floor.eq(i));
+        if (floor.name === 'weak') {
+          this.floorWeak(floor);
         }
-        if ($floor.eq(i).hasClass('scroll-left')) {
+        if (floor.name === 'scroll-left') {
           this.floorScroll('left');
         }
-        if ($floor.eq(i).hasClass('scroll-right')) {
+        if (floor.name === 'scroll-right') {
           this.floorScroll('right');
         }
         this._t = 0;
@@ -389,10 +384,10 @@ GameController.prototype = {
         break;
       }
       //当循环执行完毕，仍然没有发现碰撞，则表明人物不在平台上
-      if (i === $floor.length - 1) {
+      if (index === this._floorpool.length - 1) {
         this.__onFloor = false;
       }
-    }
+    };
 
     //人物向上跳起
     if (this.__jumpMode) {
@@ -526,15 +521,13 @@ GameController.prototype = {
   core: function(fps) {
     var _this = this,
       deltaY = this.speed / fps; //卷轴纵向每帧移动距离
-
-    //计算卷轴位置
-    // this._currentScrollerY -= deltaY;
-
-    //更新卷轴位置
+    ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+      
+    //更新楼梯位置
     this.floorUpdateView(deltaY);
 
     //调用人物渲染
-    // this.people(fps);
+    this.people(fps);
     // 越来越high
     if (this.speed <= this.maxSpeed) {
       this.speed += 0.1;

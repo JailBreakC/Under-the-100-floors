@@ -142,71 +142,86 @@ GameController.prototype = {
       }
     }
   },
-  createFloorSpan: function() {
-    //计算楼梯位置，200px 刚开始从距离顶部200px开始
-    var _top = this._floorScrollerY += this.floorDeltaY,
-      //楼梯横向位置随机出现
-      _left = Math.random() * (this.canvasWidth - this.floorWidth);
+  createFloorSpan: function(y) {
+    //楼梯横向位置随机出现
+    var x = Math.random() * (this.canvasWidth - this.floorWidth);
 
     var floorConfig = this.getRandomFloor(this._floorRateArray);
     var floorElement = {
       width: this.floorWidth,
       height: this.floorHeight,
-      top: _top,
-      left: _left,
+      x,
+      y,
       name: floorConfig.name
     }
 
     this._floorpool.push(floorElement)
   },
   drawFloor: function() {
+    ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
     this._floorpool.map(function(floor) {
       switch(floor.name) {
         case 'normal':
           var img = this.imgObj['normal']
-          this.ctx.drawImage(img, floor.left, floor.top , this.floorWidth, this.floorHeight);
+          this.ctx.drawImage(img, floor.x, floor.y , this.floorWidth, this.floorHeight);
           break;
         case 'spring':
           var img = this.imgObj['springNormal']
-          this.ctx.drawImage(img, floor.left, floor.top , this.floorWidth, this.floorHeight);
+          this.ctx.drawImage(img, floor.x, floor.y , this.floorWidth, this.floorHeight);
           break;
         case 'nail': 
           var img = this.imgObj['nail']
           var overRate = 32/140;
           var height = this.floorWidth * overRate;
           var deltaY = height - this.floorHeight;
-          this.ctx.drawImage(img, floor.left, floor.top - deltaY , this.floorWidth, height);
+          this.ctx.drawImage(img, floor.x, floor.y - deltaY , this.floorWidth, height);
           break;
         case 'scroll-left':   
           var img = this.imgObj['scrollLeft']
-          this.ctx.drawImage(img, 0, 0, 140 * 1, 20, floor.left, floor.top, this.floorWidth, this.floorHeight);
+          this.ctx.drawImage(img, 0, 0, 140 * 1, 20, floor.x, floor.y, this.floorWidth, this.floorHeight);
           break;
         case 'scroll-right':
           var img = this.imgObj['scrollRight']
-          this.ctx.drawImage(img, 0, 0, 140 * 1, 20, floor.left, floor.top, this.floorWidth, this.floorHeight);
+          this.ctx.drawImage(img, 0, 0, 140 * 1, 20, floor.x, floor.y, this.floorWidth, this.floorHeight);
           break;
         case 'weak':
           var imgLeft = this.imgObj['weakLeft'];
           var imgRight = this.imgObj['weakRight'];
           var width = 144 / 140 * this.floorWidth / 2;
-          this.ctx.drawImage(imgLeft, floor.left, floor.top , width, this.floorHeight);
-          this.ctx.drawImage(imgRight, floor.left + this.floorWidth - width, floor.top , width, this.floorHeight);
+          this.ctx.drawImage(imgLeft, floor.x, floor.y , width, this.floorHeight);
+          this.ctx.drawImage(imgRight, floor.x + this.floorWidth - width, floor.y , width, this.floorHeight);
           break;
       }
     }.bind(this));
   },
   initFloor: function() {
     var floorLoop = 0;
-
+    var y = this._floorScrollerY;
     while (floorLoop++ < 13) {
-      this.createFloorSpan();
+      this.createFloorSpan(y);
+      y += this.floorDeltaY
     }
     this.drawFloor();
   },
-  removeFloorSpan: function() {
-    $('.floor').eq(0).remove();
-    this.floorScore++;
-    this.updateScore();
+  //更新楼梯位置
+  floorUpdateView: function(deltaY) {
+    this._floorpool = this._floorpool.reduce(function(pre, cur) {
+      // 顶部楼梯离开视野，删除楼梯
+      if ((cur.y - deltaY) >= -this.floorHeight) {
+        cur.y -= deltaY;
+        pre.push(cur);
+      } else {
+        this.floorScore++;
+        this.updateScore();
+      }
+      return pre;
+    }.bind(this), []);
+    // 增加新楼梯
+    if(this._floorpool.length === 12) {
+      let lastY = this._floorpool[11].y + this.floorDeltaY;
+      this.createFloorSpan(lastY);
+    }
+    this.drawFloor();
   },
   updateBlood: function() {
     var $bloodEle = $('.blood i');
@@ -444,29 +459,6 @@ GameController.prototype = {
     //更新人物视图
     this.peopleUpdateView();
   },
-  //更新卷轴位置
-  floorUpdateView: function() {
-    if (Modernizr.csstransforms3d) {
-      //设定卷轴位置, translate3d开启GPU加速
-      this.$scroller.css({
-        '-webkit-transform': 'translate3d(0, ' + this._currentScrollerY + 'px, 0)',
-        '-ms-transform': 'translate3d(0, ' + this._currentScrollerY + 'px, 0)',
-        'transform': 'translate3d(0, ' + this._currentScrollerY + 'px, 0)',
-      });
-    } else if (Modernizr.csstransforms) {
-      //不支持translate3d 使用translateY
-      this.$scroller.css({
-        '-webkit-transform': 'translateY(' + this._currentScrollerY + 'px)',
-        '-ms-transform': 'translateY(' + this._currentScrollerY + 'px)',
-        'transform': 'translateY(' + this._currentScrollerY + 'px)',
-      });
-    } else {
-      //还不支持，那就GG
-      this.$scroller.css({
-        'top': this._currentScrollerY + 'px',
-      });
-    }
-  },
   //更新人物视图
   peopleUpdateView: function() {
     if (this.__onFloor) {
@@ -533,37 +525,16 @@ GameController.prototype = {
   },
   core: function(fps) {
     var _this = this,
-      _deltaY = this.speed / fps, //卷轴纵向每帧移动距离
-      $floor = $('.floor');
+      deltaY = this.speed / fps; //卷轴纵向每帧移动距离
 
     //计算卷轴位置
-    this._currentScrollerY -= _deltaY;
-
-    //当卷轴超出一定长度之后，进行位置reset、缩减长度，防止Crash现象
-    if (this._currentScrollerY <= -this.canvasHeight * 2) {
-      //将卷轴滚动高度减小一屏
-      this._currentScrollerY += this.canvasHeight;
-      //将楼梯偏移高度减小一屏
-      this._floorScrollerY -= this.canvasHeight;
-      //重置现有楼梯位置
-      for (var i = 0; i < $floor.length; i++) {
-        $floor.eq(i).css({
-          top: parseInt($('.floor').eq(i).css('top')) - this.canvasHeight
-        })
-      }
-    }
+    // this._currentScrollerY -= deltaY;
 
     //更新卷轴位置
-    this.floorUpdateView();
-
-    //每个台阶移出视野则清除台阶，并且在底部增加一个新的台阶
-    if ($floor.eq(0).offset().top <= -20) {
-      this.createFloorSpan();
-      this.removeFloorSpan();
-    }
+    this.floorUpdateView(deltaY);
 
     //调用人物渲染
-    this.people(fps);
+    // this.people(fps);
     // 越来越high
     if (this.speed <= this.maxSpeed) {
       this.speed += 0.1;
@@ -640,18 +611,19 @@ GameController.prototype = {
     this.backup();
     //初始化台阶
     setTimeout(() => {
-      this.initFloor();      
+      this.initFloor();
+        //初始化任务控制
+      this.peopleUserController();
+      //首次更新人物视图
+      this.peopleUpdateView();
+      // //首次更新人物血量
+      this.updateBlood();
+      //首次更新楼层数
+      this.updateScore();
+      // //以每秒60帧执行游戏动画
+      this.run(this.fps); 
     }, 100)
-    //初始化任务控制
-    this.peopleUserController();
-    //首次更新人物视图
-    this.peopleUpdateView();
-    // //首次更新人物血量
-    this.updateBlood();
-    //首次更新楼层数
-    this.updateScore();
-    // //以每秒60帧执行游戏动画
-    // this.run(this.fps);
+    
   }
 };
 

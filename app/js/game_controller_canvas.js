@@ -158,7 +158,7 @@ GameController.prototype = {
     this._floorpool.push(floorElement)
   },
   drawFloor: function() {
-    ctx.clearRect(0,0, this.canvas.width, this.canvas.height);    
+    ctx.clearRect(0,0, this.canvas.width, this.canvas.height); 
     this._floorpool.map(function(floor) {
       switch(floor.name) {
         case 'normal':
@@ -465,6 +465,7 @@ GameController.prototype = {
       }
     }
 
+    ctx.beginPath();
     this.ctx.arc(
       this._currentPeopleX - this.peopleWidth / 2,
       this._currentPeopleY + this.peopleHeight / 2,
@@ -472,6 +473,7 @@ GameController.prototype = {
       0,
       Math.PI * 2
     );
+    ctx.closePath();    
     ctx.fillStyle = "#00acff";
     this.ctx.fill();
   },
@@ -521,7 +523,6 @@ GameController.prototype = {
   core: function(fps) {
     var _this = this,
       deltaY = this.speed / fps; //卷轴纵向每帧移动距离
-    ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
       
     //更新楼梯位置
     this.floorUpdateView(deltaY);

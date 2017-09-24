@@ -1378,7 +1378,7 @@ GameController.prototype = {
     }
 
     ctx.beginPath();
-    this.ctx.arc(this._currentPeopleX - this.peopleWidth / 2, this._currentPeopleY + this.peopleHeight / 2, parseInt(this.peopleWidth / 2), 0, Math.PI * 2);
+    this.ctx.arc(this._currentPeopleX + this.peopleWidth / 2, this._currentPeopleY + this.peopleHeight / 2, parseInt(this.peopleWidth / 2), 0, Math.PI * 2);
     ctx.closePath();
     ctx.fillStyle = "#00acff";
     this.ctx.fill();
@@ -1471,7 +1471,7 @@ GameController.prototype = {
     //重置参数
     $.extend(this, this.__paramBackup);
     //删掉现有楼梯
-    $('.floor').remove();
+    this._floorpool = [];
     //重新初始化
     this.start();
   },
